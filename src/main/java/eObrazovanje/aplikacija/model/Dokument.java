@@ -13,7 +13,7 @@ public class Dokument {
 	
 	private String naziv;
 	
-	private String ucenik;
+	private Ucenik ucenik;
 	
 	public Dokument() {
 		
@@ -27,11 +27,11 @@ public class Dokument {
 		this.naziv = naziv;
 	}
 
-	public String getUcenik() {
+	public Ucenik getUcenik() {
 		return ucenik;
 	}
 
-	public void setUcenik(String ucenik) {
+	public void setUcenik(Ucenik ucenik) {
 		this.ucenik = ucenik;
 	}
 	
