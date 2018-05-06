@@ -39,8 +39,8 @@ public class KorisnikController {
 	
 	@GetMapping("/{id}")
 	public @ResponseBody KorisnikDTO readOne(@PathVariable(value="id")Integer id){
-		Korisnik k = KRepo.findById(id);
-		return new mapper.map(k, KorisnikDTO.class);
+		Korisnik k = KRepo.findById(id).get();
+		return mapper.map(k, KorisnikDTO.class);
 	}
 	
 	@PostMapping
@@ -49,7 +49,7 @@ public class KorisnikController {
 		k.setKorisnickoIme(dto.getKorisnickoIme());
 		KRepo.save(k);
 		
-		return new mapper.map(k, KorisnikDTO.class);
+		return mapper.map(k, KorisnikDTO.class);
 	}
 	
 	@PutMapping("/{id}")
@@ -58,7 +58,7 @@ public class KorisnikController {
 		k.setKorisnickoIme(dto.getKorisnickoIme());
 		KRepo.save(k);
 		
-		return new mapper.map(k, KorisnikDTO.class);
+		return mapper.map(k, KorisnikDTO.class);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -66,7 +66,7 @@ public class KorisnikController {
 		Korisnik k = KRepo.findById(id).get();
 		KRepo.delete(k);;
 		
-		return new mapper.map(k, KorisnikDTO.class);
+		return mapper.map(k, KorisnikDTO.class);
 	}
 	
 	

@@ -41,8 +41,8 @@ public class PredmetController {
 	
 	@GetMapping("/{id}")
 	public @ResponseBody PredmetDTO readOne(@PathVariable(value="id")Integer id){
-		Predmet p = PRepo.findById(id);
-		return new mapper.map(p, PredmetDTO.class);
+		Predmet p = PRepo.findById(id).get();
+		return mapper.map(p, PredmetDTO.class);
 	}
 	
 	@PostMapping
@@ -51,7 +51,7 @@ public class PredmetController {
 		p.setNaziv(dto.getNaziv());
 		PRepo.save(p);
 		
-		return new mapper.map(p, PredmetDTO.class);
+		return mapper.map(p, PredmetDTO.class);
 	}
 	
 	@PutMapping("/{id}")
@@ -60,7 +60,7 @@ public class PredmetController {
 		p.setNaziv(dto.getNaziv());
 		PRepo.save(p);
 		
-		return new mapper.map(p, PredmetDTO.class);
+		return mapper.map(p, PredmetDTO.class);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -68,7 +68,7 @@ public class PredmetController {
 		Predmet p = PRepo.findById(id).get();
 		PRepo.delete(p);
 		
-		return new mapper.map(p, PredmetDTO.class);
+		return mapper.map(p, PredmetDTO.class);
 	}
 	
 	

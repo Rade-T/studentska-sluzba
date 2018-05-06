@@ -42,8 +42,8 @@ public class DokumentController {
 	
 	@GetMapping("/{id}")
 	public @ResponseBody DokumentDTO readOne(@PathVariable(value="id")Integer id){
-		Dokument d = DokRepo.findById(id);
-		return new mapper.map(d, DokumentDTO.class);
+		Dokument d = DokRepo.findById(id).get();
+		return mapper.map(d, DokumentDTO.class);
 	}
 	
 	@PostMapping
@@ -52,7 +52,7 @@ public class DokumentController {
 		d.setNaziv(dto.getNaziv());
 		DokRepo.save(d);
 		
-		return new mapper.map(d, DokumentDTO.class);
+		return mapper.map(d, DokumentDTO.class);
 	}
 	
 	@PutMapping("/{id}")
@@ -61,7 +61,7 @@ public class DokumentController {
 		d.setNaziv(dto.getNaziv());
 		DokRepo.save(d);
 		
-		return new mapper.map(d, DokumentDTODTO.class);
+		return mapper.map(d, DokumentDTO.class);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -69,7 +69,7 @@ public class DokumentController {
 		Dokument d = DokRepo.findById(id).get();
 		DokRepo.delete(d);;
 		
-		return new mapper.map(d, DokumentDTO.class);
+		return mapper.map(d, DokumentDTO.class);
 	}
 	
 

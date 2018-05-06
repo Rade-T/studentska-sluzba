@@ -40,8 +40,8 @@ public class PredavanjeController {
 	
 	@GetMapping("/{id}")
 	public @ResponseBody PredavanjeDTO readOne(@PathVariable(value="id")Integer id){
-		Predavanje pr = PrRepo.findById(id);
-		return new mapper.map(pr, PredavanjeDTO.class);
+		Predavanje pr = PrRepo.findById(id).get();
+		return mapper.map(pr, PredavanjeDTO.class);
 	}
 	
 	@PostMapping
@@ -50,7 +50,7 @@ public class PredavanjeController {
 		pr.setId(dto.getId());
 		PrRepo.save(pr);
 		
-		return new mapper.map(pf, PredavanjeDTO.class);
+		return mapper.map(pr, PredavanjeDTO.class);
 	}
 	
 	@PutMapping("/{id}")
@@ -59,7 +59,7 @@ public class PredavanjeController {
 		pr.setId(dto.getId());
 		PrRepo.save(pr);
 		
-		return new mapper.map(pr, PredavanjeDTO.class);
+		return mapper.map(pr, PredavanjeDTO.class);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -67,7 +67,7 @@ public class PredavanjeController {
 		Predavanje pr = PrRepo.findById(id).get();
 		PrRepo.delete(pr);;
 		
-		return new mapper.map(pr, PredavanjeDTO.class);
+		return mapper.map(pr, PredavanjeDTO.class);
 	}
 
 }
