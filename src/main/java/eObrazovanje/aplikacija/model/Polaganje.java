@@ -1,18 +1,19 @@
 package eObrazovanje.aplikacija.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Polaganje {
 	
 	@Id
-	@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
 	private int id;
-	
+
+	@ManyToOne
 	private Ucenik ucenik;
-	
+
+	@ManyToOne
 	private Predmet predmet;
 	
 	public Polaganje() {

@@ -1,18 +1,19 @@
 package eObrazovanje.aplikacija.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Predavanje {
 	
 	@Id
-	@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
 	private int id;
-	
+
+	@ManyToOne
 	private Nastavnik nastavnik;
-	
+
+	@ManyToOne
 	private Predmet predmet;
 	
 	public Predavanje() {

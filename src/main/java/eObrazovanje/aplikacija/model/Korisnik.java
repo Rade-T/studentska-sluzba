@@ -1,14 +1,18 @@
 package eObrazovanje.aplikacija.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Korisnik {
-	
+
+    @Id
+    @Column
 	private String korisnickoIme;
-	
+
+    @Column
 	private String lozinka;
-	
+
+    @Column
 	private String uloga;
 	
 	public Korisnik() {

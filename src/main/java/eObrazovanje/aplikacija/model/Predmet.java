@@ -1,18 +1,25 @@
 package eObrazovanje.aplikacija.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Predmet {
 	
 	@Id
-	@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
 	private int id;
-	
+
+	@Column
 	private String naziv;
-	
+
+	@OneToMany(mappedBy = "predmet")
+    private List<Polaganje> polaganja;
+
+	@OneToMany(mappedBy = "predmet")
+    private List<Predavanje> predavanja;
+
 	public Predmet() {
 		
 	}
@@ -32,4 +39,20 @@ public class Predmet {
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
+
+    public List<Polaganje> getPolaganja() {
+        return polaganja;
+    }
+
+    public void setPolaganja(List<Polaganje> polaganja) {
+        this.polaganja = polaganja;
+    }
+
+    public List<Predavanje> getPredavanja() {
+        return predavanja;
+    }
+
+    public void setPredavanja(List<Predavanje> predavanja) {
+        this.predavanja = predavanja;
+    }
 }

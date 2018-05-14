@@ -1,20 +1,28 @@
 package eObrazovanje.aplikacija.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Osoba {
 	
 	@Id
-	@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
 	private int id;
-	
+
+    @Column
 	private String ime;
+
+    @Column
 	private String prezime;
+
+    @Column
 	private String JMBG;
+
+    @Column
 	private String email;
+
+    @Column
 	private String telefon;
 	
 	public Osoba() {

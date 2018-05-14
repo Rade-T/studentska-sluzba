@@ -1,18 +1,19 @@
 package eObrazovanje.aplikacija.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Uplata {
 	
 	@Id
-	@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
 	private int id;
-	
+
+	@ManyToOne
 	private Ucenik ucenik;
-	
+
+	@Column
 	private float suma;
 	
 	public Uplata() {

@@ -2,19 +2,20 @@ package eObrazovanje.aplikacija.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Pohadjanje {
 	
 	@Id
-	@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
 	private int id;
-	
+
+	@OneToMany(mappedBy = "pohadjanje")
 	private List<Ucenik> ucenici;
-	
+
+    @ManyToOne
 	private Predmet predmet;
 	
 	public Pohadjanje() {
