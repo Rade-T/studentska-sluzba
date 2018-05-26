@@ -3,8 +3,6 @@ package eObrazovanje.aplikacija.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.catalina.mapper.Mapper;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,54 +18,59 @@ import eObrazovanje.aplikacija.dto.PredavanjeDTO;
 import eObrazovanje.aplikacija.model.Predavanje;
 import eObrazovanje.aplikacija.repository.PredavanjeRepository;
 
+
 @RestController
 @RequestMapping(value="/api/predavanje")
 public class PredavanjeController {
 	
 	@Autowired
 	private PredavanjeRepository PrRepo;
-	private ModelMapper mapper = new ModelMapper();
 	
 	@GetMapping
-	public @ResponseBody List<PredavanjeDTO> readAll(){
+	public @ResponseBody
+    List<PredavanjeDTO> readAll(){
 		List<Predavanje> predavanja = (List<Predavanje>) PrRepo.findAll();
 		List<PredavanjeDTO> predavanjaDTO = new ArrayList<>();
 		for (Predavanje pr : predavanja){
-			predavanjaDTO.add(mapper.map(pr, PredavanjeDTO.class));
+			predavanjaDTO.add(new PredavanjeDTO(pr));
 		}
 		return predavanjaDTO;		
 	}
 	
 	@GetMapping("/{id}")
-	public @ResponseBody PredavanjeDTO readOne(@PathVariable(value="id")Integer id){
+	public @ResponseBody
+    PredavanjeDTO readOne(@PathVariable(value="id")Integer id){
 		Predavanje pr = PrRepo.findById(id).get();
-		return mapper.map(pr, PredavanjeDTO.class);
+		return new PredavanjeDTO(pr);
 	}
 	
 	@PostMapping
-	public @ResponseBody PredavanjeDTO create (@RequestBody PredavanjeDTO dto){
+	public @ResponseBody
+    PredavanjeDTO create (@RequestBody PredavanjeDTO dto){
 		Predavanje pr = new Predavanje();
 		pr.setId(dto.getId());
 		PrRepo.save(pr);
 		
-		return mapper.map(pr, PredavanjeDTO.class);
+		return new PredavanjeDTO(pr);
 	}
 	
 	@PutMapping("/{id}")
-	public @ResponseBody PredavanjeDTO update(@PathVariable(value="id") Integer id, @RequestBody PredavanjeDTO dto){
+	public @ResponseBody
+    PredavanjeDTO update(@PathVariable(value="id") Integer id, @RequestBody PredavanjeDTO dto){
 		Predavanje pr = PrRepo.findById(id).get();
 		pr.setId(dto.getId());
 		PrRepo.save(pr);
 		
-		return mapper.map(pr, PredavanjeDTO.class);
+		return new PredavanjeDTO(pr);
 	}
 	
 	@DeleteMapping("/{id}")
-	public @ResponseBody PredavanjeDTO delete(@PathVariable(value="id")Integer id){
+	public @ResponseBody
+    PredavanjeDTO delete(@PathVariable(value="id")Integer id){
 		Predavanje pr = PrRepo.findById(id).get();
 		PrRepo.delete(pr);;
 		
-		return mapper.map(pr, PredavanjeDTO.class);
+		return new PredavanjeDTO(pr);
 	}
 
 }

@@ -8,7 +8,6 @@ public class Predmet {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
 	private int id;
 
 	@Column

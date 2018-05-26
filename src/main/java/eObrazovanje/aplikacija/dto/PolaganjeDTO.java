@@ -1,5 +1,7 @@
 package eObrazovanje.aplikacija.dto;
 
+import eObrazovanje.aplikacija.model.Polaganje;
+
 public class PolaganjeDTO {
 
     private int id;
@@ -9,6 +11,13 @@ public class PolaganjeDTO {
     private int predmet;
 
     public PolaganjeDTO() {
+
+    }
+
+    public PolaganjeDTO(Polaganje p) {
+        this.id = p.getId();
+        this.ucenik = p.getUcenik().getId();
+        this.predmet = p.getPredmet().getId();
     }
 
     public int getId() {

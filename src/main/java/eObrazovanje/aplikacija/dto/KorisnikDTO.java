@@ -1,5 +1,7 @@
 package eObrazovanje.aplikacija.dto;
 
+import eObrazovanje.aplikacija.model.Korisnik;
+
 public class KorisnikDTO {
 
     private String korisnickoIme;
@@ -9,6 +11,12 @@ public class KorisnikDTO {
     private String uloga;
 
     public KorisnikDTO() {
+    }
+
+    public KorisnikDTO(Korisnik k) {
+        this.korisnickoIme = k.getKorisnickoIme();
+        this.lozinka = k.getLozinka();
+        this.uloga = k.getLozinka();
     }
 
     public String getKorisnickoIme() {

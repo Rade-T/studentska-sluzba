@@ -1,5 +1,7 @@
 package eObrazovanje.aplikacija.dto;
 
+import eObrazovanje.aplikacija.model.Predmet;
+
 public class PredmetDTO {
     private int id;
 
@@ -7,6 +9,11 @@ public class PredmetDTO {
 
     public PredmetDTO() {
 
+    }
+
+    public PredmetDTO(Predmet p) {
+        this.id = p.getId();
+        this.naziv = p.getNaziv();
     }
 
     public int getId() {

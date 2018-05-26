@@ -7,7 +7,6 @@ public class Osoba {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
 	private int id;
 
     @Column

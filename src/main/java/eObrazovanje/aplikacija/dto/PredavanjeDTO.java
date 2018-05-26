@@ -1,5 +1,7 @@
 package eObrazovanje.aplikacija.dto;
 
+import eObrazovanje.aplikacija.model.Predavanje;
+
 public class PredavanjeDTO {
 
     private int id;
@@ -9,6 +11,12 @@ public class PredavanjeDTO {
     private int predmet;
 
     public PredavanjeDTO() {
+    }
+
+    public PredavanjeDTO(Predavanje p) {
+        this.id = p.getId();
+        this.nastavnik = p.getNastavnik().getId();
+        this.predmet = p.getPredmet().getId();
     }
 
     public int getId() {

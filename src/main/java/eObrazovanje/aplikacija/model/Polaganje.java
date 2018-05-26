@@ -7,7 +7,6 @@ public class Polaganje {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
 	private int id;
 
 	@ManyToOne

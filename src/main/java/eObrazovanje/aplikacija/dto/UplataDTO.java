@@ -1,5 +1,7 @@
 package eObrazovanje.aplikacija.dto;
 
+import eObrazovanje.aplikacija.model.Uplata;
+
 public class UplataDTO {
     private int id;
 
@@ -8,6 +10,12 @@ public class UplataDTO {
     private float suma;
 
     public UplataDTO() {
+    }
+
+    public UplataDTO(Uplata u) {
+        this.id = u.getId();
+        this.ucenik = u.getUcenik().getId();
+        this.suma = u.getSuma();
     }
 
     public int getId() {

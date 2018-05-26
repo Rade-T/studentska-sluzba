@@ -1,22 +1,29 @@
 package eObrazovanje.aplikacija.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Korisnik {
 
-    @Id
-    @Column
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column
 	private String korisnickoIme;
 
-    @Column
+	@Column
 	private String lozinka;
 
-    @Column
+	@Column
 	private String uloga;
-	
+
 	public Korisnik() {
-		
+
 	}
 
 	public String getKorisnickoIme() {
@@ -41,5 +48,13 @@ public class Korisnik {
 
 	public void setUloga(String uloga) {
 		this.uloga = uloga;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

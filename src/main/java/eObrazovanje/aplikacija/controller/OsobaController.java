@@ -3,7 +3,6 @@ package eObrazovanje.aplikacija.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +23,7 @@ import eObrazovanje.aplikacija.repository.OsobaRepository;
 @RequestMapping(value="/api/osoba")
 public class OsobaController {
 	
-	@Autowired
-	private OsobaRepository oRepo;
-	private ModelMapper model = new ModelMapper();
+
 	
 	/**@GetMapping
 	public @ResponseBody List<OsDTO> readAll(){

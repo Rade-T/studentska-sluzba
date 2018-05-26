@@ -1,14 +1,16 @@
 package eObrazovanje.aplikacija.model;
 
-import java.util.List;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Ucenik extends Osoba {
 	
 	@Id
-    @Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column
 	private int brojIndeksa;
 
 	@OneToMany(mappedBy = "ucenik")
@@ -66,4 +68,12 @@ public class Ucenik extends Osoba {
     public void setPolaganja(List<Polaganje> polaganja) {
         this.polaganja = polaganja;
     }
+    
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

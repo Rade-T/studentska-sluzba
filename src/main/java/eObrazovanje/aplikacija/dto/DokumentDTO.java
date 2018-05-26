@@ -1,5 +1,7 @@
 package eObrazovanje.aplikacija.dto;
 
+import eObrazovanje.aplikacija.model.Dokument;
+
 public class DokumentDTO {
 
     private int id;
@@ -8,6 +10,12 @@ public class DokumentDTO {
 
     public DokumentDTO() {
 
+    }
+
+    public DokumentDTO(Dokument d) {
+        this.id = d.getId();
+        this.naziv = d.getNaziv();
+        this.ucenik = d.getUcenik().getId();
     }
 
     public int getId() {

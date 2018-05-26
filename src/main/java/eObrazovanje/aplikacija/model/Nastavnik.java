@@ -8,7 +8,6 @@ public class Nastavnik extends Osoba {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
 	private int id;
 
 	@OneToMany(mappedBy = "nastavnik")

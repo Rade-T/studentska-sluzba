@@ -1,5 +1,9 @@
 package eObrazovanje.aplikacija.dto;
 
+import eObrazovanje.aplikacija.model.Pohadjanje;
+import eObrazovanje.aplikacija.model.Ucenik;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PohadjanjeDTO {
@@ -11,6 +15,16 @@ public class PohadjanjeDTO {
     private int predmet;
 
     public PohadjanjeDTO() {
+
+    }
+
+    public PohadjanjeDTO(Pohadjanje p) {
+        this.id = p.getId();
+        this.predmet = p.getPredmet().getId();
+        this.ucenici = new ArrayList<>();
+        for (Ucenik u : p.getUcenici()) {
+            ucenici.add(u.getId());
+        }
     }
 
     public int getId() {
