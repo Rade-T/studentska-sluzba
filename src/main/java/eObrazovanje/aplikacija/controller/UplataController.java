@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.UplataDTO;
 import eObrazovanje.aplikacija.model.Uplata;
-import eObrazovanje.aplikacija.repository.UplataRepository;
+import eObrazovanje.aplikacija.service.UplataService;
 
 
 @RestController
@@ -24,12 +24,12 @@ import eObrazovanje.aplikacija.repository.UplataRepository;
 public class UplataController {
 	
 	@Autowired
-	private UplataRepository uRepo;
+	private UplataService uplataService;
 	
 	@GetMapping
 	public @ResponseBody
     List<UplataDTO> readAll(){
-		List<Uplata> uplata = (List<Uplata>) uRepo.findAll();
+		List<Uplata> uplata = (List<Uplata>) uplataService.findAll();
 		List<UplataDTO> uplataDTO= new ArrayList<>();
 		for (Uplata u : uplata){
 			uplataDTO.add(new UplataDTO(u));
@@ -40,7 +40,7 @@ public class UplataController {
 	@GetMapping("/{id}")
 	public @ResponseBody
     UplataDTO readOne(@PathVariable(value="id")Integer id){
-		Uplata u = uRepo.findById(id).get();
+		Uplata u = uplataService.findOne(id);
 		return new UplataDTO(u);
 	}
 	
@@ -49,7 +49,7 @@ public class UplataController {
     UplataDTO create (@RequestBody UplataDTO dto){
 		Uplata u = new Uplata();
 		u.setId(dto.getId());
-		uRepo.save(u);
+		uplataService.save(u);
 		
 		return new UplataDTO(u);
 	}
@@ -57,9 +57,9 @@ public class UplataController {
 	@PutMapping("/{id}")
 	public @ResponseBody
     UplataDTO update(@PathVariable(value="id") Integer id, @RequestBody UplataDTO dto){
-		Uplata u = uRepo.findById(id).get();
+		Uplata u = uplataService.findOne(id);
 		u.setId(dto.getId());
-		uRepo.save(u);
+		uplataService.save(u);
 		
 		return new UplataDTO(u);
 	}
@@ -67,8 +67,8 @@ public class UplataController {
 	@DeleteMapping("/{id}")
 	public @ResponseBody
     UplataDTO delete(@PathVariable(value="id")Integer id){
-		Uplata u = uRepo.findById(id).get();
-		uRepo.delete(u);
+		Uplata u = uplataService.findOne(id);
+		uplataService.remove(u);
 		
 		return new UplataDTO(u);
 	}

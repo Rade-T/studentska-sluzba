@@ -22,11 +22,11 @@ public class PolaganjeService {
 		return polaganjeRepository.findAll();
 	}
 
-	public Polaganje save(Polaganje dokument) {
-		return polaganjeRepository.save(dokument);
+	public Polaganje save(Polaganje polaganje) {
+		return polaganjeRepository.save(polaganje);
 	}
 
-	public void remove(int id) {
-		polaganjeRepository.deleteById(id);
+	public void remove(Polaganje polaganje) {
+		polaganjeRepository.deleteById(polaganje.getId());
 	}
 }

@@ -26,8 +26,8 @@ public class DokumentService  {
 		return dokumentRepository.save(dokument);
 	}
 
-	public void remove(int id) {
-		dokumentRepository.deleteById(id);
+	public void remove(Dokument dokument) {
+		dokumentRepository.deleteById(dokument.getId());
 	}
 
 }

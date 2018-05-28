@@ -22,11 +22,11 @@ public class PohadjanjeService {
 		return pohadjanjeRepository.findAll();
 	}
 
-	public Pohadjanje save(Pohadjanje dokument) {
-		return pohadjanjeRepository.save(dokument);
+	public Pohadjanje save(Pohadjanje pohadjanje) {
+		return pohadjanjeRepository.save(pohadjanje);
 	}
 
-	public void remove(int id) {
-		pohadjanjeRepository.deleteById(id);
+	public void remove(Pohadjanje pohadjanje) {
+		pohadjanjeRepository.deleteById(pohadjanje.getId());
 	}
 }

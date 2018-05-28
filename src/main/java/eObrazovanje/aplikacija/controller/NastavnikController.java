@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.NastavnikDTO;
 import eObrazovanje.aplikacija.model.Nastavnik;
-import eObrazovanje.aplikacija.repository.NastavnikRepository;
+import eObrazovanje.aplikacija.service.NastavnikService;
 
 
 
@@ -25,12 +25,12 @@ import eObrazovanje.aplikacija.repository.NastavnikRepository;
 public class NastavnikController {
 
 	@Autowired
-	private NastavnikRepository NRepo;
+	private NastavnikService nastavnikService;
 	
 	@GetMapping
 	public @ResponseBody
     List<NastavnikDTO> readAll(){
-		List<Nastavnik> nastavnici = (List<Nastavnik>) NRepo.findAll();
+		List<Nastavnik> nastavnici = (List<Nastavnik>) nastavnikService.findAll();
 		List<NastavnikDTO> nastavnikDTO = new ArrayList<>();
 		for (Nastavnik n : nastavnici){
 			nastavnikDTO.add(new NastavnikDTO(n));
@@ -41,7 +41,7 @@ public class NastavnikController {
 	@GetMapping("/{id}")
 	public @ResponseBody
     NastavnikDTO readOne(@PathVariable(value="id")Integer id){
-		Nastavnik n = NRepo.findById(id).get();
+		Nastavnik n = nastavnikService.findOne(id);
 		return new NastavnikDTO(n);
 	}
 	
@@ -50,7 +50,7 @@ public class NastavnikController {
     NastavnikDTO create (@RequestBody NastavnikDTO dto){
 		Nastavnik n = new Nastavnik();
 		n.setId(dto.getId());
-		NRepo.save(n);
+		nastavnikService.save(n);
 		
 		return new NastavnikDTO(n);
 	}
@@ -58,9 +58,9 @@ public class NastavnikController {
 	@PutMapping("/{id}")
 	public @ResponseBody
     NastavnikDTO update(@PathVariable(value="id") Integer id, @RequestBody NastavnikDTO dto){
-		Nastavnik n = NRepo.findById(id).get();
+		Nastavnik n = nastavnikService.findOne(id);
 		n.setId(dto.getId());
-		NRepo.save(n);
+		nastavnikService.save(n);
 		
 		return new NastavnikDTO(n);
 	}
@@ -68,8 +68,8 @@ public class NastavnikController {
 	@DeleteMapping("/{id}")
 	public @ResponseBody
     NastavnikDTO delete(@PathVariable(value="id")Integer id){
-		Nastavnik n = NRepo.findById(id).get();
-		NRepo.delete(n);
+		Nastavnik n = nastavnikService.findOne(id);
+		nastavnikService.remove(n);
 		
 		return new NastavnikDTO(n);
 	}

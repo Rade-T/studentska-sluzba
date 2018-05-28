@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PohadjanjeDTO;
 import eObrazovanje.aplikacija.model.Pohadjanje;
-import eObrazovanje.aplikacija.repository.PohadjanjeRepository;
+import eObrazovanje.aplikacija.service.PohadjanjeService;
 
 
 @RestController
@@ -24,12 +24,12 @@ import eObrazovanje.aplikacija.repository.PohadjanjeRepository;
 public class PohadjanjeController {
 	
 	@Autowired
-	private PohadjanjeRepository pRepo;;
+	private PohadjanjeService pohadjanjeService;
 	
 	@GetMapping
 	public @ResponseBody
     List<PohadjanjeDTO> readAll(){
-		List<Pohadjanje> pohadjanje = (List<Pohadjanje>) pRepo.findAll();
+		List<Pohadjanje> pohadjanje = (List<Pohadjanje>) pohadjanjeService.findAll();
 		List<PohadjanjeDTO> pohadjanjeDTO = new ArrayList<>();
 		for (Pohadjanje p : pohadjanje){
 			pohadjanjeDTO.add(new PohadjanjeDTO(p));
@@ -40,7 +40,7 @@ public class PohadjanjeController {
 	@GetMapping("/{id}")
 	public @ResponseBody
     PohadjanjeDTO readOne(@PathVariable(value="id")Integer id){
-		Pohadjanje p = pRepo.findById(id).get();
+		Pohadjanje p = pohadjanjeService.findOne(id);
 		return new PohadjanjeDTO(p);
 	}
 	
@@ -49,7 +49,7 @@ public class PohadjanjeController {
     PohadjanjeDTO create (@RequestBody PohadjanjeDTO dto){
 		Pohadjanje p = new Pohadjanje();
 		p.setId(dto.getId());
-		pRepo.save(p);
+		pohadjanjeService.save(p);
 		
 		return new PohadjanjeDTO(p);
 	}
@@ -57,9 +57,9 @@ public class PohadjanjeController {
 	@PutMapping("/{id}")
 	public @ResponseBody
     PohadjanjeDTO update(@PathVariable(value="id") Integer id, @RequestBody PohadjanjeDTO dto){
-		Pohadjanje p = pRepo.findById(id).get();
+		Pohadjanje p = pohadjanjeService.findOne(id);
 		p.setId(dto.getId());
-		pRepo.save(p);
+		pohadjanjeService.save(p);
 		
 		return new PohadjanjeDTO(p);
 	}
@@ -67,8 +67,8 @@ public class PohadjanjeController {
 	@DeleteMapping("/{id}")
 	public @ResponseBody
     PohadjanjeDTO delete(@PathVariable(value="id")Integer id){
-		Pohadjanje p = pRepo.findById(id).get();
-		pRepo.delete(p);
+		Pohadjanje p = pohadjanjeService.findOne(id);
+		pohadjanjeService.remove(p);
 		
 		return new PohadjanjeDTO(p);
 	}

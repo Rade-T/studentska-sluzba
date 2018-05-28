@@ -22,11 +22,11 @@ public class NastavnikService {
 		return nastavnikRepository.findAll();
 	}
 
-	public Nastavnik save(Nastavnik dokument) {
-		return nastavnikRepository.save(dokument);
+	public Nastavnik save(Nastavnik nastavnik) {
+		return nastavnikRepository.save(nastavnik);
 	}
 
-	public void remove(int id) {
-		nastavnikRepository.deleteById(id);
+	public void remove(Nastavnik nastavnik) {
+		nastavnikRepository.deleteById(nastavnik.getId());
 	}
 }

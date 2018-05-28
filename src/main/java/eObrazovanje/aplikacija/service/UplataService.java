@@ -26,8 +26,8 @@ public class UplataService {
 		return uplataRepository.save(uplata);
 	}
 
-	public void remove(int id) {
-		uplataRepository.deleteById(id);
+	public void remove(Uplata uplata) {
+		uplataRepository.deleteById(uplata.getId());
 	}
 
 }

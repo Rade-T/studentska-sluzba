@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.model.Dokument;
-import eObrazovanje.aplikacija.repository.DokumentRepository;
+import eObrazovanje.aplikacija.service.DokumentService;
 import eObrazovanje.aplikacija.dto.DokumentDTO;
 
 @RestController
@@ -23,12 +23,12 @@ import eObrazovanje.aplikacija.dto.DokumentDTO;
 public class DokumentController {
 	
 	@Autowired
-	private DokumentRepository DokRepo;
+	private DokumentService dokumentService;
 	
 	@GetMapping
 	public @ResponseBody
     List<DokumentDTO> readAll(){
-		List<Dokument> dokumenti = (List<Dokument>) DokRepo.findAll();
+		List<Dokument> dokumenti = (List<Dokument>) dokumentService.findAll();
 		List<DokumentDTO> dokumentiDTO = new ArrayList<>();
 		for (Dokument d : dokumenti){
 			dokumentiDTO.add(new DokumentDTO(d));
@@ -39,7 +39,7 @@ public class DokumentController {
 	@GetMapping("/{id}")
 	public @ResponseBody
     DokumentDTO readOne(@PathVariable(value="id")Integer id){
-		Dokument d = DokRepo.findById(id).get();
+		Dokument d = dokumentService.findOne(id);
 		return new DokumentDTO(d);
 	}
 	
@@ -48,7 +48,7 @@ public class DokumentController {
     DokumentDTO create (@RequestBody DokumentDTO dto){
 		Dokument d = new Dokument();
 		d.setNaziv(dto.getNaziv());
-		DokRepo.save(d);
+		dokumentService.save(d);
 		
 		return new DokumentDTO(d);
 	}
@@ -56,9 +56,9 @@ public class DokumentController {
 	@PutMapping("/{id}")
 	public @ResponseBody
     DokumentDTO update(@PathVariable(value="id") Integer id, @RequestBody DokumentDTO dto){
-		Dokument d = DokRepo.findById(id).get();
+		Dokument d = dokumentService.findOne(id);
 		d.setNaziv(dto.getNaziv());
-		DokRepo.save(d);
+		dokumentService.save(d);
 		
 		return new DokumentDTO(d);
 	}
@@ -66,8 +66,8 @@ public class DokumentController {
 	@DeleteMapping("/{id}")
 	public @ResponseBody
     DokumentDTO delete(@PathVariable(value="id")Integer id){
-		Dokument d = DokRepo.findById(id).get();
-		DokRepo.delete(d);
+		Dokument d = dokumentService.findOne(id);
+		dokumentService.remove(d);
 		
 		return new DokumentDTO(d);
 	}

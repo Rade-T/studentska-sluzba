@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.UcenikDTO;
 import eObrazovanje.aplikacija.model.Ucenik;
-import eObrazovanje.aplikacija.repository.UcenikRepository;
+import eObrazovanje.aplikacija.service.UcenikService;
 
 @RestController
 @RequestMapping(value="/api/ucenik")
 public class UcenikController {
 	
 	@Autowired
-	private UcenikRepository URepo;
+	private UcenikService ucenikService;
 	
 	@GetMapping
 	public @ResponseBody
     List<UcenikDTO> readAll(){
-		List<Ucenik> ucenik = (List<Ucenik>) URepo.findAll();
+		List<Ucenik> ucenik = (List<Ucenik>) ucenikService.findAll();
 		List<UcenikDTO> ucenikDTO= new ArrayList<>();
 		for (Ucenik u : ucenik){
 			ucenikDTO.add(new UcenikDTO(u));
@@ -39,7 +39,7 @@ public class UcenikController {
 	@GetMapping("/{id}")
 	public @ResponseBody
 	UcenikDTO readOne(@PathVariable(value="id")Integer id){
-		Ucenik u = URepo.findById(id).get();
+		Ucenik u = ucenikService.findOne(id);
 		return new UcenikDTO(u);
 	}
 	
@@ -48,7 +48,7 @@ public class UcenikController {
 	UcenikDTO create (@RequestBody UcenikDTO dto){
 		Ucenik u = new Ucenik();
 		u.setId(dto.getId());
-		URepo.save(u);
+		ucenikService.save(u);
 		
 		return new UcenikDTO(u);
 	}
@@ -56,9 +56,9 @@ public class UcenikController {
 	@PutMapping("/{id}")
 	public @ResponseBody
     UcenikDTO update(@PathVariable(value="id") Integer id, @RequestBody UcenikDTO dto){
-		Ucenik u = URepo.findById(id).get();
+		Ucenik u = ucenikService.findOne(id);
 		u.setId(dto.getId());
-		URepo.save(u);
+		ucenikService.save(u);
 		
 		return new UcenikDTO(u);
 	}
@@ -66,8 +66,8 @@ public class UcenikController {
 	@DeleteMapping("/{id}")
 	public @ResponseBody
 	UcenikDTO delete(@PathVariable(value="id")Integer id){
-		Ucenik u = URepo.findById(id).get();
-		URepo.delete(u);
+		Ucenik u = ucenikService.findOne(id);
+		ucenikService.remove(u);
 		
 		return new UcenikDTO(u);
 	}

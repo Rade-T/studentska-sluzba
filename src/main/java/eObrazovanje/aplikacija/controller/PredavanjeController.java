@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PredavanjeDTO;
 import eObrazovanje.aplikacija.model.Predavanje;
-import eObrazovanje.aplikacija.repository.PredavanjeRepository;
+import eObrazovanje.aplikacija.service.PredavanjeService;
 
 
 @RestController
@@ -24,12 +24,12 @@ import eObrazovanje.aplikacija.repository.PredavanjeRepository;
 public class PredavanjeController {
 	
 	@Autowired
-	private PredavanjeRepository PrRepo;
+	private PredavanjeService predavanjeService;
 	
 	@GetMapping
 	public @ResponseBody
     List<PredavanjeDTO> readAll(){
-		List<Predavanje> predavanja = (List<Predavanje>) PrRepo.findAll();
+		List<Predavanje> predavanja = (List<Predavanje>) predavanjeService.findAll();
 		List<PredavanjeDTO> predavanjaDTO = new ArrayList<>();
 		for (Predavanje pr : predavanja){
 			predavanjaDTO.add(new PredavanjeDTO(pr));
@@ -40,7 +40,7 @@ public class PredavanjeController {
 	@GetMapping("/{id}")
 	public @ResponseBody
     PredavanjeDTO readOne(@PathVariable(value="id")Integer id){
-		Predavanje pr = PrRepo.findById(id).get();
+		Predavanje pr = predavanjeService.findOne(id);
 		return new PredavanjeDTO(pr);
 	}
 	
@@ -49,7 +49,7 @@ public class PredavanjeController {
     PredavanjeDTO create (@RequestBody PredavanjeDTO dto){
 		Predavanje pr = new Predavanje();
 		pr.setId(dto.getId());
-		PrRepo.save(pr);
+		predavanjeService.save(pr);
 		
 		return new PredavanjeDTO(pr);
 	}
@@ -57,9 +57,9 @@ public class PredavanjeController {
 	@PutMapping("/{id}")
 	public @ResponseBody
     PredavanjeDTO update(@PathVariable(value="id") Integer id, @RequestBody PredavanjeDTO dto){
-		Predavanje pr = PrRepo.findById(id).get();
+		Predavanje pr = predavanjeService.findOne(id);
 		pr.setId(dto.getId());
-		PrRepo.save(pr);
+		predavanjeService.save(pr);
 		
 		return new PredavanjeDTO(pr);
 	}
@@ -67,8 +67,8 @@ public class PredavanjeController {
 	@DeleteMapping("/{id}")
 	public @ResponseBody
     PredavanjeDTO delete(@PathVariable(value="id")Integer id){
-		Predavanje pr = PrRepo.findById(id).get();
-		PrRepo.delete(pr);;
+		Predavanje pr = predavanjeService.findOne(id);
+		predavanjeService.remove(pr);;
 		
 		return new PredavanjeDTO(pr);
 	}

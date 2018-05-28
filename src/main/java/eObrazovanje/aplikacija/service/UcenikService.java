@@ -28,8 +28,8 @@ public class UcenikService {
 		return ucenikRepository.save(ucenik);
 	}
 
-	public void remove(int id) {
-		ucenikRepository.deleteById(id);
+	public void remove(Ucenik ucenik) {
+		ucenikRepository.deleteById(ucenik.getId());
 	}
 
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PredmetDTO;
 import eObrazovanje.aplikacija.model.Predmet;
-import eObrazovanje.aplikacija.repository.PredmetRepository;
+import eObrazovanje.aplikacija.service.PredmetService;
 
 
 @RestController
@@ -24,12 +24,12 @@ import eObrazovanje.aplikacija.repository.PredmetRepository;
 public class PredmetController {
 	
 	@Autowired
-	private PredmetRepository PRepo;
+	private PredmetService predmetService;
 	
 	@GetMapping
 	public @ResponseBody
     List<PredmetDTO> readAll(){
-		List<Predmet> predmeti = (List<Predmet>) PRepo.findAll();
+		List<Predmet> predmeti = (List<Predmet>) predmetService.findAll();
 		List<PredmetDTO> predmetiDTO = new ArrayList<>();
 		for (Predmet p : predmeti){
 			predmetiDTO.add(new PredmetDTO(p));
@@ -40,7 +40,7 @@ public class PredmetController {
 	@GetMapping("/{id}")
 	public @ResponseBody
     PredmetDTO readOne(@PathVariable(value="id")Integer id){
-		Predmet p = PRepo.findById(id).get();
+		Predmet p = predmetService.findOne(id);
 		return new PredmetDTO(p);
 	}
 	
@@ -49,7 +49,7 @@ public class PredmetController {
     PredmetDTO create (@RequestBody PredmetDTO dto){
 		Predmet p = new Predmet();
 		p.setNaziv(dto.getNaziv());
-		PRepo.save(p);
+		predmetService.save(p);
 		
 		return new PredmetDTO(p);
 	}
@@ -57,9 +57,9 @@ public class PredmetController {
 	@PutMapping("/{id}")
 	public @ResponseBody
     PredmetDTO update(@PathVariable(value="id") Integer id, @RequestBody PredmetDTO dto){
-		Predmet p = PRepo.findById(id).get();
+		Predmet p = predmetService.findOne(id);
 		p.setNaziv(dto.getNaziv());
-		PRepo.save(p);
+		predmetService.save(p);
 		
 		return new PredmetDTO(p);
 	}
@@ -67,8 +67,8 @@ public class PredmetController {
 	@DeleteMapping("/{id}")
 	public @ResponseBody
     PredmetDTO delete(@PathVariable(value="id")Integer id){
-		Predmet p = PRepo.findById(id).get();
-		PRepo.delete(p);
+		Predmet p = predmetService.findOne(id);
+		predmetService.remove(p);
 		
 		return new PredmetDTO(p);
 	}

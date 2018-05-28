@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PolaganjeDTO;
 import eObrazovanje.aplikacija.model.Polaganje;
-import eObrazovanje.aplikacija.repository.PolaganjeRepository;
+import eObrazovanje.aplikacija.service.PolaganjeService;
 
 
 @RestController
@@ -24,12 +24,12 @@ import eObrazovanje.aplikacija.repository.PolaganjeRepository;
 public class PolaganjeController {
 	
 	@Autowired
-	private PolaganjeRepository pRepo;
+	private PolaganjeService polaganjeService;
 	
 	@GetMapping
 	public @ResponseBody
     List<PolaganjeDTO> readAll(){
-		List<Polaganje> polaganje= (List<Polaganje>) pRepo.findAll();
+		List<Polaganje> polaganje= (List<Polaganje>) polaganjeService.findAll();
 		List<PolaganjeDTO> polaganjeDTO = new ArrayList<>();
 		for (Polaganje p : polaganje){
 			polaganjeDTO.add(new PolaganjeDTO(p));
@@ -40,7 +40,7 @@ public class PolaganjeController {
 	@GetMapping("/{id}")
 	public @ResponseBody
     PolaganjeDTO readOne(@PathVariable(value="id")Integer id){
-		Polaganje p = pRepo.findById(id).get();
+		Polaganje p = polaganjeService.findOne(id);
 		return new PolaganjeDTO(p);
 	}
 	
@@ -49,7 +49,7 @@ public class PolaganjeController {
     PolaganjeDTO create (@RequestBody PolaganjeDTO dto){
 		Polaganje p = new Polaganje();
 		p.setId(dto.getId());
-		pRepo.save(p);
+		polaganjeService.save(p);
 		
 		return new PolaganjeDTO(p);
 	}
@@ -57,9 +57,9 @@ public class PolaganjeController {
 	@PutMapping("/{id}")
 	public @ResponseBody
     PolaganjeDTO update(@PathVariable(value="id") Integer id, @RequestBody PolaganjeDTO dto){
-		Polaganje p = pRepo.findById(id).get();
+		Polaganje p = polaganjeService.findOne(id);
 		p.setId(dto.getId());
-		pRepo.save(p);
+		polaganjeService.save(p);
 		
 		return new PolaganjeDTO(p);
 	}
@@ -67,8 +67,8 @@ public class PolaganjeController {
 	@DeleteMapping("/{id}")
 	public @ResponseBody
     PolaganjeDTO delete(@PathVariable(value="id")Integer id){
-		Polaganje p = pRepo.findById(id).get();
-		pRepo.delete(p);
+		Polaganje p = polaganjeService.findOne(id);
+		polaganjeService.remove(p);
 		
 		return new PolaganjeDTO(p);
 	}

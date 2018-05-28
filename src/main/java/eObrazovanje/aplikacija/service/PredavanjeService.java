@@ -22,12 +22,12 @@ public class PredavanjeService {
 		return predavanjeRepository.findAll();
 	}
 
-	public Predavanje save(Predavanje dokument) {
-		return predavanjeRepository.save(dokument);
+	public Predavanje save(Predavanje predavanje) {
+		return predavanjeRepository.save(predavanje);
 	}
 
-	public void remove(int id) {
-		predavanjeRepository.deleteById(id);
+	public void remove(Predavanje predavanje) {
+		predavanjeRepository.deleteById(predavanje.getId());
 	}
 
 }

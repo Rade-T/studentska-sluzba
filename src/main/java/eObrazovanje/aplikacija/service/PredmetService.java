@@ -27,8 +27,8 @@ public class PredmetService {
 		return predmetRepository.save(predmet);
 	}
 
-	public void remove(int id) {
-		predmetRepository.deleteById(id);
+	public void remove(Predmet predmet) {
+		predmetRepository.deleteById(predmet.getId());
 	}
 
 
