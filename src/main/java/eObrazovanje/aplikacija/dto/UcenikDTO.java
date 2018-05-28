@@ -9,6 +9,7 @@ import eObrazovanje.aplikacija.model.Uplata;
 
 public class UcenikDTO {
 
+	private int id;	
     private int brojIndeksa;
     private List<Integer> dokumenti;
     private List<Integer> uplate;
@@ -18,6 +19,7 @@ public class UcenikDTO {
     }
 
     public UcenikDTO(Ucenik u) {
+    	this.id = u.getId();
         this.brojIndeksa = u.getBrojIndeksa();
         this.dokumenti = new ArrayList<>();
         this.uplate = new ArrayList<>();
@@ -29,8 +31,17 @@ public class UcenikDTO {
             dokumenti.add(up.getId());
         }
     }
+    
 
-    public int getBrojIndeksa() {
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getBrojIndeksa() {
         return brojIndeksa;
     }
 
