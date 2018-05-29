@@ -1,27 +1,15 @@
 package eObrazovanje.aplikacija.model;
 
-import javax.persistence.*;
-
-@Entity
 public class Osoba {
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
 
-    @Column
 	private String ime;
 
-    @Column
 	private String prezime;
 
-    @Column
 	private String JMBG;
 
-    @Column
 	private String email;
 
-    @Column
 	private String telefon;
 	
 	public Osoba() {
@@ -66,13 +54,5 @@ public class Osoba {
 
 	public void settelefon(String telefon) {
 		this.telefon = telefon;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 }
