@@ -4,12 +4,12 @@ import { Observable, Subject } from 'rxjs';
 import { Ucenik } from '../model/ucenik.model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UcenikService {
 
 
-  private studentsUrl = 'api/ucenik';
+    private ucenikUrl = 'api/ucenik';
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http: Http) { }
@@ -23,15 +23,18 @@ export class UcenikService {
     }
 
     getUcenici(): Promise<Ucenik[]> {
-        return this.http.get(this.studentsUrl)
+        console.log("Entered service");
+        var result = this.http.get(this.ucenikUrl)
             .toPromise()
             .then(response =>
-                response.json() as Ucenik[]) 
+                response.json() as Ucenik[])
             .catch(this.handleError);
+        console.log(result);
+        return result;
     }
 
     getUcenik(id: number): Promise<Ucenik> {
-        const url = `${this.studentsUrl}/${id}`;
+        const url = `${this.ucenikUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
             .then(response =>
@@ -41,7 +44,7 @@ export class UcenikService {
 
     addUcenik(student: Ucenik): Promise<Ucenik> {
         return this.http
-            .post(this.studentsUrl, JSON.stringify(student), { headers: this.headers })
+            .post(this.ucenikUrl, JSON.stringify(student), { headers: this.headers })
             .toPromise()
             .then(res => res.json() as Ucenik)
             .catch(this.handleError);
@@ -49,28 +52,28 @@ export class UcenikService {
 
     editUcenik(student: Ucenik): Promise<Ucenik> {
         return this.http
-            .put(this.studentsUrl, JSON.stringify(student), { headers: this.headers })
+            .put(this.ucenikUrl, JSON.stringify(student), { headers: this.headers })
             .toPromise()
             .then(res => res.json() as Ucenik)
             .catch(this.handleError);
     }
 
     deleteUcenik(studentId: number): Promise<{}> {
-        const url = `${this.studentsUrl}/${studentId}`;
+        const url = `${this.ucenikUrl}/${studentId}`;
         return this.http
             .delete(url)
-            .toPromise()           
+            .toPromise()
             .catch(this.handleError);
     }
 
-  /*  getUcenikEnrollments(studentId: number): Promise<Enrollment[]> {
-        const url = `${this.studentsUrl}/${studentId}/courses`;
-        return this.http.get(url)
-            .toPromise()
-            .then(response =>
-                response.json() as Enrollment[])
-            .catch(this.handleError);
-    }*/
+    /*  getUcenikEnrollments(studentId: number): Promise<Enrollment[]> {
+          const url = `${this.studentsUrl}/${studentId}/courses`;
+          return this.http.get(url)
+              .toPromise()
+              .then(response =>
+                  response.json() as Enrollment[])
+              .catch(this.handleError);
+      }*/
 
     handleError(error: any): Promise<any> {
         console.error("Error... ", error);

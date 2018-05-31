@@ -6,8 +6,13 @@ import { Pohadjanje } from "./pohadjanje.model";
 
 export class Ucenik extends Osoba {
     public id: number;
-    public brojIndeksa: number;
+    public brojIndeksa: string;
     public dokumenti: Array<Dokument>;
+    public ime: string;
+    public prezime: string;
+    public jmbg: string;
+    public email: string;
+    public telefon: string;
     public uplate: Array<Uplata>;
     public polaganja: Array<Polaganje>;
     public pohadjanje: Pohadjanje;

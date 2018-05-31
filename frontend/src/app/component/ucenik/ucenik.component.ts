@@ -11,37 +11,37 @@ import { Router } from '@angular/router';
 })
 export class UcenikComponent implements OnInit {
 
-  students: Ucenik[];
+  ucenici: Ucenik[];
 
   subscription: Subscription;
 
-
   constructor(private ucenikService: UcenikService, private router: Router) {
     this.subscription = ucenikService.RegenerateData$.subscribe(() =>
-      this.getUcenike()
+      this.getUcenici()
     );
   }
 
   ngOnInit() {
-    this.getUcenike();
+    this.getUcenici();
   }
 
-  getUcenike() {
-    this.ucenikService.getUcenici().then(students =>
-      this.students = students);
+  getUcenici() {
+    this.ucenikService.getUcenici().then(ucenici =>
+      this.ucenici = ucenici);
+    console.log(this.ucenici);
   }
 
   gotoAdd(): void {
-    this.router.navigate(['/addStudent']);
+    this.router.navigate(['/addUcenik']);
   }
 
-  gotoEdit(student: Ucenik): void {
-    this.router.navigate(['/editStudent', student.id]);
+  gotoEdit(ucenik: Ucenik): void {
+    this.router.navigate(['/editUcenik', ucenik.id]);
   }
 
-  deleteStudent(studentId: number): void {
-    this.ucenikService.deleteUcenik(studentId).then(
-      () => this.getUcenike()
+  deleteStudent(ucenikId: number): void {
+    this.ucenikService.deleteUcenik(ucenikId).then(
+      () => this.getUcenici()
     );
   }
 

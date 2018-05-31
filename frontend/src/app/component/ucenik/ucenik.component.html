@@ -1,12 +1,21 @@
-Studenti:
-<tr *ngFor="let student of students">
-  <td>
-    {{student.Id}}
-  </td>
-  <td>
-    {{student.brojIndeksa}}
-  </td>
-  <td>
-    {{student.Ime}}
-  </td>
-</tr>
+<div class="container">
+  Studenti:
+  <table class="table">
+    <tr>
+      <th>Id</th>
+      <th>Broj indeksa</th>
+      <th>Ime</th>
+    </tr>
+    <tr *ngFor="let ucenik of ucenici">
+      <td>
+        {{ucenik.id}}
+      </td>
+      <td>
+        {{ucenik.brojIndeksa}}
+      </td>
+      <td>
+        {{ucenik.ime}}
+      </td>
+    </tr>
+  </table>
+</div>
