@@ -1,10 +1,18 @@
 <div class="container">
-  Studenti:
-  <table class="table">
+  <table name="ucenikTable" class="table table-dark">
+    <tr>
+      <th>
+        Ucenici
+      </th>
+      <th>
+        <button class="btn">Dodaj</button>
+      </th>
+    </tr>
     <tr>
       <th>Id</th>
       <th>Broj indeksa</th>
       <th>Ime</th>
+      <th>Prezime</th>
     </tr>
     <tr *ngFor="let ucenik of ucenici">
       <td>
@@ -15,6 +23,9 @@
       </td>
       <td>
         {{ucenik.ime}}
+      </td>
+      <td>
+        {{ucenik.prezime}}
       </td>
     </tr>
   </table>
