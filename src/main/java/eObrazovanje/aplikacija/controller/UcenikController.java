@@ -47,7 +47,12 @@ public class UcenikController {
 	public @ResponseBody
 	UcenikDTO create (@RequestBody UcenikDTO dto){
 		Ucenik u = new Ucenik();
-		u.setId(dto.getId());
+		u.setBrojIndeksa(dto.getBrojIndeksa());
+		u.setime(dto.getIme());
+		u.setprezime(dto.getPrezime());
+		u.setJMBG(dto.getJMBG());
+		u.setemail(dto.getEmail());
+		u.settelefon(dto.getTelefon());
 		ucenikService.save(u);
 		
 		return new UcenikDTO(u);

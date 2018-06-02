@@ -25,9 +25,16 @@ export class UcenikComponent implements OnInit {
     this.getUcenici();
   }
 
+  save(newUcenik: Ucenik) {
+    this.ucenikService.saveUcenik(newUcenik).subscribe(
+      () => {
+        this.getUcenici();
+      }
+    )
+  }
+
   getUcenici() {
-    this.ucenikService.getUcenici().then(ucenici =>
-      this.ucenici = ucenici);
+    this.ucenikService.getUcenici().subscribe((ucenici: Ucenik[]) => {this.ucenici = ucenici});
     console.log(this.ucenici);
   }
 

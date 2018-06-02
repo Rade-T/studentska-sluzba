@@ -1,6 +1,8 @@
 package eObrazovanje.aplikacija.model;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,7 +43,8 @@ public class Ucenik extends Osoba {
     private Pohadjanje pohadjanje;
 	
 	public Ucenik() {
-		
+		this.uplate = new ArrayList<>();
+		this.polaganja = new ArrayList<>();
 	}
 
 	public String getBrojIndeksa() {

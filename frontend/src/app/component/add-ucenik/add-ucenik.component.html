@@ -1,0 +1,58 @@
+<div>
+	<form  class="form-horizontal" (ngSubmit)="addUcenik()">
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-brojIndeksa">Broj indeksa: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-brojIndeksa" id="input-brojIndeksa" [(ngModel)]="newUcenik.brojIndeksa"/>
+			</div>
+    	</div>
+    
+		<!-- <div class="form-group">
+			<label class="control-label col-sm-1" for="input-pohadjanje">Pohadjanje: </label>
+			<div class="col-sm-11">
+				<select class="form-control" name="input-author" id="input-author"  [(ngModel)]="newRecord.author">
+					<option *ngFor="let a of authors" [ngValue]="a">{{a.name}}</option>
+				</select>
+			</div>
+		</div> -->
+
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-ime">Ime: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-ime" id="input-ime" [(ngModel)]="newUcenik.ime"/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-prezime">Prezime: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-prezime" id="input-prezime" [(ngModel)]="newUcenik.prezime"/>
+			</div>
+    	</div>
+    
+    	<div class="form-group">
+			<label class="control-label col-sm-1" for="input-JMBG">JMBG: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-JMBG" id="input-JMBG" [(ngModel)]="newUcenik.JMBG"/>
+			</div>
+    	</div>
+    
+    	<div class="form-group">
+			<label class="control-label col-sm-1" for="input-email">Email: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-email" id="input-email" [(ngModel)]="newUcenik.email"/>
+			</div>
+    	</div>
+    
+    	<div class="form-group">
+			<label class="control-label col-sm-1" for="input-telefon">Telefon: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-telefon" id="input-telefon" [(ngModel)]="newUcenik.telefon"/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<input class="btn btn-primary" type="submit" value="save"/>
+		</div>
+	</form>
+</div>

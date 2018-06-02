@@ -35,12 +35,12 @@ public class UcenikDTO {
 		this.dokumenti = new ArrayList<>();
 		this.uplate = new ArrayList<>();
 
-		for (Dokument d : u.getDokumenti()) {
-			dokumenti.add(d.getId());
-		}
-		for (Uplata up : u.getUplate()) {
-			uplate.add(up.getId());
-		}
+//		for (Dokument d : u.getDokumenti()) {
+//			dokumenti.add(d.getId());
+//		}
+//		for (Uplata up : u.getUplate()) {
+//			uplate.add(up.getId());
+//		}
 	}
 
 	public int getId() {

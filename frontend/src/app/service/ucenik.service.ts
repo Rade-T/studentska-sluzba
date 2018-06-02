@@ -1,7 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import { Observable, Subject } from 'rxjs';
 import { Ucenik } from '../model/ucenik.model';
+import { Injectable } from '@angular/core';
+
+import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { RequestOptions } from '@angular/http';
+import { HttpParams } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { URLSearchParams } from '@angular/http/src/url_search_params';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +17,7 @@ export class UcenikService {
     private ucenikUrl = 'api/ucenik';
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     private RegenerateData = new Subject<void>();
 
@@ -22,40 +27,49 @@ export class UcenikService {
         this.RegenerateData.next();
     }
 
-    getUcenici(): Promise<Ucenik[]> {
-        console.log("Entered service");
-        var result = this.http.get(this.ucenikUrl)
-            .toPromise()
-            .then(response =>
-                response.json() as Ucenik[])
-            .catch(this.handleError);
-        console.log(result);
-        return result;
+    getUcenici(): Observable<Ucenik[]> {
+        // console.log("Entered service");
+        // var result = this.http.get(this.ucenikUrl)
+        //     .toPromise()
+        //     .then(response =>
+        //         response.json() as Ucenik[])
+        //     .catch(this.handleError);
+        // console.log(result);
+        // return result;
+        let params: HttpParams = new HttpParams();
+        return this.http.get<Ucenik[]>(this.ucenikUrl, {params});
     }
 
-    getUcenik(id: number): Promise<Ucenik> {
-        const url = `${this.ucenikUrl}/${id}`;
-        return this.http.get(url)
-            .toPromise()
-            .then(response =>
-                response.json() as Ucenik)
-            .catch(this.handleError);
+    getUcenik(id: number): Observable<Ucenik> {
+        // const url = `${this.ucenikUrl}/${id}`;
+        // return this.http.get(this.ucenikUrl)
+        //     .toPromise()
+        //     .then(response =>
+        //         response.json() as Ucenik)
+        //     .catch(this.handleError);
+        return this.http.get<Ucenik>('${this.ucenikUrl}/$id}');
     }
 
-    addUcenik(student: Ucenik): Promise<Ucenik> {
-        return this.http
-            .post(this.ucenikUrl, JSON.stringify(student), { headers: this.headers })
-            .toPromise()
-            .then(res => res.json() as Ucenik)
-            .catch(this.handleError);
+    saveUcenik(ucenik: Ucenik): Observable<Ucenik> {
+        // return this.http
+        //     .post(this.ucenikUrl, JSON.stringify(student), { headers: this.headers })
+        //     .toPromise()
+        //     .then(res => res.json() as Ucenik)
+        //     .catch(this.handleError);
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+		// let options = new RequestOptions({ headers: headers });
+		return this.http.
+			post<Ucenik>(this.ucenikUrl, JSON.stringify(ucenik), { headers });
     }
 
-    editUcenik(student: Ucenik): Promise<Ucenik> {
-        return this.http
-            .put(this.ucenikUrl, JSON.stringify(student), { headers: this.headers })
-            .toPromise()
-            .then(res => res.json() as Ucenik)
-            .catch(this.handleError);
+    editUcenik(ucenik: Ucenik): Observable<Ucenik> {
+        // return this.http
+        //     .put(this.ucenikUrl, JSON.stringify(ucenik), { headers: this.headers })
+        //     .toPromise()
+        //     .then(res => res.json() as Ucenik)
+        //     .catch(this.handleError);
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.put<Ucenik>(this.ucenikUrl, JSON.stringify(ucenik), {headers});
     }
 
     deleteUcenik(studentId: number): Promise<{}> {
