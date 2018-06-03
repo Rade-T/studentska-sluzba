@@ -23,7 +23,6 @@ export class AddUcenikComponent implements OnInit {
   }
 
   addUcenik() {
-    console.log(this.newUcenik);
     this.newUcenikAdded.next(this.newUcenik);
     this.newUcenik = new Ucenik();
   }

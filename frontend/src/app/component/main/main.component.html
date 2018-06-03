@@ -1,0 +1,7 @@
+<div class="row">
+  <app-add-ucenik (newUcenikAdded)="save($event)"></app-add-ucenik>
+
+  <br/>
+  
+  <app-ucenik [ucenici]="ucenici" (deleteUcenikIndex)="delete($event)"></app-ucenik>
+</div>

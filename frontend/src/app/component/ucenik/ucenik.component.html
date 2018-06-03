@@ -1,5 +1,5 @@
-<div class="container">
-  <app-add-ucenik (newUcenikAdded)="save($event)"></app-add-ucenik>
+<div>
+  <!-- <app-add-ucenik (newUcenikAdded)="save($event)"></app-add-ucenik> -->
   <table name="ucenikTable" class="table table-dark">
     <tr>
       <th>
@@ -14,20 +14,10 @@
       <th>Broj indeksa</th>
       <th>Ime</th>
       <th>Prezime</th>
+      <th>Akcija</th>
     </tr>
-    <tr *ngFor="let ucenik of ucenici">
-      <td>
-        {{ucenik.id}}
-      </td>
-      <td>
-        {{ucenik.brojIndeksa}}
-      </td>
-      <td>
-        {{ucenik.ime}}
-      </td>
-      <td>
-        {{ucenik.prezime}}
-      </td>
+    <tr app-ucenik-item *ngFor="let ucenik of ucenici; let i = index" [ucenik]="ucenik" [index]="i" (deleteUcenikIndex)="delete($event)">
+      
     </tr>
   </table>
 </div>

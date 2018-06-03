@@ -9,10 +9,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { UcenikService } from './service/ucenik.service';
 import { AddUcenikComponent } from './component/add-ucenik/add-ucenik.component';
+import { UcenikItemComponent } from './component/ucenik-item/ucenik-item.component';
+import { MainComponent } from './component/main/main.component';
 
 const routes: Routes = [
   { path: 'students', component: UcenikComponent },
-  { path: '**', redirectTo: 'students' }
+  { path: 'main', component: MainComponent },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
 
 
@@ -20,7 +23,9 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     UcenikComponent,
-    AddUcenikComponent
+    AddUcenikComponent,
+    UcenikItemComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

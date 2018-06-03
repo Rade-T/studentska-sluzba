@@ -67,9 +67,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //				.antMatchers(HttpMethod.DELETE, "/api/*").hasAuthority("ROLE_ADMIN")
 //				.antMatchers(HttpMethod.PUT, "/api/*").hasAuthority("ROLE_ADMIN")
 				.antMatchers(HttpMethod.GET, "/api/**").permitAll()
-				.antMatchers(HttpMethod.POST, "/api/*").permitAll()
-				.antMatchers("/*").permitAll()
-				.anyRequest().authenticated(); // za ostale akcije se mora biti ulogovan
+				.antMatchers(HttpMethod.POST, "/api/**").permitAll()
+				.antMatchers(HttpMethod.PUT, "/api/**").permitAll()
+				.antMatchers(HttpMethod.DELETE, "/api/**").permitAll()
+				.antMatchers("/*").permitAll();
+				//.anyRequest().authenticated(); // za ostale akcije se mora biti ulogovan
 				
 		// pre standardnog Spring filtera, postavlja se nas filter za postavljanje korisnika na osnovu 
 		// JWT tokena u zahtevu

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Ucenik } from '../../model/ucenik.model';
 import { UcenikService } from '../../service/ucenik.service';
 import { Subscription } from 'rxjs';
@@ -11,45 +11,18 @@ import { Router } from '@angular/router';
 })
 export class UcenikComponent implements OnInit {
 
-  ucenici: Ucenik[];
+  @Output() deleteUcenikIndex: EventEmitter<number> = new EventEmitter();
 
-  subscription: Subscription;
+  @Input() ucenici: Ucenik[];
 
-  constructor(private ucenikService: UcenikService, private router: Router) {
-    this.subscription = ucenikService.RegenerateData$.subscribe(() =>
-      this.getUcenici()
-    );
+  constructor() {
   }
 
   ngOnInit() {
-    this.getUcenici();
   }
 
-  save(newUcenik: Ucenik) {
-    this.ucenikService.saveUcenik(newUcenik).subscribe(
-      () => {
-        this.getUcenici();
-      }
-    )
-  }
-
-  getUcenici() {
-    this.ucenikService.getUcenici().subscribe((ucenici: Ucenik[]) => {this.ucenici = ucenici});
-    console.log(this.ucenici);
-  }
-
-  gotoAdd(): void {
-    this.router.navigate(['/addUcenik']);
-  }
-
-  gotoEdit(ucenik: Ucenik): void {
-    this.router.navigate(['/editUcenik', ucenik.id]);
-  }
-
-  deleteStudent(ucenikId: number): void {
-    this.ucenikService.deleteUcenik(ucenikId).then(
-      () => this.getUcenici()
-    );
+  delete(index: number) {
+    this.deleteUcenikIndex.next(index);
   }
 
 }

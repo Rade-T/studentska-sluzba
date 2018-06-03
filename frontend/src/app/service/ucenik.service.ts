@@ -13,7 +13,6 @@ import { URLSearchParams } from '@angular/http/src/url_search_params';
 })
 export class UcenikService {
 
-
     private ucenikUrl = 'api/ucenik';
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
@@ -28,34 +27,15 @@ export class UcenikService {
     }
 
     getUcenici(): Observable<Ucenik[]> {
-        // console.log("Entered service");
-        // var result = this.http.get(this.ucenikUrl)
-        //     .toPromise()
-        //     .then(response =>
-        //         response.json() as Ucenik[])
-        //     .catch(this.handleError);
-        // console.log(result);
-        // return result;
         let params: HttpParams = new HttpParams();
         return this.http.get<Ucenik[]>(this.ucenikUrl, {params});
     }
 
     getUcenik(id: number): Observable<Ucenik> {
-        // const url = `${this.ucenikUrl}/${id}`;
-        // return this.http.get(this.ucenikUrl)
-        //     .toPromise()
-        //     .then(response =>
-        //         response.json() as Ucenik)
-        //     .catch(this.handleError);
         return this.http.get<Ucenik>('${this.ucenikUrl}/$id}');
     }
 
     saveUcenik(ucenik: Ucenik): Observable<Ucenik> {
-        // return this.http
-        //     .post(this.ucenikUrl, JSON.stringify(student), { headers: this.headers })
-        //     .toPromise()
-        //     .then(res => res.json() as Ucenik)
-        //     .catch(this.handleError);
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 		// let options = new RequestOptions({ headers: headers });
 		return this.http.
@@ -63,21 +43,13 @@ export class UcenikService {
     }
 
     editUcenik(ucenik: Ucenik): Observable<Ucenik> {
-        // return this.http
-        //     .put(this.ucenikUrl, JSON.stringify(ucenik), { headers: this.headers })
-        //     .toPromise()
-        //     .then(res => res.json() as Ucenik)
-        //     .catch(this.handleError);
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         return this.http.put<Ucenik>(this.ucenikUrl, JSON.stringify(ucenik), {headers});
     }
 
-    deleteUcenik(studentId: number): Promise<{}> {
-        const url = `${this.ucenikUrl}/${studentId}`;
-        return this.http
-            .delete(url)
-            .toPromise()
-            .catch(this.handleError);
+    deleteUcenik(id: number): Observable<Ucenik> {
+        const url = `${this.ucenikUrl}/${id}`;
+        return this.http.delete<Ucenik>(url);
     }
 
     /*  getUcenikEnrollments(studentId: number): Promise<Enrollment[]> {

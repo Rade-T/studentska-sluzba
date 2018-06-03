@@ -10,7 +10,7 @@ export class Ucenik extends Osoba {
     public dokumenti: Array<Dokument>;
     public ime: string;
     public prezime: string;
-    public jmbg: string;
+    public JMBG: string;
     public email: string;
     public telefon: string;
     public uplate: Array<Uplata>;
