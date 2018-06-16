@@ -3,6 +3,7 @@ import { UcenikService } from '../../service/ucenik.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Nastavnik } from '../../model/nastavnik.model';
+import { NastavnikService } from '../../service/nastavnik.service';
 
 @Component({
   selector: 'app-nastavnik',
@@ -15,13 +16,31 @@ export class NastavnikComponent implements OnInit {
 
   @Input() nastavnici: Nastavnik[];
 
-  constructor() { }
+  constructor(private nastavnikService: NastavnikService) { }
+
+  public _nastavnici: Nastavnik[];
+  public newNastavnik: Nastavnik;
 
   ngOnInit() {
+    this.nastavnikService.getNastavnici();
+    this._nastavnici = [];
+    this.loadNastavnikData();
   }
 
   delete(index: number) {
     this.deleteNastavnikIndex.next(index);
   }
 
+  loadNastavnikData() {
+
+  }
+
+  save(newNastavnik: Nastavnik){
+    this.nastavnikService.saveNastavnik(newNastavnik).subscribe(
+      () => {
+        this.loadNastavnikData();
+      }
+    );
+    //this.addUcenikVisible = false;
+  }
 }

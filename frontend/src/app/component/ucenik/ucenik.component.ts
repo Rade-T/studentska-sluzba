@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class UcenikComponent implements OnInit {
 
   @Output() deleteUcenikIndex: EventEmitter<number> = new EventEmitter();
+  @Output() showAddUcenikEvent: EventEmitter<boolean> = new EventEmitter();
 
   @Input() ucenici: Ucenik[];
 
@@ -25,4 +26,8 @@ export class UcenikComponent implements OnInit {
     this.deleteUcenikIndex.next(index);
   }
 
+  showAddUcenik() {
+    console.log("Poslat event");
+    this.showAddUcenikEvent.next(true);
+  }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Nastavnik } from '../../model/nastavnik.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-nastavnik',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNastavnikComponent implements OnInit {
 
-  constructor() { }
+  @Output() newNastavnikAdded: EventEmitter<Nastavnik> = new EventEmitter();
+
+  public newNastavnik: Nastavnik;
+  public JSON: Object;
+
+  constructor(private http: HttpClient) { 
+    this.newNastavnik = new Nastavnik();
+    this.JSON = JSON;
+  }
 
   ngOnInit() {
   }
 
+  addNastavnik() {
+    this.newNastavnikAdded.next(this.newNastavnik);
+    this.newNastavnik = new Nastavnik();
+  }
 }

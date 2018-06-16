@@ -11,6 +11,7 @@ export class MainComponent implements OnInit {
 
   public ucenici: Ucenik[];
   public newUcenik: Ucenik;
+  public addUcenikVisible: boolean = false;
 
   constructor(private ucenikService: UcenikService) {
     ucenikService.getUcenici();
@@ -31,6 +32,7 @@ export class MainComponent implements OnInit {
         this.loadData();
       }
     );
+    this.addUcenikVisible = false;
   }
 
   delete(id: number){
@@ -39,5 +41,10 @@ export class MainComponent implements OnInit {
         this.loadData();
       }
     );
+  }
+
+  toggleAddUcenik(show: boolean) {
+    console.log("Primljen dogadjaj");
+    this.addUcenikVisible = show;
   }
 }

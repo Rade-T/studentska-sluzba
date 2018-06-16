@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Nastavnik } from '../../model/nastavnik.model';
 
 @Component({
-  selector: 'app-nastavnik-item',
+  selector: 'tr[app-nastavnik-item]',
   templateUrl: './nastavnik-item.component.html',
   styleUrls: ['./nastavnik-item.component.css']
 })
