@@ -1,0 +1,22 @@
+<div>
+  <!-- <app-add-ucenik (newUcenikAdded)="save($event)"></app-add-ucenik> -->
+  <table name="nastavnikTable" class="table table-dark">
+    <tr>
+      <th>
+        Nastavnici
+      </th>
+      <th>
+        <button class="btn">Dodaj</button>
+      </th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Email</th>
+    </tr>
+    <tr app-nastavnik-item *ngFor="let nastavik of nastavnici; let i = index" [nastavnik]="nastavnik" [index]="i" (deleteNastavnikIndex)="delete($event)">
+      
+    </tr>
+  </table>
+</div>

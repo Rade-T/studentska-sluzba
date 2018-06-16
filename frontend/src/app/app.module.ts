@@ -11,9 +11,14 @@ import { UcenikService } from './service/ucenik.service';
 import { AddUcenikComponent } from './component/add-ucenik/add-ucenik.component';
 import { UcenikItemComponent } from './component/ucenik-item/ucenik-item.component';
 import { MainComponent } from './component/main/main.component';
+import { NastavnikComponent } from './component/nastavnik/nastavnik.component';
+import { NastavnikItemComponent } from './component/nastavnik-item/nastavnik-item.component';
+import { AddNastavnikComponent } from './component/add-nastavnik/add-nastavnik.component';
+import { NastavnikService } from './service/nastavnik.service';
 
 const routes: Routes = [
   { path: 'students', component: UcenikComponent },
+  { path: 'nastavnici', component: NastavnikComponent },
   { path: 'main', component: MainComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
@@ -25,7 +30,10 @@ const routes: Routes = [
     UcenikComponent,
     AddUcenikComponent,
     UcenikItemComponent,
-    MainComponent
+    MainComponent,
+    NastavnikComponent,
+    NastavnikItemComponent,
+    AddNastavnikComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,8 @@ const routes: Routes = [
     HttpModule   
   ],
   providers: [
-    UcenikService
+    UcenikService,
+    NastavnikService
   ],
   bootstrap: [AppComponent]
 })

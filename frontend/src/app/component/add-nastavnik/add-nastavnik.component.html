@@ -1,0 +1,44 @@
+<div>
+	<form  class="form-horizontal" (ngSubmit)="addNastavnik()">
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-ime">Ime: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-ime" id="input-ime" [(ngModel)]="newNastavnik.ime"/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-prezime">Prezime: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-prezime" id="input-prezime" [(ngModel)]="newNastavnik.prezime"/>
+			</div>
+    	</div>
+    
+    	<div class="form-group">
+			<label class="control-label col-sm-1" for="input-JMBG">JMBG: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-JMBG" id="input-JMBG" [(ngModel)]="newNastavnik.JMBG"/>
+			</div>
+    	</div>
+    
+    	<div class="form-group">
+			<label class="control-label col-sm-1" for="input-email">Email: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-email" id="input-email" [(ngModel)]="newNastavnik.email"/>
+			</div>
+    	</div>
+    
+    	<div class="form-group">
+			<label class="control-label col-sm-1" for="input-telefon">Telefon: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-telefon" id="input-telefon" [(ngModel)]="newNastavnik.telefon"/>
+			</div>
+    </div>
+    
+    
+
+		<div class="form-group">
+			<input class="btn btn-primary" type="submit" value="save"/>
+		</div>
+	</form>
+</div>
