@@ -16,7 +16,7 @@
       <th>Prezime</th>
       <th>Email</th>
     </tr>
-    <tr app-nastavnik-item *ngFor="let nastavik of nastavnici; let i = index" [nastavnik]="nastavnik" [index]="i" (deleteNastavnikIndex)="delete($event)">
+    <tr app-nastavnik-item *ngFor="let nastavnik of _nastavnici; let i = index" [nastavnik]="nastavnik" [index]="i" (deleteNastavnikIndex)="delete($event)">
       
     </tr>
   </table>

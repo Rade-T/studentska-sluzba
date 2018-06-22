@@ -32,10 +32,12 @@ export class NastavnikComponent implements OnInit {
   }
 
   loadNastavnikData() {
-
+    console.log("Ucitani nastavnici");
+    this.nastavnikService.getNastavnici().subscribe((nastavnici: Nastavnik[]) => this._nastavnici = nastavnici);
   }
 
   save(newNastavnik: Nastavnik){
+    console.log("Primljen dogadjaj");
     this.nastavnikService.saveNastavnik(newNastavnik).subscribe(
       () => {
         this.loadNastavnikData();

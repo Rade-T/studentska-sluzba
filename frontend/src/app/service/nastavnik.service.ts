@@ -27,24 +27,28 @@ export class NastavnikService {
   }
 
   getNastavnici(): Observable<Nastavnik[]> {
+    console.log("Ucitavanje nastavnika");
     let params: HttpParams = new HttpParams();
-    return this.http.get<Nastavnik[]>(this.url, { params });
+    var result = this.http.get<Nastavnik[]>(this.url, { params })
+    console.log(result);
+    return result;
   }
 
   getNastavnik(id: number): Observable<Nastavnik> {
     return this.http.get<Nastavnik>('${this.url}/$id}');
   }
 
-  saveNastavnik(ucenik: Nastavnik): Observable<Nastavnik> {
+  saveNastavnik(nastavnik: Nastavnik): Observable<Nastavnik> {
+    console.log("Sacuvan nastavnik");
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // let options = new RequestOptions({ headers: headers });
     return this.http.
-      post<Nastavnik>(this.url, JSON.stringify(ucenik), { headers });
+      post<Nastavnik>(this.url, JSON.stringify(nastavnik), { headers });
   }
 
-  editNastavnik(ucenik: Nastavnik): Observable<Nastavnik> {
+  editNastavnik(nastavnik: Nastavnik): Observable<Nastavnik> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put<Nastavnik>(this.url, JSON.stringify(ucenik), { headers });
+    return this.http.put<Nastavnik>(this.url, JSON.stringify(nastavnik), { headers });
   }
 
   deleteNastavnik(id: number): Observable<Nastavnik> {
