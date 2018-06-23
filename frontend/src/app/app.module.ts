@@ -15,10 +15,15 @@ import { NastavnikComponent } from './component/nastavnik/nastavnik.component';
 import { NastavnikItemComponent } from './component/nastavnik-item/nastavnik-item.component';
 import { AddNastavnikComponent } from './component/add-nastavnik/add-nastavnik.component';
 import { NastavnikService } from './service/nastavnik.service';
+import { PredmetComponent } from './component/predmet/predmet.component';
+import { PredmetItemComponent } from './component/predmet-item/predmet-item.component';
+import { AddPredmetComponent } from './component/add-predmet/add-predmet.component';
+import { PredmetService } from './service/predmet.service';
 
 const routes: Routes = [
   { path: 'students', component: UcenikComponent },
   { path: 'nastavnici', component: NastavnikComponent },
+  { path: 'predmeti', component: PredmetComponent },
   { path: 'main', component: MainComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
@@ -33,7 +38,10 @@ const routes: Routes = [
     MainComponent,
     NastavnikComponent,
     NastavnikItemComponent,
-    AddNastavnikComponent
+    AddNastavnikComponent,
+    PredmetComponent,
+    PredmetItemComponent,
+    AddPredmetComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,8 @@ const routes: Routes = [
   ],
   providers: [
     UcenikService,
-    NastavnikService
+    NastavnikService,
+    PredmetService
   ],
   bootstrap: [AppComponent]
 })

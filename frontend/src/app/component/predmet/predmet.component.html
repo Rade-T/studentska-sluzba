@@ -1,0 +1,22 @@
+<div>
+  <app-add-predmet (newPredmetAdded)="save($event)"></app-add-predmet>
+  <table name="predmetTable" class="table table-dark">
+    <tr>
+      <th>
+        Predmeti
+      </th>
+      <th>
+        <button class="btn">Dodaj</button>
+      </th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th>Naziv</th>
+      <th>Polaganja</th>
+      <th>Predavanja</th>
+    </tr>
+    <tr app-predmet-item *ngFor="let predmet of _predmeti; let i = index" [predmet]="predmet" [index]="i" (deletePredmetIndex)="delete($event)">
+      
+    </tr>
+  </table>
+</div>
