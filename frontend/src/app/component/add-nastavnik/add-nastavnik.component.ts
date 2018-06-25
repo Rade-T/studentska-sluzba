@@ -24,6 +24,7 @@ export class AddNastavnikComponent implements OnInit {
 
   addNastavnik() {
     this.newNastavnikAdded.next(this.newNastavnik);
+    console.log(this.newNastavnik);
     this.newNastavnik = new Nastavnik();
     console.log("Poslat dogadjaj");
   }

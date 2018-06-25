@@ -49,9 +49,14 @@ public class NastavnikController {
 	public @ResponseBody
     NastavnikDTO create (@RequestBody NastavnikDTO dto){
 		Nastavnik n = new Nastavnik();
-		n.setId(dto.getId());
+		n.setIme(dto.getIme());
+		n.setPrezime(dto.getPrezime());
+		n.setJMBG(dto.getJMBG());
+		n.setTelefon(dto.getTelefon());
+		n.setEmail(dto.getEmail());
 		nastavnikService.save(n);
-		
+		System.out.println("dto: " + dto.getJMBG());
+		System.out.println("n: " + n.getJMBG());
 		return new NastavnikDTO(n);
 	}
 	
@@ -60,8 +65,12 @@ public class NastavnikController {
     NastavnikDTO update(@PathVariable(value="id") Integer id, @RequestBody NastavnikDTO dto){
 		Nastavnik n = nastavnikService.findOne(id);
 		n.setId(dto.getId());
+		n.setime(dto.getIme());
+		n.setprezime(dto.getPrezime());
+		n.setJMBG(dto.getJMBG());
+		n.settelefon(dto.getTelefon());
+		n.setemail(dto.getEmail());
 		nastavnikService.save(n);
-		
 		return new NastavnikDTO(n);
 	}
 	

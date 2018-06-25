@@ -17,10 +17,10 @@ public class NastavnikDTO {
     public NastavnikDTO(Nastavnik n) {
         this.id = n.getId();
 		this.ime = n.getime();
-		this.prezime = n.getprezime();
+		this.prezime = n.getPrezime();
 		this.JMBG = n.getJMBG();
-		this.email = n.getemail();
-		this.telefon = n.gettelefon();
+		this.email = n.getEmail();
+		this.telefon = n.getTelefon();
     }
 
     public int getId() {
@@ -51,8 +51,8 @@ public class NastavnikDTO {
 		return JMBG;
 	}
 
-	public void setJMBG(String jMBG) {
-		JMBG = jMBG;
+	public void setJMBG(String JMBG) {
+		this.JMBG = JMBG;
 	}
 
 	public String getEmail() {

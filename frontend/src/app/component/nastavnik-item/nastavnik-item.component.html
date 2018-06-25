@@ -11,6 +11,12 @@
   {{nastavnik.email}}
 </td>
 <td>
-	<button class="btn btn-danger" (click)="deleteNastavnik(nastavnik.id)">remove</button>
+  {{nastavnik.JMBG}}
+</td>
+<td>
+  <button class="btn btn-primary" (click)="editNastavnik(nastavnik)">edit</button>
 	<!-- <button class="btn btn-primary" (click)="details(record.id)">details</button> -->
+</td>
+<td>
+  	<button class="btn btn-danger" (click)="deleteNastavnik(nastavnik.id)">remove</button>
 </td>

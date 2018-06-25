@@ -35,20 +35,25 @@ export class NastavnikService {
   }
 
   getNastavnik(id: number): Observable<Nastavnik> {
-    return this.http.get<Nastavnik>('${this.url}/$id}');
+    const url = `${this.url}/${id}`;
+    var result = this.http.get<Nastavnik>(url);
+    console.log(result);
+    return result;
   }
 
   saveNastavnik(nastavnik: Nastavnik): Observable<Nastavnik> {
     console.log("Sacuvan nastavnik");
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // let options = new RequestOptions({ headers: headers });
+    console.log(JSON.stringify(nastavnik));
     return this.http.
       post<Nastavnik>(this.url, JSON.stringify(nastavnik), { headers });
   }
 
   editNastavnik(nastavnik: Nastavnik): Observable<Nastavnik> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put<Nastavnik>(this.url, JSON.stringify(nastavnik), { headers });
+    const url = `${this.url}/${nastavnik.id}`;
+    return this.http.put<Nastavnik>(url, JSON.stringify(nastavnik), { headers });
   }
 
   deleteNastavnik(id: number): Observable<Nastavnik> {

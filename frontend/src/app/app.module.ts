@@ -15,10 +15,12 @@ import { NastavnikComponent } from './component/nastavnik/nastavnik.component';
 import { NastavnikItemComponent } from './component/nastavnik-item/nastavnik-item.component';
 import { AddNastavnikComponent } from './component/add-nastavnik/add-nastavnik.component';
 import { NastavnikService } from './service/nastavnik.service';
+
 import { PredmetComponent } from './component/predmet/predmet.component';
 import { PredmetItemComponent } from './component/predmet-item/predmet-item.component';
 import { AddPredmetComponent } from './component/add-predmet/add-predmet.component';
 import { PredmetService } from './service/predmet.service';
+import { EditNastavnikComponent } from './component/edit-nastavnik/edit-nastavnik.component';
 
 const routes: Routes = [
   { path: 'students', component: UcenikComponent },
@@ -41,14 +43,15 @@ const routes: Routes = [
     AddNastavnikComponent,
     PredmetComponent,
     PredmetItemComponent,
-    AddPredmetComponent
+    AddPredmetComponent,
+    EditNastavnikComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes) ,
-    HttpModule   
+    HttpModule
   ],
   providers: [
     UcenikService,

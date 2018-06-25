@@ -1,6 +1,7 @@
-<div>
+<div (editNastavnik)="nastavnikChild($event)">
   <!-- <app-add-ucenik (newUcenikAdded)="save($event)"></app-add-ucenik> -->
   <app-add-nastavnik (newNastavnikAdded)="save($event)"></app-add-nastavnik>
+  <app-edit-nastavnik (editNastavnik)="setNastavnik($event)" (editNastavnikSaved)="saveEdit($event)"></app-edit-nastavnik>
   <table name="nastavnikTable" class="table table-dark">
     <tr>
       <th>
@@ -15,8 +16,9 @@
       <th>Ime</th>
       <th>Prezime</th>
       <th>Email</th>
+      <th>JMBG</th>
     </tr>
-    <tr app-nastavnik-item *ngFor="let nastavnik of _nastavnici; let i = index" [nastavnik]="nastavnik" [index]="i" (deleteNastavnikIndex)="delete($event)">
+    <tr app-nastavnik-item *ngFor="let nastavnik of _nastavnici; let i = index" [nastavnik]="nastavnik" [index]="i" (deleteNastavnikIndex)="delete($event)" (editNastavnikIndex)="setNastavnik($event)">
       
     </tr>
   </table>
