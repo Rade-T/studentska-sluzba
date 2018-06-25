@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Nastavnik extends Osoba {
+public class Nastavnik {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Nastavnik extends Osoba {
 	private String prezime;
 
 	@Column
-	private String JMBG;
+	private String jmbg;
 
 	@Column
 	private String email;
@@ -56,12 +56,12 @@ public class Nastavnik extends Osoba {
 		this.prezime = prezime;
 	}
 
-	public String getJMBG() {
-		return JMBG;
+	public String getJmbg() {
+		return jmbg;
 	}
 
-	public void setJMBG(String JMBG) {
-		this.JMBG = JMBG;
+	public void setJmbg(String jmbg) {
+		this.jmbg = jmbg;
 	}
 
 	public String getEmail() {

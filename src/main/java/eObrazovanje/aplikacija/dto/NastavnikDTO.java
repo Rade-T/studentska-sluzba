@@ -7,7 +7,7 @@ public class NastavnikDTO {
     private int id;
 	private String ime;
 	private String prezime;
-	private String JMBG;
+	private String jmbg;
 	private String email;
 	private String telefon;
 
@@ -16,9 +16,9 @@ public class NastavnikDTO {
 
     public NastavnikDTO(Nastavnik n) {
         this.id = n.getId();
-		this.ime = n.getime();
+		this.ime = n.getIme();
 		this.prezime = n.getPrezime();
-		this.JMBG = n.getJMBG();
+		this.jmbg = n.getJmbg();
 		this.email = n.getEmail();
 		this.telefon = n.getTelefon();
     }
@@ -47,12 +47,12 @@ public class NastavnikDTO {
 		this.prezime = prezime;
 	}
 
-	public String getJMBG() {
-		return JMBG;
+	public String getJmbg() {
+		return jmbg;
 	}
 
-	public void setJMBG(String JMBG) {
-		this.JMBG = JMBG;
+	public void setJmbg(String jmbg) {
+		this.jmbg = jmbg;
 	}
 
 	public String getEmail() {

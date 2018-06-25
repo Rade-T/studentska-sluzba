@@ -26,7 +26,7 @@ export class PohadjanjeService {
     }
 
     getPohadjanja(): Observable<Pohadjanje[]> {
-        let params: HttpParams = new HttpParams();
+        const params: HttpParams = new HttpParams();
         return this.http.get<Pohadjanje[]>(this.pohadjanjeUrl, {params});
     }
 
@@ -35,14 +35,13 @@ export class PohadjanjeService {
     }
 
     savePohadjanje(pohadjanje: Pohadjanje): Observable<Pohadjanje> {
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-		// let options = new RequestOptions({ headers: headers });
-		return this.http.
-			post<Pohadjanje>(this.pohadjanjeUrl, JSON.stringify(pohadjanje), { headers });
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        // let options = new RequestOptions({ headers: headers });
+        return this.http.post<Pohadjanje>(this.pohadjanjeUrl, JSON.stringify(pohadjanje), { headers });
     }
 
     editPohadjanje(pohadjanje: Pohadjanje): Observable<Pohadjanje> {
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         return this.http.put<Pohadjanje>(this.pohadjanjeUrl, JSON.stringify(pohadjanje), {headers});
     }
 
@@ -52,7 +51,7 @@ export class PohadjanjeService {
     }
 
     handleError(error: any): Promise<any> {
-        console.error("Error... ", error);
+        console.error('Error... ', error);
         return Promise.reject(error.message || error);
     }
 }

@@ -27,23 +27,23 @@ export class NastavnikService {
   }
 
   getNastavnici(): Observable<Nastavnik[]> {
-    console.log("Ucitavanje nastavnika");
-    let params: HttpParams = new HttpParams();
-    var result = this.http.get<Nastavnik[]>(this.url, { params })
+    console.log('Ucitavanje nastavnika');
+    const params: HttpParams = new HttpParams();
+    const result = this.http.get<Nastavnik[]>(this.url, { params });
     console.log(result);
     return result;
   }
 
   getNastavnik(id: number): Observable<Nastavnik> {
     const url = `${this.url}/${id}`;
-    var result = this.http.get<Nastavnik>(url);
+    const result = this.http.get<Nastavnik>(url);
     console.log(result);
     return result;
   }
 
   saveNastavnik(nastavnik: Nastavnik): Observable<Nastavnik> {
-    console.log("Sacuvan nastavnik");
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    console.log('Sacuvan nastavnik');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // let options = new RequestOptions({ headers: headers });
     console.log(JSON.stringify(nastavnik));
     return this.http.
@@ -51,7 +51,7 @@ export class NastavnikService {
   }
 
   editNastavnik(nastavnik: Nastavnik): Observable<Nastavnik> {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.url}/${nastavnik.id}`;
     return this.http.put<Nastavnik>(url, JSON.stringify(nastavnik), { headers });
   }
@@ -71,7 +71,7 @@ export class NastavnikService {
     }*/
 
   handleError(error: any): Promise<any> {
-    console.error("Error... ", error);
+    console.error('Error... ', error);
     return Promise.reject(error.message || error);
   }
 }
