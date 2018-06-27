@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Ucenik extends Osoba {
+public class Ucenik {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Ucenik extends Osoba {
 	private String prezime;
 
 	@Column
-	private String JMBG;
+	private String jmbg;
 
 	@Column
 	private String email;
@@ -55,43 +55,43 @@ public class Ucenik extends Osoba {
 		this.brojIndeksa = brojIndeksa;
 	}
 	
-	public String getime() {
+	public String getIme() {
 		return ime;
 	}
 
-	public void setime(String ime) {
+	public void setIme(String ime) {
 		this.ime = ime;
 	}
 
-	public String getprezime() {
+	public String getPrezime() {
 		return prezime;
 	}
 
-	public void setprezime(String prezime) {
+	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
 
-	public String getJMBG() {
-		return JMBG;
+	public String getJmbg() {
+		return jmbg;
 	}
 
-	public void setJMBG(String jMBG) {
-		JMBG = jMBG;
+	public void setJmbg(String jmbg) {
+		this.jmbg = jmbg;
 	}
 
-	public String getemail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setemail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String gettelefon() {
+	public String getTelefon() {
 		return telefon;
 	}
 
-	public void settelefon(String telefon) {
+	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
 

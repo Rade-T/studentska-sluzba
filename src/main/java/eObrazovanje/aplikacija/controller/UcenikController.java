@@ -48,11 +48,11 @@ public class UcenikController {
 	UcenikDTO create (@RequestBody UcenikDTO dto){
 		Ucenik u = new Ucenik();
 		u.setBrojIndeksa(dto.getBrojIndeksa());
-		u.setime(dto.getIme());
-		u.setprezime(dto.getPrezime());
-		u.setJMBG(dto.getJMBG());
-		u.setemail(dto.getEmail());
-		u.settelefon(dto.getTelefon());
+		u.setIme(dto.getIme());
+		u.setPrezime(dto.getPrezime());
+		u.setJmbg(dto.getJmbg());
+		u.setEmail(dto.getEmail());
+		u.setTelefon(dto.getTelefon());
 		ucenikService.save(u);
 		
 		return new UcenikDTO(u);
@@ -63,6 +63,12 @@ public class UcenikController {
     UcenikDTO update(@PathVariable(value="id") Integer id, @RequestBody UcenikDTO dto){
 		Ucenik u = ucenikService.findOne(id);
 		u.setId(dto.getId());
+		u.setBrojIndeksa(dto.getBrojIndeksa());
+		u.setIme(dto.getIme());
+		u.setPrezime(dto.getPrezime());
+		u.setJmbg(dto.getJmbg());
+		u.setEmail(dto.getEmail());
+		u.setTelefon(dto.getTelefon());
 		ucenikService.save(u);
 		
 		return new UcenikDTO(u);

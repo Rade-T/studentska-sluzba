@@ -13,7 +13,7 @@ public class UcenikDTO {
 	private String brojIndeksa;
 	private String ime;
 	private String prezime;
-	private String JMBG;
+	private String jmbg;
 	private String email;
 	private String telefon;
 	private List<Integer> dokumenti;
@@ -27,11 +27,11 @@ public class UcenikDTO {
 	public UcenikDTO(Ucenik u) {
 		this.id = u.getId();
 		this.brojIndeksa = u.getBrojIndeksa();
-		this.ime = u.getime();
-		this.prezime = u.getprezime();
-		this.JMBG = u.getJMBG();
-		this.email = u.getemail();
-		this.telefon = u.gettelefon();
+		this.ime = u.getIme();
+		this.prezime = u.getPrezime();
+		this.jmbg = u.getJmbg();
+		this.email = u.getEmail();
+		this.telefon = u.getTelefon();
 		this.dokumenti = new ArrayList<>();
 		this.uplate = new ArrayList<>();
 
@@ -75,12 +75,12 @@ public class UcenikDTO {
 		this.prezime = prezime;
 	}
 
-	public String getJMBG() {
-		return JMBG;
+	public String getJmbg() {
+		return jmbg;
 	}
 
-	public void setJMBG(String jMBG) {
-		JMBG = jMBG;
+	public void setJMBG(String jmbg) {
+		this.jmbg = jmbg;
 	}
 
 	public String getEmail() {
