@@ -23,7 +23,7 @@ import { PredmetService } from './service/predmet.service';
 import { EditNastavnikComponent } from './component/edit-nastavnik/edit-nastavnik.component';
 
 const routes: Routes = [
-  { path: 'students', component: UcenikComponent },
+  { path: 'ucenici', component: UcenikComponent },
   { path: 'nastavnici', component: NastavnikComponent },
   { path: 'predmeti', component: PredmetComponent },
   { path: 'main', component: MainComponent },

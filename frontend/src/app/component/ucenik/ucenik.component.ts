@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { Ucenik } from '../../model/ucenik.model';
 import { UcenikService } from '../../service/ucenik.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { AddUcenikComponent } from '../add-ucenik/add-ucenik.component';
 
 @Component({
   selector: 'app-ucenik',
@@ -13,21 +14,54 @@ export class UcenikComponent implements OnInit {
 
   @Output() deleteUcenikIndex: EventEmitter<number> = new EventEmitter();
   @Output() showAddUcenikEvent: EventEmitter<boolean> = new EventEmitter();
-
+  @ViewChild(AddUcenikComponent) addUcenikComponent: AddUcenikComponent;
   @Input() ucenici: Ucenik[];
 
-  constructor() {
+  public _ucenici: Ucenik[];
+  public newUcenik: Ucenik;
+  public addUcenikVisible: boolean = false;
+
+  constructor(private ucenikService: UcenikService) {
+    this.ucenici = [];
+    this.loadData();
   }
 
   ngOnInit() {
   }
 
-  delete(index: number) {
-    this.deleteUcenikIndex.next(index);
+  private loadData() {
+    this.ucenikService.getUcenici().subscribe((ucenici: Ucenik[]) => this.ucenici = ucenici);
   }
+
+  save(newUcenik: Ucenik){
+    this.ucenikService.saveUcenik(newUcenik).subscribe(
+      () => {
+        this.loadData();
+      }
+    );
+    this.addUcenikVisible = false;
+  }
+
+  delete(id: number){
+    this.ucenikService.deleteUcenik(id).subscribe(
+      () => {
+        this.loadData();
+      }
+    );
+  }
+
+  toggleAddUcenik(show: boolean) {
+    console.log("Primljen dogadjaj");
+    this.addUcenikVisible = show;
+  }
+
+  // delete(index: number) {
+  //   this.deleteUcenikIndex.next(index);
+  // }
 
   showAddUcenik() {
     console.log("Poslat event");
-    this.showAddUcenikEvent.next(true);
+    //this.showAddUcenikEvent.next(true);
+    this.addUcenikVisible = true;
   }
 }

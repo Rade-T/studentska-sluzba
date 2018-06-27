@@ -1,5 +1,6 @@
 <div>
   <!-- <app-add-ucenik (newUcenikAdded)="save($event)"></app-add-ucenik> -->
+  <app-add-ucenik *ngIf="addUcenikVisible" (newUcenikAdded)="save($event)"></app-add-ucenik>
   <table name="ucenikTable" class="table table-dark">
     <tr>
       <th>
