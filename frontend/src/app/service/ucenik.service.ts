@@ -43,8 +43,9 @@ export class UcenikService {
     }
 
     editUcenik(ucenik: Ucenik): Observable<Ucenik> {
+        const url = `${this.ucenikUrl}/${ucenik.id}`;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.put<Ucenik>(this.ucenikUrl, JSON.stringify(ucenik), {headers});
+        return this.http.put<Ucenik>(url, JSON.stringify(ucenik), {headers});
     }
 
     deleteUcenik(id: number): Observable<Ucenik> {

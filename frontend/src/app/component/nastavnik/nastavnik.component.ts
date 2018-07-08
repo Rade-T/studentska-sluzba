@@ -14,7 +14,7 @@ import { EditNastavnikComponent } from '../edit-nastavnik/edit-nastavnik.compone
 export class NastavnikComponent implements OnInit {
 
   @Output() deleteNastavnikIndex: EventEmitter<number> = new EventEmitter();
-  //@Output() editNastavnik: EventEmitter<Nastavnik> = new EventEmitter();
+  @Output() editNastavnikEvent: EventEmitter<Nastavnik> = new EventEmitter();
   @Input() nastavnici: Nastavnik[];
   @ViewChild(EditNastavnikComponent) editNastavnikComponent: EditNastavnikComponent;
 
@@ -23,6 +23,8 @@ export class NastavnikComponent implements OnInit {
   public _nastavnici: Nastavnik[];
   public newNastavnik: Nastavnik;
   public editNastavnik: Nastavnik;
+  public addNastavnikVisible: boolean = false;
+  public editNastavnikVisible: boolean = false;
 
   ngOnInit() {
     this.nastavnikService.getNastavnici();
@@ -39,28 +41,20 @@ export class NastavnikComponent implements OnInit {
   }
 
   loadNastavnikData() {
-    console.log("Ucitani nastavnici");
     this.nastavnikService.getNastavnici().subscribe((nastavnici: Nastavnik[]) => this._nastavnici = nastavnici);
   }
 
   setNastavnik(nastavnik: Nastavnik) {
-    //this.editNastavnik.next(nastavnik);
     this.editNastavnikComponent.editNastavnik = nastavnik;
-    console.log("Edit iz nastavnik componente");
-    //this.editNastavnik = nastavnik;
-    console.log(this.editNastavnik);
-    this.editNastavnikComponent.printNastavnik();
   }
 
   save(newNastavnik: Nastavnik) {
-    console.log("Primljen dogadjaj");
-    console.log(newNastavnik);
     this.nastavnikService.saveNastavnik(newNastavnik).subscribe(
       () => {
         this.loadNastavnikData();
       }
     );
-    //this.addUcenikVisible = false;
+    this.addNastavnikVisible = false;
   }
 
   saveEdit(editNastavnik: Nastavnik) {
@@ -69,5 +63,13 @@ export class NastavnikComponent implements OnInit {
         this.loadNastavnikData();
       }
     );
+  }
+
+  toggleAddNastavnik(show: boolean) {
+    this.addNastavnikVisible = show;
+  }
+
+  showAddNastavnik() {
+    this.addNastavnikVisible = true;
   }
 }

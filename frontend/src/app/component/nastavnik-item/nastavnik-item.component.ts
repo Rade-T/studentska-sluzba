@@ -25,8 +25,6 @@ export class NastavnikItemComponent implements OnInit {
   }
 
   editNastavnik(n: Nastavnik) {
-    //this.nastavnikService.getNastavnik(id).subscribe((nastavnik: Nastavnik) => this.nastavnikEdit = nastavnik);
     this.editNastavnikIndex.next(n);
-    console.log("Kliknut nastavnik");
   }
 }

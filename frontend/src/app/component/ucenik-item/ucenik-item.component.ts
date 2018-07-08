@@ -12,6 +12,7 @@ export class UcenikItemComponent implements OnInit {
   @Input() ucenik: Ucenik;
 	@Input() index: number;
   @Output() deleteUcenikIndex: EventEmitter<number> = new EventEmitter();
+  @Output() editUcenikIndex: EventEmitter<Ucenik> = new EventEmitter();
   
   constructor(private router: Router) { }
 
@@ -22,4 +23,7 @@ export class UcenikItemComponent implements OnInit {
   	this.deleteUcenikIndex.next(id);
   }
 
+  editUcenik(u: Ucenik) {
+    this.editUcenikIndex.next(u);
+  }
 }

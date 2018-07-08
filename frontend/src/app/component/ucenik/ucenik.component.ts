@@ -4,6 +4,7 @@ import { UcenikService } from '../../service/ucenik.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AddUcenikComponent } from '../add-ucenik/add-ucenik.component';
+import { EditUcenikComponent } from '../edit-ucenik/edit-ucenik.component';
 
 @Component({
   selector: 'app-ucenik',
@@ -16,9 +17,11 @@ export class UcenikComponent implements OnInit {
   @Output() showAddUcenikEvent: EventEmitter<boolean> = new EventEmitter();
   @ViewChild(AddUcenikComponent) addUcenikComponent: AddUcenikComponent;
   @Input() ucenici: Ucenik[];
+  @ViewChild(EditUcenikComponent) editUcenikComponent: EditUcenikComponent;
 
   public _ucenici: Ucenik[];
   public newUcenik: Ucenik;
+  public editUcenik: Ucenik;
   public addUcenikVisible: boolean = false;
 
   constructor(private ucenikService: UcenikService) {
@@ -63,5 +66,17 @@ export class UcenikComponent implements OnInit {
     console.log("Poslat event");
     //this.showAddUcenikEvent.next(true);
     this.addUcenikVisible = true;
+  }
+
+  setUcenik(ucenik: Ucenik) {
+    this.editUcenikComponent.editUcenik = ucenik;
+  }
+
+  saveEdit(editUcenik: Ucenik) {
+    this.ucenikService.editUcenik(editUcenik).subscribe(
+      () => {
+        this.loadData();
+      }
+    );
   }
 }

@@ -1,14 +1,14 @@
 <div>
   <!-- <app-add-ucenik (newUcenikAdded)="save($event)"></app-add-ucenik> -->
-  <app-add-nastavnik (newNastavnikAdded)="save($event)"></app-add-nastavnik>
-  <app-edit-nastavnik (editNastavnik)="setNastavnik($event)" (editNastavnikSaved)="saveEdit($event)"></app-edit-nastavnik>
+  <app-add-nastavnik *ngIf="addNastavnikVisible" (newNastavnikAdded)="save($event)"></app-add-nastavnik>
+  
   <table name="nastavnikTable" class="table table-dark">
     <tr>
       <th>
         Nastavnici
       </th>
       <th>
-        <button class="btn">Dodaj</button>
+        <button class="btn" (click)="showAddNastavnik()">Dodaj</button>
       </th>
     </tr>
     <tr>
@@ -17,9 +17,9 @@
       <th>Prezime</th>
       <th>Email</th>
       <th>JMBG</th>
+      <th>Akcija</th>
     </tr>
-    <tr app-nastavnik-item *ngFor="let nastavnik of _nastavnici; let i = index" [nastavnik]="nastavnik" [index]="i" (deleteNastavnikIndex)="delete($event)" (editNastavnikIndex)="setNastavnik($event)">
-      
-    </tr>
+    <tr app-nastavnik-item *ngFor="let nastavnik of _nastavnici; let i = index" [nastavnik]="nastavnik" [index]="i" (deleteNastavnikIndex)="delete($event)" (editNastavnikIndex)="setNastavnik($event)"></tr>
   </table>
+  <app-edit-nastavnik (editNastavnik)="setNastavnik($event)" (editNastavnikSaved)="saveEdit($event)"></app-edit-nastavnik>
 </div>

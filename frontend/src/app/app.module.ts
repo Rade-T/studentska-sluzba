@@ -21,6 +21,7 @@ import { PredmetItemComponent } from './component/predmet-item/predmet-item.comp
 import { AddPredmetComponent } from './component/add-predmet/add-predmet.component';
 import { PredmetService } from './service/predmet.service';
 import { EditNastavnikComponent } from './component/edit-nastavnik/edit-nastavnik.component';
+import { EditUcenikComponent } from './component/edit-ucenik/edit-ucenik.component';
 
 const routes: Routes = [
   { path: 'ucenici', component: UcenikComponent },
@@ -44,7 +45,8 @@ const routes: Routes = [
     PredmetComponent,
     PredmetItemComponent,
     AddPredmetComponent,
-    EditNastavnikComponent
+    EditNastavnikComponent,
+    EditUcenikComponent
   ],
   imports: [
     BrowserModule,
