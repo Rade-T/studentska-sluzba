@@ -1,0 +1,14 @@
+<td>
+  {{polaganje.id}}
+</td>
+<td>
+  {{polaganje.ucenik}}
+</td>
+<td>
+  {{polaganje.predmet}}
+</td>
+<td>
+  <button class="btn btn-primary" (click)="editPolaganje(polaganje)">edit</button>
+  &nbsp;
+	<button class="btn btn-danger" (click)="deletePolaganje(polaganje.id)">remove</button>
+</td>

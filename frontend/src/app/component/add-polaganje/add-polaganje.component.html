@@ -1,0 +1,24 @@
+<div>
+	<form class="form-horizontal" (ngSubmit)="addPolaganje()">
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-ucenik">Ucenik: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-ucenik" id="input-ucenik" [(ngModel)]="newPolaganje.ucenik"/>
+			</div>
+    	</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-predmet">Predmet: </label>
+			<select class="form-group" name="input-predmet" id="input-predmet" [(ngModel)]="newPolaganje.predmet">
+				  <option>1</option>
+				  <option>2</option>
+				  <option>3</option>
+				  <option>4</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<input class="btn btn-primary" type="submit" value="Save"/>
+		</div>
+	</form>
+</div>

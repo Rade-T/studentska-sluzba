@@ -22,11 +22,18 @@ import { AddPredmetComponent } from './component/add-predmet/add-predmet.compone
 import { PredmetService } from './service/predmet.service';
 import { EditNastavnikComponent } from './component/edit-nastavnik/edit-nastavnik.component';
 import { EditUcenikComponent } from './component/edit-ucenik/edit-ucenik.component';
+import { PolaganjeComponent } from './component/polaganje/polaganje.component';
+import { AddPolaganjeComponent } from './component/add-polaganje/add-polaganje.component';
+import { EditPolaganjeComponent } from './component/edit-polaganje/edit-polaganje.component';
+import { PolaganjeService } from './service/polaganje.service';
+import { PolaganjeItemComponent } from './component/polaganje-item/polaganje-item.component';
+import { EditPredmetComponent } from './component/edit-predmet/edit-predmet.component';
 
 const routes: Routes = [
   { path: 'ucenici', component: UcenikComponent },
   { path: 'nastavnici', component: NastavnikComponent },
   { path: 'predmeti', component: PredmetComponent },
+  { path: 'polaganja', component: PolaganjeComponent },
   { path: 'main', component: MainComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
@@ -46,7 +53,12 @@ const routes: Routes = [
     PredmetItemComponent,
     AddPredmetComponent,
     EditNastavnikComponent,
-    EditUcenikComponent
+    EditUcenikComponent,
+    PolaganjeComponent,
+    AddPolaganjeComponent,
+    EditPolaganjeComponent,
+    PolaganjeItemComponent,
+    EditPredmetComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +70,8 @@ const routes: Routes = [
   providers: [
     UcenikService,
     NastavnikService,
-    PredmetService
+    PredmetService,
+    PolaganjeService
   ],
   bootstrap: [AppComponent]
 })

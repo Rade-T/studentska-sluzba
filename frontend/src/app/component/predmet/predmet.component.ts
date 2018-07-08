@@ -1,8 +1,10 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Predmet } from '../../model/predmet.model';
 import { PredmetService } from '../../service/predmet.service';
+import { AddPredmetComponent } from '../add-predmet/add-predmet.component';
+import { EditPredmetComponent } from '../edit-predmet/edit-predmet.component';
 
 @Component({
   selector: 'app-predmet',
@@ -11,38 +13,66 @@ import { PredmetService } from '../../service/predmet.service';
 })
 export class PredmetComponent implements OnInit {
 
-  @Output() deletePredmetIndex: EventEmitter<number> = new EventEmitter();
+  @Output() deletePredmetkIndex: EventEmitter<number> = new EventEmitter();
+  @Output() showAddPredmetEvent: EventEmitter<boolean> = new EventEmitter();
+  @ViewChild(AddPredmetComponent) addPredmetComponent: AddPredmetComponent;
+  @Input() predmet: Predmet[];
+  @ViewChild(EditPredmetComponent) editPredmetComponent: EditPredmetComponent;
 
-  @Input() predmeti: Predmet[];
+  public _predmet: Predmet[];
+  public newPredmet: Predmet;
+  public editPredmet: Predmet;
+  public addPredmetVisible: boolean = false;
 
-  constructor(private predmetService: PredmetService) { }
-
-  public _predmeti: Predmet[];
-  public newNastavnik: Predmet;
+  constructor(private predmetService: PredmetService) {
+    this.predmet = [];
+    this.loadData();
+  }
 
   ngOnInit() {
-    this.predmetService.getPredmeti();
-    this._predmeti = [];
-    this.loadPredmetData();
   }
 
-  delete(index: number) {
-    this.deletePredmetIndex.next(index);
-  }
-
-  loadPredmetData() {
-    console.log("Ucitani nastavnici");
-    this.predmetService.getPredmeti().subscribe((predmeti: Predmet[]) => this._predmeti = predmeti);
+  private loadData() {
+    this.predmetService.getPredmeti().subscribe((predmet: Predmet[]) => this.predmet = predmet);
   }
 
   save(newPredmet: Predmet){
-    console.log("Primljen dogadjaj");
     this.predmetService.savePredmet(newPredmet).subscribe(
       () => {
-        this.loadPredmetData();
+        this.loadData();
       }
     );
-    //this.addUcenikVisible = false;
+    this.addPredmetVisible = false;
+  }
+
+  delete(id: number){
+    this.predmetService.deletePredmet(id).subscribe(
+      () => {
+        this.loadData();
+      }
+    );
+  }
+
+  toggleAddPredmet(show: boolean) {
+    console.log("Primljen dogadjaj");
+    this.addPredmetVisible = show;
+  }
+
+  showAddPredmet() {
+    console.log("Poslat event");
+    this.addPredmetVisible = true;
+  }
+
+  setPredmet(predmet: Predmet) {
+    this.editPredmetComponent.editPredmet = predmet;
+  }
+
+  saveEdit(editPredmet: Predmet) {
+    this.predmetService.editPredmet(editPredmet).subscribe(
+      () => {
+        this.loadData();
+      }
+    );
   }
 
 }

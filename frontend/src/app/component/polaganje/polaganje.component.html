@@ -1,0 +1,22 @@
+<div>
+  <app-add-polaganje *ngIf="addPolaganjeVisible" (newPolaganjeAdded)="save($event)"></app-add-polaganje>
+  <table name="polaganjeTable" class="table table-dark">
+    <tr>
+      <th>
+        Polaganja
+      </th>
+      <th>
+        <button class="btn" (click)="showAddPolaganje()">Dodaj</button>
+      </th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th>Broj indeksa</th>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Akcija</th>
+    </tr>
+    <tr app-polaganje-item *ngFor="let polaganje of _polaganje; let i = index" [polaganje]="polaganje" [index]="i" (deletePolaganjeIndex)="delete($event)" (editPolaganjeIndex)="setPolaganje($event)"></tr>
+  </table>
+  <app-edit-polaganje (editPolaganje)="setPolaganje($event)" (editPolaganjeSaved)="saveEdit($event)"></app-edit-polaganje>
+</div>
