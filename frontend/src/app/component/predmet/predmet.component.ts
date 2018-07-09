@@ -19,21 +19,22 @@ export class PredmetComponent implements OnInit {
   @Input() predmet: Predmet[];
   @ViewChild(EditPredmetComponent) editPredmetComponent: EditPredmetComponent;
 
-  public _predmet: Predmet[];
+  public _predmeti: Predmet[];
   public newPredmet: Predmet;
   public editPredmet: Predmet;
   public addPredmetVisible: boolean = false;
 
   constructor(private predmetService: PredmetService) {
-    this.predmet = [];
+    this._predmeti = [];
     this.loadData();
   }
 
   ngOnInit() {
+    this.loadData();
   }
 
   private loadData() {
-    this.predmetService.getPredmeti().subscribe((predmet: Predmet[]) => this.predmet = predmet);
+    this.predmetService.getPredmeti().subscribe((predmeti: Predmet[]) => this._predmeti = predmeti);
   }
 
   save(newPredmet: Predmet){

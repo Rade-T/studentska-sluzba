@@ -12,10 +12,9 @@
     <tr>
       <th>Id</th>
       <th>Naziv</th>
-      <th>Polaganja</th>
-      <th>Predavanja</th>
+      <th>Akcija</th>
     </tr>
-    <tr app-predmet-item *ngFor="let predmet of _predmet; let i = index" [predmet]="predmet" [index]="i" (deletePredmetIndex)="delete($event)" (editPredmetIndex)="setPredmet($event)">
+    <tr app-predmet-item *ngFor="let predmet of _predmeti; let i = index" [predmet]="predmet" [index]="i" (deletePredmetIndex)="delete($event)" (editPredmetIndex)="setPredmet($event)">
       
     </tr>
   </table>

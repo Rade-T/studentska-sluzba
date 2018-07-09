@@ -22,10 +22,8 @@ export class AddPredmetComponent implements OnInit {
 
   public newPredmet: Predmet;
   public JSON: Object;
-  public predavanja: Predavanje[];
-  public polaganja: Polaganje[];
 
-  constructor(private http: HttpClient, private polaganjeService: PolaganjeService, private predavanjeService: PredavanjeService) { 
+  constructor(private http: HttpClient) { 
     this.newPredmet = new Predmet();
     this.JSON = JSON;
   }
@@ -35,8 +33,6 @@ export class AddPredmetComponent implements OnInit {
   }
 
   loadData() {
-    this.polaganjeService.getPolaganja().subscribe((polaganja: Polaganje[]) => this.polaganja = polaganja);
-    this.predavanjeService.getPredavanja().subscribe((predavanja: Predavanje[]) => this.predavanja = predavanja);
   }
 
   addPredmet() {

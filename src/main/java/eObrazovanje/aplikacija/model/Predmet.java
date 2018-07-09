@@ -13,11 +13,11 @@ public class Predmet {
 	@Column
 	private String naziv;
 
-	@OneToMany(mappedBy = "predmet")
-    private List<Polaganje> polaganja;
-
-	@OneToMany(mappedBy = "predmet")
-    private List<Predavanje> predavanja;
+//	@OneToMany(mappedBy = "predmet")
+//    private List<Polaganje> polaganja;
+//
+//	@OneToMany(mappedBy = "predmet")
+//    private List<Predavanje> predavanja;
 
 	public Predmet() {
 		
@@ -39,19 +39,19 @@ public class Predmet {
 		this.naziv = naziv;
 	}
 
-    public List<Polaganje> getPolaganja() {
-        return polaganja;
-    }
-
-    public void setPolaganja(List<Polaganje> polaganja) {
-        this.polaganja = polaganja;
-    }
-
-    public List<Predavanje> getPredavanja() {
-        return predavanja;
-    }
-
-    public void setPredavanja(List<Predavanje> predavanja) {
-        this.predavanja = predavanja;
-    }
+//    public List<Polaganje> getPolaganja() {
+//        return polaganja;
+//    }
+//
+//    public void setPolaganja(List<Polaganje> polaganja) {
+//        this.polaganja = polaganja;
+//    }
+//
+//    public List<Predavanje> getPredavanja() {
+//        return predavanja;
+//    }
+//
+//    public void setPredavanja(List<Predavanje> predavanja) {
+//        this.predavanja = predavanja;
+//    }
 }

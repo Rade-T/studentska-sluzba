@@ -7,7 +7,7 @@
 				<input class="form-control" name="input-naziv" id="input-naziv" [(ngModel)]="editPredmet.naziv" />
 			</div>
 		</div>
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<label class="control-label col-sm-1" for="input-polaganje">Polaganje: </label>
 			<div class="col-sm-11">
 				<select class="form-control" name="input-polaganje" id="input-polaganje" [(ngModel)]="editPredmet.polaganje">
@@ -23,7 +23,7 @@
 					<option *ngFor="let pr of predavanja" [ngValue]="pr.id">{{pr.nastavnik.ime + " " + p.predmet.naziv}}</option>
 				</select>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="form-group">
 			<input class="btn btn-primary" type="submit" value="Save" />

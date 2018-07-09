@@ -9,8 +9,8 @@ public class PredmetDTO {
     private int id;
 
     private String naziv;
-	private List<Integer> polaganja;
-	private List<Integer> predavanja;
+//	private List<Integer> polaganja;
+//	private List<Integer> predavanja;
 
     public PredmetDTO() {
 
@@ -19,8 +19,8 @@ public class PredmetDTO {
     public PredmetDTO(Predmet p) {
         this.id = p.getId();
         this.naziv = p.getNaziv();
-		this.polaganja = new ArrayList<>();
-		this.predavanja = new ArrayList<>();
+//		this.polaganja = new ArrayList<>();
+//		this.predavanja = new ArrayList<>();
     }
 
     public int getId() {
@@ -39,22 +39,19 @@ public class PredmetDTO {
         this.naziv = naziv;
     }
 
-	public List<Integer> getPolaganja() {
-		return polaganja;
-	}
-
-	public void setPolaganja(List<Integer> polaganja) {
-		this.polaganja = polaganja;
-	}
-
-	public List<Integer> getPredavanja() {
-		return predavanja;
-	}
-
-	public void setPredavanja(List<Integer> predavanja) {
-		this.predavanja = predavanja;
-	}
-    
-    
-
+//	public List<Integer> getPolaganja() {
+//		return polaganja;
+//	}
+//
+//	public void setPolaganja(List<Integer> polaganja) {
+//		this.polaganja = polaganja;
+//	}
+//
+//	public List<Integer> getPredavanja() {
+//		return predavanja;
+//	}
+//
+//	public void setPredavanja(List<Integer> predavanja) {
+//		this.predavanja = predavanja;
+//	}
 }

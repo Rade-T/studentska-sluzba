@@ -30,8 +30,8 @@ export class EditPredmetComponent implements OnInit {
   }
 
   loadData() {
-    this.polaganjeService.getPolaganja().subscribe((polaganja: Polaganje[]) => this.polaganja = polaganja);
-    this.predavanjeService.getPredavanja().subscribe((predavanja: Predavanje[]) => this.predavanja = predavanja);
+    //this.polaganjeService.getPolaganja().subscribe((polaganja: Polaganje[]) => this.polaganja = polaganja);
+    //this.predavanjeService.getPredavanja().subscribe((predavanja: Predavanje[]) => this.predavanja = predavanja);
   }
 
 

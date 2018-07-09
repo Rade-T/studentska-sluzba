@@ -44,7 +44,8 @@ export class PredmetService {
 
   editPredmet(predmet: Predmet): Observable<Predmet> {
       let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.put<Predmet>(this.predmetUrl, JSON.stringify(predmet), {headers});
+      const url = `${this.predmetUrl}/${predmet.id}`;
+      return this.http.put<Predmet>(url, JSON.stringify(predmet), {headers});
   }
 
   deletePredmet(id: number): Observable<Predmet> {
