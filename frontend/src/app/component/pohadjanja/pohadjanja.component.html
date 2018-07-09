@@ -1,0 +1,20 @@
+<div>
+  <app-add-pohadjanje *ngIf="addPohadjanjeVisible" (newPohadjanjeAdded)="save($event)"></app-add-pohadjanje>
+  
+  <table name="pohadjanjeTable" class="table table-dark">
+    <tr>
+      <th>
+        Pohadjanja
+      </th>
+      <th>
+        <button class="btn" (click)="showAddPohadjanje()">Dodaj</button>
+      </th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th>Predmet</th>
+    </tr>
+    <tr app-pohadjanje-item *ngFor="let pohadjanje of _pohadjanja; let i = index" [pohadjanje]="pohadjanje" [index]="i" (deletePohadjanjeIndex)="delete($event)" (editPohadjanjeIndex)="setPohadjanje($event)"></tr>
+  </table>
+  <app-edit-pohadjanje (editPohadjanje)="setPohadjanje($event)" (editPohadjanjeSaved)="saveEdit($event)"></app-edit-pohadjanje>
+</div>

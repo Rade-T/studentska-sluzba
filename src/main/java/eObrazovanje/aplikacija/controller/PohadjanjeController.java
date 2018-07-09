@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PohadjanjeDTO;
 import eObrazovanje.aplikacija.model.Pohadjanje;
+import eObrazovanje.aplikacija.model.Ucenik;
 import eObrazovanje.aplikacija.service.PohadjanjeService;
+import eObrazovanje.aplikacija.service.PredmetService;
 
 
 @RestController
@@ -25,6 +27,9 @@ public class PohadjanjeController {
 	
 	@Autowired
 	private PohadjanjeService pohadjanjeService;
+	
+	@Autowired
+	private PredmetService predmetService;
 	
 	@GetMapping
 	public @ResponseBody
@@ -48,7 +53,8 @@ public class PohadjanjeController {
 	public @ResponseBody
     PohadjanjeDTO create (@RequestBody PohadjanjeDTO dto){
 		Pohadjanje p = new Pohadjanje();
-		p.setId(dto.getId());
+		p.setPredmet(predmetService.findOne(dto.getPredmet()));
+		p.setUcenici(new ArrayList<Ucenik>());
 		pohadjanjeService.save(p);
 		
 		return new PohadjanjeDTO(p);
@@ -59,6 +65,8 @@ public class PohadjanjeController {
     PohadjanjeDTO update(@PathVariable(value="id") Integer id, @RequestBody PohadjanjeDTO dto){
 		Pohadjanje p = pohadjanjeService.findOne(id);
 		p.setId(dto.getId());
+		p.setPredmet(predmetService.findOne(dto.getPredmet()));
+		p.setUcenici(new ArrayList<Ucenik>());
 		pohadjanjeService.save(p);
 		
 		return new PohadjanjeDTO(p);

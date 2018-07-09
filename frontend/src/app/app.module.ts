@@ -38,6 +38,10 @@ import { AddPredavanjeComponent } from './component/add-predavanje/add-predavanj
 import { EditPredavanjeComponent } from './component/edit-predavanje/edit-predavanje.component';
 import { PredavanjeService } from './service/predavanje.service';
 import { DokumentService } from './service/dokument.service';
+import { AddPohadjanjeComponent } from './component/add-pohadjanje/add-pohadjanje.component';
+import { EditPohadjanjeComponent } from './component/edit-pohadjanje/edit-pohadjanje.component';
+import { PohadjanjaComponent } from './component/pohadjanja/pohadjanja.component';
+import { PohadjanjeItemComponent } from './component/pohadjanje-item/pohadjanje-item.component';
 
 const routes: Routes = [
   { path: 'ucenici', component: UcenikComponent },
@@ -46,6 +50,7 @@ const routes: Routes = [
   { path: 'polaganja', component: PolaganjeComponent },
   { path: 'dokumenti', component: DokumentComponent },
   { path: 'predavanja', component: PredavanjeComponent },
+  { path: 'pohadjanja', component: PohadjanjaComponent },
   { path: 'main', component: MainComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
@@ -78,7 +83,11 @@ const routes: Routes = [
     PredavanjeComponent,
     PredavanjeItemComponent,
     AddPredavanjeComponent,
-    EditPredavanjeComponent
+    EditPredavanjeComponent,
+    AddPohadjanjeComponent,
+    EditPohadjanjeComponent,
+    PohadjanjaComponent,
+    PohadjanjeItemComponent
   ],
   imports: [
     BrowserModule,
