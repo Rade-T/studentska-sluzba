@@ -28,12 +28,17 @@ import { EditPolaganjeComponent } from './component/edit-polaganje/edit-polaganj
 import { PolaganjeService } from './service/polaganje.service';
 import { PolaganjeItemComponent } from './component/polaganje-item/polaganje-item.component';
 import { EditPredmetComponent } from './component/edit-predmet/edit-predmet.component';
+import { DokumentComponent } from './component/dokument/dokument.component';
+import { AddDokumentComponent } from './component/add-dokument/add-dokument.component';
+import { EditDokumentComponent } from './component/edit-dokument/edit-dokument.component';
+import { DokumentItemComponent } from './component/dokument-item/dokument-item.component';
 
 const routes: Routes = [
   { path: 'ucenici', component: UcenikComponent },
   { path: 'nastavnici', component: NastavnikComponent },
   { path: 'predmeti', component: PredmetComponent },
   { path: 'polaganja', component: PolaganjeComponent },
+  { path: 'dokumenti', component: DokumentComponent },
   { path: 'main', component: MainComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
@@ -58,7 +63,11 @@ const routes: Routes = [
     AddPolaganjeComponent,
     EditPolaganjeComponent,
     PolaganjeItemComponent,
-    EditPredmetComponent
+    EditPredmetComponent,
+    DokumentComponent,
+    AddDokumentComponent,
+    EditDokumentComponent,
+    DokumentItemComponent
   ],
   imports: [
     BrowserModule,

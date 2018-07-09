@@ -27,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import eObrazovanje.aplikacija.model.Dokument;
+import eObrazovanje.aplikacija.model.Ucenik;
 import eObrazovanje.aplikacija.service.DokumentService;
+import eObrazovanje.aplikacija.service.UcenikService;
 import eObrazovanje.aplikacija.dto.DokumentDTO;
 
 @RestController
@@ -38,6 +40,9 @@ public class DokumentController {
 
 	@Autowired
 	private DokumentService dokumentService;
+	
+	@Autowired
+	private UcenikService ucenikService;
 
 	@GetMapping
 	public @ResponseBody List<DokumentDTO> readAll() {
@@ -59,6 +64,7 @@ public class DokumentController {
 	public @ResponseBody DokumentDTO create(@RequestBody DokumentDTO dto) {
 		Dokument d = new Dokument();
 		d.setNaziv(dto.getNaziv());
+		d.setUcenik(ucenikService.findOne(1));
 		dokumentService.save(d);
 
 		return new DokumentDTO(d);

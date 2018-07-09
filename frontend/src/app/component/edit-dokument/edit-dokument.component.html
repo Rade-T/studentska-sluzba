@@ -1,0 +1,22 @@
+<div>
+	<form class="form-horizontal" (ngSubmit)="saveDokument()">
+    <input type="hidden" name="dokumentId" id="dokumentId" [(ngModel)]="editDokument.id"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-naziv">Naziv: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-naziv" id="input-naziv" [(ngModel)]="editDokument.naziv" />
+			</div>
+		</div>
+
+		<!-- <div class="form-group">
+			<label class="control-label col-sm-1" for="input-dokument">Fajl: </label>
+			<div class="col-sm-11">
+				<input type="file" class="form-control" name="input-dokument" id="input-dokument" />
+			</div>
+		</div> -->
+
+		<div class="form-group">
+			<input class="btn btn-primary" type="submit" value="Save" />
+		</div>
+	</form>
+</div>

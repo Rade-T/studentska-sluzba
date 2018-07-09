@@ -1,0 +1,30 @@
+<div>
+	<form class="form-horizontal" (ngSubmit)="addDokument()">
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-naziv">Naziv: </label>
+			<div class="col-sm-11">
+				<input class="form-control" name="input-naziv" id="input-naziv" [(ngModel)]="newDokument.naziv" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-pohadjanje">Ucenik: </label>
+			<div class="col-sm-11">
+				<select class="form-control" name="input-ucenik" id="input-ucenik" [(ngModel)]="newDokument.ucenik">
+					<option *ngFor="let u of ucenici" [ngValue]="u.id">{{u.ime + " " + u.prezime}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-dokument">Fajl: </label>
+			<div class="col-sm-11">
+				<input type="file" class="form-control" name="input-dokument" id="input-dokument" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<input class="btn btn-primary" type="submit" value="Save" />
+		</div>
+	</form>
+</div>

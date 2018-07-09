@@ -1,0 +1,11 @@
+<td>
+  {{dokument.id}}
+</td>
+<td>
+  {{dokument.naziv}}
+</td>
+<td>
+  <button class="btn btn-primary" (click)="editDokument(dokument)">edit</button>
+  &nbsp;
+  <button class="btn btn-danger" (click)="deleteDokument(dokument.id)">remove</button>
+</td>
