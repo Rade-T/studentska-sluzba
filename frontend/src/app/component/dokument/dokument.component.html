@@ -13,6 +13,7 @@
     <tr>
       <th>Id</th>
       <th>Naziv</th>
+      <th>Ucenik</th>
       <th>Akcija</th>
     </tr>
     <tr app-dokument-item *ngFor="let dokument of _dokumenti; let i = index" [dokument]="dokument" [index]="i" (deleteDokumentIndex)="delete($event)" (editDokumentIndex)="setDokument($event)"></tr>

@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Dokument } from '../../model/dokument.model';
 import { HttpClient } from '@angular/common/http';
+import { UcenikService } from '../../service/ucenik.service';
+import { Ucenik } from '../../model/ucenik.model';
 
 @Component({
   selector: 'app-edit-dokument',
@@ -13,13 +15,19 @@ export class EditDokumentComponent implements OnInit {
 
   public editDokument: Dokument;
   public JSON: Object;
+  public ucenici: Ucenik[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private ucenikService: UcenikService) {
     this.editDokument = new Dokument();
     this.JSON = JSON;
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.ucenikService.getUcenici().subscribe((ucenici: Ucenik[]) => this.ucenici = ucenici);
   }
 
   saveDokument() {

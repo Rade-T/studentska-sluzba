@@ -55,6 +55,7 @@ export class DokumentComponent implements OnInit {
   }
 
   saveEdit(editDokument: Dokument) {
+    console.log(editDokument);
     this.dokumentService.editDokument(editDokument).subscribe(
       () => {
         this.loadDokumentData();

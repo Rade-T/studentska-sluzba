@@ -64,7 +64,7 @@ public class DokumentController {
 	public @ResponseBody DokumentDTO create(@RequestBody DokumentDTO dto) {
 		Dokument d = new Dokument();
 		d.setNaziv(dto.getNaziv());
-		d.setUcenik(ucenikService.findOne(1));
+		d.setUcenik(ucenikService.findOne(dto.getUcenik()));
 		dokumentService.save(d);
 
 		return new DokumentDTO(d);
@@ -74,6 +74,7 @@ public class DokumentController {
 	public @ResponseBody DokumentDTO update(@PathVariable(value = "id") Integer id, @RequestBody DokumentDTO dto) {
 		Dokument d = dokumentService.findOne(id);
 		d.setNaziv(dto.getNaziv());
+		d.setUcenik(ucenikService.findOne(dto.getUcenik()));
 		dokumentService.save(d);
 
 		return new DokumentDTO(d);

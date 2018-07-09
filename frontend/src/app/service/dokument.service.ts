@@ -42,8 +42,9 @@ export class DokumentService {
   }
 
   editDokument(dokument: Dokument): Observable<Dokument> {
+      const url = `${this.dokumentUrl}/${dokument.id}`;
       let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.put<Dokument>(this.dokumentUrl, JSON.stringify(dokument), {headers});
+      return this.http.put<Dokument>(url, JSON.stringify(dokument), {headers});
   }
 
   deleteDokument(id: number): Observable<Dokument> {
