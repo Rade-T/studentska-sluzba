@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PredavanjeDTO;
 import eObrazovanje.aplikacija.model.Predavanje;
+import eObrazovanje.aplikacija.service.NastavnikService;
 import eObrazovanje.aplikacija.service.PredavanjeService;
+import eObrazovanje.aplikacija.service.PredmetService;
 
 
 @RestController
@@ -25,6 +27,12 @@ public class PredavanjeController {
 	
 	@Autowired
 	private PredavanjeService predavanjeService;
+	
+	@Autowired
+	private NastavnikService nastavnikService;
+	
+	@Autowired
+	private PredmetService predmetService;
 	
 	@GetMapping
 	public @ResponseBody
@@ -48,7 +56,8 @@ public class PredavanjeController {
 	public @ResponseBody
     PredavanjeDTO create (@RequestBody PredavanjeDTO dto){
 		Predavanje pr = new Predavanje();
-		pr.setId(dto.getId());
+		pr.setNastavnik(nastavnikService.findOne(dto.getNastavnik()));
+		pr.setPredmet(predmetService.findOne(dto.getPredmet()));
 		predavanjeService.save(pr);
 		
 		return new PredavanjeDTO(pr);
@@ -59,6 +68,8 @@ public class PredavanjeController {
     PredavanjeDTO update(@PathVariable(value="id") Integer id, @RequestBody PredavanjeDTO dto){
 		Predavanje pr = predavanjeService.findOne(id);
 		pr.setId(dto.getId());
+		pr.setNastavnik(nastavnikService.findOne(dto.getNastavnik()));
+		pr.setPredmet(predmetService.findOne(dto.getPredmet()));
 		predavanjeService.save(pr);
 		
 		return new PredavanjeDTO(pr);

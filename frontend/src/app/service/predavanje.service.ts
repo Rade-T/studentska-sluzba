@@ -43,7 +43,8 @@ export class PredavanjeService {
 
   editPredavanje(predavanje: Predavanje): Observable<Predavanje> {
       let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.put<Predavanje>(this.predavanjeUrl, JSON.stringify(predavanje), {headers});
+      const url = `${this.predavanjeUrl}/${predavanje.id}`;
+      return this.http.put<Predavanje>(url, JSON.stringify(predavanje), {headers});
   }
 
   deletePredavanje(id: number): Observable<Predavanje> {

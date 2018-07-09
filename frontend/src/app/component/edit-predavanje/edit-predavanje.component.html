@@ -1,17 +1,17 @@
 <div>
 	<form class="form-horizontal" (ngSubmit)="savePredavanje()">
-    <input type="hidden" name="predavanjeId" id="predavanjeId" [(ngModel)]="editPredavanje.id"/>
+		<input type="hidden" name="predavanjeId" id="predavanjeId" [(ngModel)]="editPredavanje.id" />
 		<div class="form-group">
-      <label class="control-label col-sm-1" for="input-nastavnik">Nastavnik: </label>
-      <div class="col-sm-11">
+			<label class="control-label col-sm-1" for="input-nastavnik">Nastavnik: </label>
+			<div class="col-sm-11">
 				<select class="form-control" name="input-nastavnik" id="input-nastavnik" [(ngModel)]="editPredavanje.nastavnik">
-					<option *ngFor="let n of nastanici" [ngValue]="n.id">{{u.ime + " " + u.prezime}}</option>
+					<option *ngFor="let n of nastavnici" [ngValue]="n.id">{{n.ime + " " + n.prezime}}</option>
 				</select>
 			</div>
 		</div>
 
 		<div class="form-group">
-      <label class="control-label col-sm-1" for="input-predmet">Predmet: </label>
+			<label class="control-label col-sm-1" for="input-predmet">Predmet: </label>
 			<div class="col-sm-11">
 				<select class="form-control" name="input-predmet" id="input-predmet" [(ngModel)]="editPredavanje.predmet">
 					<option *ngFor="let p of predmeti" [ngValue]="p.id">{{p.naziv}}</option>

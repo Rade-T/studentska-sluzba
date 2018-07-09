@@ -15,28 +15,30 @@ export class PredavanjeComponent implements OnInit {
 
   @Output() deletePredavanjekIndex: EventEmitter<number> = new EventEmitter();
   @Output() showAddPredavanjeEvent: EventEmitter<boolean> = new EventEmitter();
-  @ViewChild(AddPredavanjeComponent) addPolaganjeComponent: AddPredavanjeComponent;
+  @ViewChild(AddPredavanjeComponent) addPredavanjeComponent: AddPredavanjeComponent;
   @Input() predavanje: Predavanje[];
   @ViewChild(EditPredavanjeComponent) editPredavanjeComponent: EditPredavanjeComponent;
 
-  public _predavanje: Predavanje[];
+  public _predavanja: Predavanje[];
   public newPredavanje: Predavanje;
   public editPredavanje: Predavanje;
   public addPredavanjeVisible: boolean = false;
 
   constructor(private predavanjeService: PredavanjeService) {
-    this.predavanje = [];
+    this._predavanja = [];
     this.loadData();
   }
 
   ngOnInit() {
+    this.loadData();
   }
 
   private loadData() {
-    this.predavanjeService.getPredavanja().subscribe((predavanje: Predavanje[]) => this.predavanje = predavanje);
+    this.predavanjeService.getPredavanja().subscribe((predavanja: Predavanje[]) => this._predavanja = predavanja);
   }
 
   save(newPredavanje: Predavanje){
+    console.log(newPredavanje);
     this.predavanjeService.savePredavanje(newPredavanje).subscribe(
       () => {
         this.loadData();
@@ -61,6 +63,7 @@ export class PredavanjeComponent implements OnInit {
   showAddPredavanje() {
     console.log("Poslat event");
     this.addPredavanjeVisible = true;
+    console.log(this.addPredavanjeVisible);
   }
 
   setPredavanje(predavanje: Predavanje) {

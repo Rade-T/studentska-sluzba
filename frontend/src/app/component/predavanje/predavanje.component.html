@@ -1,5 +1,5 @@
 <div>
-  <app-add-predavanje *ngIf="addPolaganjeVisible" (newPolaganjeAdded)="save($event)"></app-add-predavanje>
+  <app-add-predavanje *ngIf="addPredavanjeVisible" (newPredavanjeAdded)="save($event)"></app-add-predavanje>
   <table name="predavanjeTable" class="table table-dark">
     <tr>
       <th>
@@ -11,10 +11,10 @@
     </tr>
     <tr>
       <th>Id</th>
-      <th>Ucenik</th>
+      <th>Nastavnik</th>
       <th>Predmet</th>
     </tr>
-    <tr app-predavanje-item *ngFor="let predavanje of _predavanje; let i = index" [predavanje]="predavanje" [index]="i" (deletePredavanjeIndex)="delete($event)" (editPredavanjeIndex)="setPredavanje($event)"></tr>
+    <tr app-predavanje-item *ngFor="let predavanje of _predavanja; let i = index" [predavanje]="predavanje" [index]="i" (deletePredavanjeIndex)="delete($event)" (editPredavanjeIndex)="setPredavanje($event)"></tr>
   </table>
   <app-edit-predavanje (editPolaganje)="setPredavanje($event)" (editPredavanjeSaved)="saveEdit($event)"></app-edit-predavanje>
 </div>
