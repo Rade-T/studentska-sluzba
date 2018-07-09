@@ -26,7 +26,7 @@ export class PolaganjeComponent implements OnInit {
   public addPolaganjeVisible: boolean = false;
 
   constructor(private polaganjeService: PolaganjeService) {
-    this.polaganje = [];
+    this._polaganje = [];
     this.loadData();
   }
 
@@ -34,7 +34,7 @@ export class PolaganjeComponent implements OnInit {
   }
 
   private loadData() {
-    this.polaganjeService.getPolaganja().subscribe((polaganje: Polaganje[]) => this.polaganje = polaganje);
+    this.polaganjeService.getPolaganja().subscribe((polaganje: Polaganje[]) => this._polaganje = polaganje);
   }
 
   save(newPolaganje: Polaganje){
