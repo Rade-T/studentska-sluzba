@@ -42,7 +42,8 @@ export class PohadjanjeService {
 
     editPohadjanje(pohadjanje: Pohadjanje): Observable<Pohadjanje> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.put<Pohadjanje>(this.pohadjanjeUrl, JSON.stringify(pohadjanje), {headers});
+        const url = `${this.pohadjanjeUrl}/${pohadjanje.id}`;
+        return this.http.put<Pohadjanje>(url, JSON.stringify(pohadjanje), {headers});
     }
 
     deletePohadjanje(id: number): Observable<Pohadjanje> {
