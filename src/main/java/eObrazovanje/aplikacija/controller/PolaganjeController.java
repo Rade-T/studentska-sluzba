@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import eObrazovanje.aplikacija.dto.PolaganjeDTO;
 import eObrazovanje.aplikacija.model.Polaganje;
 import eObrazovanje.aplikacija.service.PolaganjeService;
+import eObrazovanje.aplikacija.service.PredmetService;
+import eObrazovanje.aplikacija.service.UcenikService;
 
 
 @RestController
@@ -26,9 +28,15 @@ public class PolaganjeController {
 	@Autowired
 	private PolaganjeService polaganjeService;
 	
+	@Autowired
+	private UcenikService ucenikService;
+	
+	@Autowired
+	private PredmetService predmetService;
+	
 	@GetMapping
 	public @ResponseBody
-    List<PolaganjeDTO> readAll(){
+		List<PolaganjeDTO> readAll(){
 		List<Polaganje> polaganje= (List<Polaganje>) polaganjeService.findAll();
 		List<PolaganjeDTO> polaganjeDTO = new ArrayList<>();
 		for (Polaganje p : polaganje){
@@ -49,6 +57,8 @@ public class PolaganjeController {
     PolaganjeDTO create (@RequestBody PolaganjeDTO dto){
 		Polaganje p = new Polaganje();
 		p.setId(dto.getId());
+		p.setUcenik(ucenikService.findOne(dto.getUcenik()));
+		p.setPredmet(predmetService.findOne(dto.getPredmet()));
 		polaganjeService.save(p);
 		
 		return new PolaganjeDTO(p);
@@ -59,6 +69,8 @@ public class PolaganjeController {
     PolaganjeDTO update(@PathVariable(value="id") Integer id, @RequestBody PolaganjeDTO dto){
 		Polaganje p = polaganjeService.findOne(id);
 		p.setId(dto.getId());
+		p.setUcenik(ucenikService.findOne(dto.getUcenik()));
+		p.setPredmet(predmetService.findOne(dto.getPredmet()));
 		polaganjeService.save(p);
 		
 		return new PolaganjeDTO(p);

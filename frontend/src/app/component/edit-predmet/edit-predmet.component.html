@@ -9,22 +9,20 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-1" for="input-polaganje">Polaganje: </label>
-			<select class="form-group" name="input-polaganje" id="input-polaganje" [(ngModel)]="editPredmet.polaganje">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-    </select>
+			<div class="col-sm-11">
+				<select class="form-control" name="input-polaganje" id="input-polaganje" [(ngModel)]="editPredmet.polaganje">
+					<option *ngFor="let p of polaganja" [ngValue]="p.id">{{p.ucenik.ime + " " + p.predmet.naziv}}</option>
+				</select>
+			</div>
     </div>
     
     <div class="form-group">
 			<label class="control-label col-sm-1" for="input-predavanje">Predavanje: </label>
-			<select class="form-group" name="input-predavanje" id="input-predavanje" [(ngModel)]="editPredmet.predavanje">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-    </select>
+			<div class="col-sm-11">
+				<select class="form-control" name="input-predavanje" id="input-predavanje" [(ngModel)]="editPredmet.predavanje">
+					<option *ngFor="let pr of predavanja" [ngValue]="pr.id">{{pr.nastavnik.ime + " " + p.predmet.naziv}}</option>
+				</select>
+			</div>
 		</div>
 
 		<div class="form-group">

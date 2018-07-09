@@ -1,0 +1,14 @@
+<td>
+  {{predavanje.id}}
+</td>
+<td>
+  {{predavanje.nastavnik}}
+</td>
+<td>
+  {{predavanje.predmet}}
+</td>
+<td>
+  <button class="btn btn-primary" (click)="editPredavanje(predavanje)">edit</button>
+  &nbsp;
+	<button class="btn btn-danger" (click)="deletePredavanje(predavanje.id)">remove</button>
+</td>

@@ -1,6 +1,15 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Predmet } from '../../model/predmet.model';
 import { HttpClient } from '@angular/common/http';
+import { NastavnikService } from '../../service/nastavnik.service';
+import { PredmetService } from '../../service/predmet.service';
+import { UcenikService } from '../../service/ucenik.service';
+import { Nastavnik } from '../../model/nastavnik.model';
+import { Ucenik } from '../../model/ucenik.model';
+import { PolaganjeService } from '../../service/polaganje.service';
+import { PredavanjeService } from '../../service/predavanje.service';
+import { Predavanje } from '../../model/predavanje.model';
+import { Polaganje } from '../../model/polaganje.model';
 
 @Component({
   selector: 'app-add-predmet',
@@ -13,13 +22,21 @@ export class AddPredmetComponent implements OnInit {
 
   public newPredmet: Predmet;
   public JSON: Object;
+  public predavanja: Predavanje[];
+  public polaganja: Polaganje[];
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private polaganjeService: PolaganjeService, private predavanjeService: PredavanjeService) { 
     this.newPredmet = new Predmet();
     this.JSON = JSON;
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.polaganjeService.getPolaganja().subscribe((polaganja: Polaganje[]) => this.polaganja = polaganja);
+    this.predavanjeService.getPredavanja().subscribe((predavanja: Predavanje[]) => this.predavanja = predavanja);
   }
 
   addPredmet() {

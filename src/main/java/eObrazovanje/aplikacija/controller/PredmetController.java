@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PredmetDTO;
 import eObrazovanje.aplikacija.model.Predmet;
+import eObrazovanje.aplikacija.service.PolaganjeService;
+import eObrazovanje.aplikacija.service.PredavanjeService;
 import eObrazovanje.aplikacija.service.PredmetService;
 
 
@@ -25,6 +27,12 @@ public class PredmetController {
 	
 	@Autowired
 	private PredmetService predmetService;
+	
+	@Autowired
+	private PolaganjeService polaganjeService;
+	
+	@Autowired
+	private PredavanjeService predavanjeService;
 	
 	@GetMapping
 	public @ResponseBody

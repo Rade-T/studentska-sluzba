@@ -1,0 +1,26 @@
+<div>
+	<form class="form-horizontal" (ngSubmit)="addPredavanje()">
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-nastavnik">Nastavnik: </label>
+			<div class="col-sm-11">
+				<select class="form-control" name="input-nastavnik" id="input-nastavnik" [(ngModel)]="newPredavanje.nastavnik">
+					<option *ngFor="let n of nastavnici" [ngValue]="n.id">{{u.ime + " " + u.prezime}}</option>
+				</select>
+			</div>
+    	</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-predmet">Predmet: </label>
+			<div class="col-sm-11">
+				<select class="form-control" name="input-predmet" id="input-predmet" [(ngModel)]="newPredavanje.predmet">
+					<option *ngFor="let p of predmeti" [ngValue]="p.id">{{p.naziv}}</option>
+				</select>
+			</div>
+
+		</div>
+
+		<div class="form-group">
+			<input class="btn btn-primary" type="submit" value="Save"/>
+		</div>
+	</form>
+</div>

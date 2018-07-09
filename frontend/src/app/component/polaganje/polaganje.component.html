@@ -11,10 +11,8 @@
     </tr>
     <tr>
       <th>Id</th>
-      <th>Broj indeksa</th>
-      <th>Ime</th>
-      <th>Prezime</th>
-      <th>Akcija</th>
+      <th>Ucenik</th>
+      <th>Predmet</th>
     </tr>
     <tr app-polaganje-item *ngFor="let polaganje of _polaganje; let i = index" [polaganje]="polaganje" [index]="i" (deletePolaganjeIndex)="delete($event)" (editPolaganjeIndex)="setPolaganje($event)"></tr>
   </table>

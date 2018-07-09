@@ -11,6 +11,7 @@ export class PredmetItemComponent implements OnInit {
   @Input() predmet: Predmet;
 	@Input() index: number;
   @Output() deletePredmetIndex: EventEmitter<number> = new EventEmitter();
+  @Output() editPredmetIndex: EventEmitter<Predmet> = new EventEmitter();
 
   constructor() { }
 
@@ -21,4 +22,7 @@ export class PredmetItemComponent implements OnInit {
   	this.deletePredmetIndex.next(id);
   }
 
+  editPredmet(p: Predmet) {
+    this.editPredmetIndex.next(p);
+  }
 }

@@ -32,6 +32,12 @@ import { DokumentComponent } from './component/dokument/dokument.component';
 import { AddDokumentComponent } from './component/add-dokument/add-dokument.component';
 import { EditDokumentComponent } from './component/edit-dokument/edit-dokument.component';
 import { DokumentItemComponent } from './component/dokument-item/dokument-item.component';
+import { PredavanjeComponent } from './component/predavanje/predavanje.component';
+import { PredavanjeItemComponent } from './component/predavanje-item/predavanje-item.component';
+import { AddPredavanjeComponent } from './component/add-predavanje/add-predavanje.component';
+import { EditPredavanjeComponent } from './component/edit-predavanje/edit-predavanje.component';
+import { PredavanjeService } from './service/predavanje.service';
+import { DokumentService } from './service/dokument.service';
 
 const routes: Routes = [
   { path: 'ucenici', component: UcenikComponent },
@@ -39,6 +45,7 @@ const routes: Routes = [
   { path: 'predmeti', component: PredmetComponent },
   { path: 'polaganja', component: PolaganjeComponent },
   { path: 'dokumenti', component: DokumentComponent },
+  { path: 'predavanja', component: PredavanjeComponent },
   { path: 'main', component: MainComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
@@ -67,7 +74,11 @@ const routes: Routes = [
     DokumentComponent,
     AddDokumentComponent,
     EditDokumentComponent,
-    DokumentItemComponent
+    DokumentItemComponent,
+    PredavanjeComponent,
+    PredavanjeItemComponent,
+    AddPredavanjeComponent,
+    EditPredavanjeComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +91,9 @@ const routes: Routes = [
     UcenikService,
     NastavnikService,
     PredmetService,
-    PolaganjeService
+    PolaganjeService,
+    PredavanjeService,
+    DokumentService
   ],
   bootstrap: [AppComponent]
 })
