@@ -19,6 +19,7 @@ import eObrazovanje.aplikacija.model.Pohadjanje;
 import eObrazovanje.aplikacija.model.Ucenik;
 import eObrazovanje.aplikacija.service.PohadjanjeService;
 import eObrazovanje.aplikacija.service.PredmetService;
+import eObrazovanje.aplikacija.service.UcenikService;
 
 
 @RestController
@@ -31,12 +32,16 @@ public class PohadjanjeController {
 	@Autowired
 	private PredmetService predmetService;
 	
+	@Autowired
+	private UcenikService ucenikService;
+	
 	@GetMapping
 	public @ResponseBody
     List<PohadjanjeDTO> readAll(){
 		List<Pohadjanje> pohadjanje = (List<Pohadjanje>) pohadjanjeService.findAll();
 		List<PohadjanjeDTO> pohadjanjeDTO = new ArrayList<>();
 		for (Pohadjanje p : pohadjanje){
+			//p.setUcenici(ucenikService.findByPohadjaId(p.getId()));
 			pohadjanjeDTO.add(new PohadjanjeDTO(p));
 		}
 		return pohadjanjeDTO;		
@@ -56,6 +61,13 @@ public class PohadjanjeController {
 		p.setPredmet(predmetService.findOne(dto.getPredmet()));
 		p.setUcenici(new ArrayList<Ucenik>());
 		pohadjanjeService.save(p);
+		for (int i = 0;i < dto.getUcenici().size();i++) {
+			Ucenik u = ucenikService.findOne(dto.getUcenici().get(i));
+			u.getPohadjanja().add(p);
+			p.getUcenici().add(u);
+			ucenikService.save(u);
+		}
+		pohadjanjeService.save(p);
 		
 		return new PohadjanjeDTO(p);
 	}
@@ -67,6 +79,10 @@ public class PohadjanjeController {
 		p.setId(dto.getId());
 		p.setPredmet(predmetService.findOne(dto.getPredmet()));
 		p.setUcenici(new ArrayList<Ucenik>());
+		for (int i = 0;i < dto.getUcenici().size();i++) {
+			Ucenik u = ucenikService.findOne(dto.getUcenici().get(i));
+			p.getUcenici().add(u);
+		}
 		pohadjanjeService.save(p);
 		
 		return new PohadjanjeDTO(p);

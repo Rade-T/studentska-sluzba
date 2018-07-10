@@ -2,6 +2,8 @@ import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angu
 import { Pohadjanje } from '../../model/pohadjanje.model';
 import { EditPohadjanjeComponent } from '../edit-pohadjanje/edit-pohadjanje.component';
 import { PohadjanjeService } from '../../service/pohadjanje.service';
+import { Ucenik } from '../../model/ucenik.model';
+import { UcenikService } from '../../service/ucenik.service';
 
 @Component({
   selector: 'app-pohadjanja',
@@ -43,6 +45,17 @@ export class PohadjanjaComponent implements OnInit {
 
   setPohadjanje(pohadjanje: Pohadjanje) {
     this.editPohadjanjeComponent.editPohadjanje = pohadjanje;
+    console.log(pohadjanje);
+    for (let ucenikId of pohadjanje.ucenici) {
+      var editUceniciTable = (<HTMLTableElement>document.getElementById("editUceniciTable"));
+      
+      for (var i = 1, row; row = editUceniciTable.rows[i]; i++) {
+        console.log(row);
+        if (row.cells[0].innerHTML == ucenikId) {          
+          row.cells[4].children[0].checked = true;
+        }
+      }
+    }
   }
 
   save(newPohadjanje: Pohadjanje) {

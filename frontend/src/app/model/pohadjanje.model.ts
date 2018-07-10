@@ -4,7 +4,7 @@ import { Predmet } from "./predmet.model";
 export class Pohadjanje {
 
     public id: number;
-    public ucenici: Array<Ucenik>;
+    public ucenici: Array<number>;
     public predmet: Predmet;
 
     constructor()

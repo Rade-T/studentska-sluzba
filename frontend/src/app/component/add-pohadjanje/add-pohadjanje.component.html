@@ -1,12 +1,31 @@
 <div>
 	<form class="form-horizontal" (ngSubmit)="addPohadjanje()">
-    <div class="form-group">
+		<div class="form-group">
 			<label class="control-label col-sm-1" for="input-predmet">Predmet: </label>
 			<div class="col-sm-11">
 				<select class="form-control" name="input-predmet" id="input-predmet" [(ngModel)]="newPohadjanje.predmet">
 					<option *ngFor="let p of predmeti" [ngValue]="p.id">{{p.naziv}}</option>
 				</select>
 			</div>
+		</div>
+
+		<div class="form-group">
+			<table id="addUceniciTable" class="table table-dark">
+				<tr>
+					<th>Id</th>
+					<th>Ime</th>
+					<th>Prezime</th>
+					<th>Broj indeksa</th>
+					<th>Pohadja</th>
+				</tr>
+				<tr *ngFor="let ucenik of ucenici; let i = index">
+					<td>{{ucenik.id}}</td>
+					<td>{{ucenik.ime}}</td>
+					<td>{{ucenik.prezime}}</td>
+					<td>{{ucenik.brojIndeksa}}</td>
+					<td name="ucenikPohadja"><input type="checkbox"/></td>
+				</tr>
+			</table>
 		</div>
 
 		<div class="form-group">

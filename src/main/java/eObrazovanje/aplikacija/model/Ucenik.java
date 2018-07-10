@@ -39,8 +39,8 @@ public class Ucenik {
 	@OneToMany(mappedBy = "ucenik")
     private List<Polaganje> polaganja;
 
-	@ManyToOne
-    private Pohadjanje pohadjanje;
+	@ManyToMany(mappedBy = "ucenici", fetch = FetchType.EAGER)
+    private List<Pohadjanje> pohadjanja;
 	
 	public Ucenik() {
 		this.uplate = new ArrayList<>();
@@ -111,12 +111,12 @@ public class Ucenik {
 		this.uplate = uplate;
 	}
 
-    public Pohadjanje getPohadjanje() {
-        return pohadjanje;
+    public List<Pohadjanje> getPohadjanja() {
+        return pohadjanja;
     }
 
-    public void setPohadjanje(Pohadjanje pohadjanje) {
-        this.pohadjanje = pohadjanje;
+    public void setPohadjanje(List<Pohadjanje> pohadjanja) {
+        this.pohadjanja = pohadjanja;
     }
 
     public List<Polaganje> getPolaganja() {

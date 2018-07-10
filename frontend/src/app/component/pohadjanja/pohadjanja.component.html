@@ -13,6 +13,7 @@
     <tr>
       <th>Id</th>
       <th>Predmet</th>
+      <th>Akcija</th>
     </tr>
     <tr app-pohadjanje-item *ngFor="let pohadjanje of _pohadjanja; let i = index" [pohadjanje]="pohadjanje" [index]="i" (deletePohadjanjeIndex)="delete($event)" (editPohadjanjeIndex)="setPohadjanje($event)"></tr>
   </table>

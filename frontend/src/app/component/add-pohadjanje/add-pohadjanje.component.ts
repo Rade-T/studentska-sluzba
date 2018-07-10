@@ -19,6 +19,7 @@ export class AddPohadjanjeComponent implements OnInit {
   public JSON: Object;
   public ucenici: Ucenik[];
   public predmeti: Predmet[];
+  public uceniciPohadjanja: number[];
 
   constructor(private http: HttpClient, private ucenikService: UcenikService, private predmetService: PredmetService) { 
     this.newPohadjanje = new Pohadjanje();
@@ -35,6 +36,16 @@ export class AddPohadjanjeComponent implements OnInit {
   }
 
   addPohadjanje() {
+    this.uceniciPohadjanja = new Array<number>();
+    var addUceniciTable = (<HTMLTableElement>document.getElementById("addUceniciTable"));
+    this.newPohadjanje.ucenici = new Array<number>();
+    for (var i = 1, row; row = addUceniciTable.rows[i];i++) {
+      if (row.cells[4].children[0].checked) {
+        this.newPohadjanje.ucenici.push(row.cells[0].innerHTML);
+      }
+    }
+    console.log(this.newPohadjanje);
+    //this.newPohadjanje.ucenici = this.uceniciPohadjanja;
     this.newPohadjanjeAdded.next(this.newPohadjanje);
     this.newPohadjanje = new Pohadjanje();
   }

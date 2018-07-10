@@ -3,6 +3,8 @@ import { Pohadjanje } from '../../model/pohadjanje.model';
 import { HttpClient } from '@angular/common/http';
 import { PredmetService } from '../../service/predmet.service';
 import { Predmet } from '../../model/predmet.model';
+import { Ucenik } from '../../model/ucenik.model';
+import { UcenikService } from '../../service/ucenik.service';
 
 @Component({
   selector: 'app-edit-pohadjanje',
@@ -15,8 +17,10 @@ export class EditPohadjanjeComponent implements OnInit {
   public editPohadjanje: Pohadjanje;
   public JSON: Object;
   public predmeti: Predmet[];
+  public ucenici: Ucenik[];
+  public uceniciPohadjanja: number[];
 
-  constructor(private http: HttpClient, private predmetService: PredmetService) { 
+  constructor(private http: HttpClient, private predmetService: PredmetService, private ucenikService: UcenikService) { 
     this.editPohadjanje = new Pohadjanje();
     this.JSON = JSON;
   }
@@ -27,6 +31,7 @@ export class EditPohadjanjeComponent implements OnInit {
 
   loadData() {
     this.predmetService.getPredmeti().subscribe((predmeti: Predmet[]) => this.predmeti = predmeti);
+    this.ucenikService.getUcenici().subscribe((ucenici: Ucenik[]) => this.ucenici = ucenici);
   }
 
   public printPohadjanje() {
@@ -34,6 +39,15 @@ export class EditPohadjanjeComponent implements OnInit {
   }
 
   savePohadjanje() {
+    this.uceniciPohadjanja = new Array<number>();
+    var addUceniciTable = (<HTMLTableElement>document.getElementById("editUceniciTable"));
+    this.editPohadjanje.ucenici = new Array<number>();
+    for (var i = 1, row; row = addUceniciTable.rows[i];i++) {
+      if (row.cells[4].children[0].checked) {
+        this.editPohadjanje.ucenici.push(row.cells[0].innerHTML);
+      }
+    }
+    console.log(this.editPohadjanje);
     this.editPohadjanjeSaved.next(this.editPohadjanje);
     this.editPohadjanje = new Pohadjanje();
   }

@@ -10,7 +10,7 @@ public class Pohadjanje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@OneToMany(mappedBy = "pohadjanje")
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Ucenik> ucenici;
 
     @ManyToOne

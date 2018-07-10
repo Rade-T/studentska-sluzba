@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 import eObrazovanje.aplikacija.model.Ucenik;
 import eObrazovanje.aplikacija.repository.UcenikRepository;
 
-
-
 @Component
 public class UcenikService {
 	

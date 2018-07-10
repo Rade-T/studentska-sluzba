@@ -18,7 +18,7 @@ public class UcenikDTO {
 	private String telefon;
 	private List<Integer> dokumenti;
 	private List<Integer> uplate;
-	private int pohadjanje;
+//	private int pohadjanje;
 
 	public UcenikDTO() {
 
@@ -115,11 +115,11 @@ public class UcenikDTO {
 		this.uplate = uplate;
 	}
 
-	public int getPohadjanje() {
-		return pohadjanje;
-	}
-
-	public void setPohadjanje(int pohadjanje) {
-		this.pohadjanje = pohadjanje;
-	}
+//	public int getPohadjanje() {
+//		return pohadjanje;
+//	}
+//
+//	public void setPohadjanje(int pohadjanje) {
+//		this.pohadjanje = pohadjanje;
+//	}
 }
