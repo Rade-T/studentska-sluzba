@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.UplataDTO;
 import eObrazovanje.aplikacija.model.Uplata;
+import eObrazovanje.aplikacija.service.UcenikService;
 import eObrazovanje.aplikacija.service.UplataService;
 
 
@@ -25,6 +26,9 @@ public class UplataController {
 	
 	@Autowired
 	private UplataService uplataService;
+	
+	@Autowired
+	private UcenikService ucenikService;
 	
 	@GetMapping
 	public @ResponseBody
@@ -49,6 +53,7 @@ public class UplataController {
     UplataDTO create (@RequestBody UplataDTO dto){
 		Uplata u = new Uplata();
 		u.setId(dto.getId());
+		u.setUcenik(ucenikService.findOne(dto.getUcenik()));
 		uplataService.save(u);
 		
 		return new UplataDTO(u);
@@ -59,6 +64,7 @@ public class UplataController {
     UplataDTO update(@PathVariable(value="id") Integer id, @RequestBody UplataDTO dto){
 		Uplata u = uplataService.findOne(id);
 		u.setId(dto.getId());
+		u.setUcenik(ucenikService.findOne(dto.getUcenik()));
 		uplataService.save(u);
 		
 		return new UplataDTO(u);
