@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,9 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import eObrazovanje.aplikacija.model.Dokument;
+import eObrazovanje.aplikacija.model.Dokument;
 import eObrazovanje.aplikacija.model.Ucenik;
+import eObrazovanje.aplikacija.security.AuthenticationFacade;
 import eObrazovanje.aplikacija.service.DokumentService;
 import eObrazovanje.aplikacija.service.UcenikService;
+import eObrazovanje.aplikacija.dto.DokumentDTO;
 import eObrazovanje.aplikacija.dto.DokumentDTO;
 
 @RestController
@@ -43,9 +47,24 @@ public class DokumentController {
 	
 	@Autowired
 	private UcenikService ucenikService;
+	
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
 
 	@GetMapping
 	public @ResponseBody List<DokumentDTO> readAll() {
+		Authentication authentication = authenticationFacade.getAuthentication();
+		Object[] authorities = authentication.getAuthorities().toArray();
+
+		if (authorities[0].toString().equals("ucenik")) {
+			List<Dokument> predavanja = (List<Dokument>) dokumentService.findByUcenikUsername(authentication.getName());
+			List<DokumentDTO> predavanjaDTO = new ArrayList<>();
+			for (Dokument pr : predavanja){
+				predavanjaDTO.add(new DokumentDTO(pr));
+			}
+			return predavanjaDTO;
+		}
+		
 		List<Dokument> dokumenti = (List<Dokument>) dokumentService.findAll();
 		List<DokumentDTO> dokumentiDTO = new ArrayList<>();
 		for (Dokument d : dokumenti) {

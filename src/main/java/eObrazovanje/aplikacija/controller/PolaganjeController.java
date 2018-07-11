@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PolaganjeDTO;
+import eObrazovanje.aplikacija.dto.PolaganjeDTO;
 import eObrazovanje.aplikacija.model.Polaganje;
+import eObrazovanje.aplikacija.model.Polaganje;
+import eObrazovanje.aplikacija.security.AuthenticationFacade;
 import eObrazovanje.aplikacija.service.PolaganjeService;
 import eObrazovanje.aplikacija.service.PredmetService;
 import eObrazovanje.aplikacija.service.UcenikService;
@@ -34,9 +38,23 @@ public class PolaganjeController {
 	@Autowired
 	private PredmetService predmetService;
 	
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
+	
 	@GetMapping
 	public @ResponseBody
-		List<PolaganjeDTO> readAll(){
+	List<PolaganjeDTO> readAll(){
+		Authentication authentication = authenticationFacade.getAuthentication();
+		Object[] authorities = authentication.getAuthorities().toArray();
+
+		if (authorities[0].toString().equals("ucenik")) {
+			List<Polaganje> polaganja = (List<Polaganje>) polaganjeService.findByUcenikUsername(authentication.getName());
+			List<PolaganjeDTO> polaganjaDTO = new ArrayList<>();
+			for (Polaganje pr : polaganja){
+				polaganjaDTO.add(new PolaganjeDTO(pr));
+			}
+			return polaganjaDTO;
+		}
 		List<Polaganje> polaganje= (List<Polaganje>) polaganjeService.findAll();
 		List<PolaganjeDTO> polaganjeDTO = new ArrayList<>();
 		for (Polaganje p : polaganje){

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.PohadjanjeDTO;
+import eObrazovanje.aplikacija.dto.PohadjanjeDTO;
+import eObrazovanje.aplikacija.model.Pohadjanje;
 import eObrazovanje.aplikacija.model.Pohadjanje;
 import eObrazovanje.aplikacija.model.Ucenik;
+import eObrazovanje.aplikacija.security.AuthenticationFacade;
 import eObrazovanje.aplikacija.service.PohadjanjeService;
 import eObrazovanje.aplikacija.service.PredmetService;
 import eObrazovanje.aplikacija.service.UcenikService;
@@ -35,13 +39,27 @@ public class PohadjanjeController {
 	@Autowired
 	private UcenikService ucenikService;
 	
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
+	
 	@GetMapping
 	public @ResponseBody
     List<PohadjanjeDTO> readAll(){
+		Authentication authentication = authenticationFacade.getAuthentication();
+		Object[] authorities = authentication.getAuthorities().toArray();
+
+		if (authorities[0].toString().equals("ucenik")) {
+			List<Pohadjanje> pohadjanja = (List<Pohadjanje>) pohadjanjeService.findByUcenikUsername(authentication.getName());
+			List<PohadjanjeDTO> pohadjanjaDTO = new ArrayList<>();
+			for (Pohadjanje pr : pohadjanja){
+				pohadjanjaDTO.add(new PohadjanjeDTO(pr));
+			}
+			return pohadjanjaDTO;
+		}
+		
 		List<Pohadjanje> pohadjanje = (List<Pohadjanje>) pohadjanjeService.findAll();
 		List<PohadjanjeDTO> pohadjanjeDTO = new ArrayList<>();
 		for (Pohadjanje p : pohadjanje){
-			//p.setUcenici(ucenikService.findByPohadjaId(p.getId()));
 			pohadjanjeDTO.add(new PohadjanjeDTO(p));
 		}
 		return pohadjanjeDTO;		

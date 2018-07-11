@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import eObrazovanje.aplikacija.dto.NastavnikDTO;
 import eObrazovanje.aplikacija.dto.PredavanjeDTO;
+import eObrazovanje.aplikacija.model.Nastavnik;
 import eObrazovanje.aplikacija.model.Predavanje;
+import eObrazovanje.aplikacija.security.AuthenticationFacade;
 import eObrazovanje.aplikacija.service.NastavnikService;
 import eObrazovanje.aplikacija.service.PredavanjeService;
 import eObrazovanje.aplikacija.service.PredmetService;
@@ -34,9 +38,24 @@ public class PredavanjeController {
 	@Autowired
 	private PredmetService predmetService;
 	
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
+	
 	@GetMapping
 	public @ResponseBody
     List<PredavanjeDTO> readAll(){
+		Authentication authentication = authenticationFacade.getAuthentication();
+		Object[] authorities = authentication.getAuthorities().toArray();
+
+		if (authorities[0].toString().equals("nastavnik")) {
+			List<Predavanje> predavanja = (List<Predavanje>) predavanjeService.findByNastavnikUsername(authentication.getName());
+			List<PredavanjeDTO> predavanjaDTO = new ArrayList<>();
+			for (Predavanje pr : predavanja){
+				predavanjaDTO.add(new PredavanjeDTO(pr));
+			}
+			return predavanjaDTO;
+		}
+		
 		List<Predavanje> predavanja = (List<Predavanje>) predavanjeService.findAll();
 		List<PredavanjeDTO> predavanjaDTO = new ArrayList<>();
 		for (Predavanje pr : predavanja){
