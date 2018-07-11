@@ -7,7 +7,8 @@ public class DokumentDTO {
     private int id;
     private String naziv;
     private int ucenik;
-
+    private String filename;
+    
     public DokumentDTO() {
 
     }
@@ -16,6 +17,7 @@ public class DokumentDTO {
         this.id = d.getId();
         this.naziv = d.getNaziv();
         this.ucenik = d.getUcenik().getId();
+        this.filename = d.getFilename();
     }
 
     public int getId() {
@@ -41,4 +43,12 @@ public class DokumentDTO {
     public void setUcenik(int ucenik) {
         this.ucenik = ucenik;
     }
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 }

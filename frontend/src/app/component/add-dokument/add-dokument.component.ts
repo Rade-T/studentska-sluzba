@@ -33,10 +33,10 @@ export class AddDokumentComponent implements OnInit {
   }
 
   addDokument() {
+    this.newDokument.filename = (<HTMLInputElement>document.getElementById('input-dokument')).files[0].name;
+    console.log(this.newDokument.filename);
     this.newDokumentAdded.next(this.newDokument);
-    console.log(this.newDokument);
     this.newDokument = new Dokument();
-    console.log("Poslat dogadjaj");
     this.dokumentService.uploadFile( (<HTMLInputElement>document.getElementById('input-dokument')).files[0] );
   }
 }

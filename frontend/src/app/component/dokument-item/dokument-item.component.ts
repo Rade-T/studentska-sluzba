@@ -26,4 +26,8 @@ export class DokumentItemComponent implements OnInit {
   editDokument(d: Dokument) {
     this.editDokumentIndex.next(d);
   }
+
+  downloadDokument(filename: string) {
+    this.dokumentService.downloadFile(filename);
+  }
 }

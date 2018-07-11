@@ -5,6 +5,7 @@ export class Dokument {
     public id: number;
     public naziv: string;
     public ucenik: Ucenik;
+    public filename: string;
 
     constructor()
     {
