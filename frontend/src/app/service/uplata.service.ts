@@ -42,8 +42,9 @@ export class UplataService {
   }
 
   editUplata(uplata: Uplata): Observable<Uplata> {
+      const url = `${this.uplataUrl}/${uplata.id}`;
       let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.put<Uplata>(this.uplataUrl, JSON.stringify(uplata), {headers});
+      return this.http.put<Uplata>(url, JSON.stringify(uplata), {headers});
   }
 
   deleteUplata(id: number): Observable<Uplata> {

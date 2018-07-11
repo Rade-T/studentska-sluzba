@@ -72,6 +72,7 @@ public class UplataController {
     UplataDTO create (@RequestBody UplataDTO dto){
 		Uplata u = new Uplata();
 		u.setId(dto.getId());
+		u.setSuma(dto.getSuma());
 		u.setUcenik(ucenikService.findOne(dto.getUcenik()));
 		uplataService.save(u);
 		
@@ -83,6 +84,7 @@ public class UplataController {
     UplataDTO update(@PathVariable(value="id") Integer id, @RequestBody UplataDTO dto){
 		Uplata u = uplataService.findOne(id);
 		u.setId(dto.getId());
+		u.setSuma(dto.getSuma());
 		u.setUcenik(ucenikService.findOne(dto.getUcenik()));
 		uplataService.save(u);
 		
