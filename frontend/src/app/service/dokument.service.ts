@@ -6,6 +6,7 @@ import { HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { URLSearchParams } from '@angular/http/src/url_search_params';
 import { Dokument } from '../model/dokument.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -55,10 +56,38 @@ export class DokumentService {
     uploadFile(file: File) {
         let formData: FormData = new FormData();
         formData.append('file', file);
-        let headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
+        let headers = new HttpHeaders({ });
         console.log("Krece upload");
         console.log(file);
-        this.http.post('/api/dokument/uploadFile/', formData, { headers });
+        this.http.post(this.dokumentUrl + "/uploadFile", formData, { headers }).subscribe(response => console.log(response),
+        err => console.log(err));
+    }
+
+    downloadFileProper(data: string){
+        var blob = new Blob([data]);
+        var url= window.URL.createObjectURL(blob);
+        //window.location=url;
+        window.open(url);
+      }
+
+    downloadFile(filename: string) {
+        let headers = new HttpHeaders({ responseType: 'application/pdf' });
+        this.http.get(this.dokumentUrl + "/downloadFile/" + filename, {  }).pipe(map(res => {
+            return {
+              filename: 'filename.pdf',
+              data: res
+            };
+          })).subscribe(res => {console.log('start download:',res);
+        var url = window.URL.createObjectURL(res.data);
+        var a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = url;
+        a.download = res.filename;
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();},
+        err => console.log(err));
     }
 
     handleError(error: any): Promise<any> {

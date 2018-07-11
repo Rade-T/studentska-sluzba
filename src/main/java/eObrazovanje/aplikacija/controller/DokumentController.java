@@ -84,6 +84,7 @@ public class DokumentController {
 		Dokument d = new Dokument();
 		d.setNaziv(dto.getNaziv());
 		d.setUcenik(ucenikService.findOne(dto.getUcenik()));
+		d.setFilename(dto.getFilename());
 		dokumentService.save(d);
 
 		return new DokumentDTO(d);
@@ -94,6 +95,7 @@ public class DokumentController {
 		Dokument d = dokumentService.findOne(id);
 		d.setNaziv(dto.getNaziv());
 		d.setUcenik(ucenikService.findOne(dto.getUcenik()));
+		d.setFilename(dto.getFilename());
 		dokumentService.save(d);
 
 		return new DokumentDTO(d);
@@ -124,7 +126,7 @@ public class DokumentController {
 	@GetMapping("/downloadFile/{filename}")
 	public StreamingResponseBody getFile(@PathVariable("filename") String filename) throws IOException {
 
-		String fileLocation = UPLOAD_FOLDER + filename + ".pdf";
+		String fileLocation = UPLOAD_FOLDER + filename;
 		InputStream inputStream = new FileInputStream(new File(fileLocation));
 		return outputStream -> {
 			int nRead;
