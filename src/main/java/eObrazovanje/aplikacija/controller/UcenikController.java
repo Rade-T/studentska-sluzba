@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import eObrazovanje.aplikacija.dto.UcenikDTO;
+import eObrazovanje.aplikacija.dto.UcenikDTO;
 import eObrazovanje.aplikacija.model.Ucenik;
+import eObrazovanje.aplikacija.model.Ucenik;
+import eObrazovanje.aplikacija.security.AuthenticationFacade;
 import eObrazovanje.aplikacija.service.UcenikService;
 
 @RestController
@@ -25,9 +29,24 @@ public class UcenikController {
 	@Autowired
 	private UcenikService ucenikService;
 	
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
+	
 	@GetMapping
 	public @ResponseBody
     List<UcenikDTO> readAll(){
+		Authentication authentication = authenticationFacade.getAuthentication();
+		Object[] authorities = authentication.getAuthorities().toArray();
+
+		if (authorities[0].toString().equals("ucenik")) {
+			List<Ucenik> ucenici = (List<Ucenik>) ucenikService.findByUsername(authentication.getName());
+			List<UcenikDTO> uceniciDTO = new ArrayList<>();
+			for (Ucenik pr : ucenici){
+				uceniciDTO.add(new UcenikDTO(pr));
+			}
+			return uceniciDTO;
+		}
+		
 		List<Ucenik> ucenik = (List<Ucenik>) ucenikService.findAll();
 		List<UcenikDTO> ucenikDTO= new ArrayList<>();
 		for (Ucenik u : ucenik){
@@ -53,6 +72,7 @@ public class UcenikController {
 		u.setJmbg(dto.getJmbg());
 		u.setEmail(dto.getEmail());
 		u.setTelefon(dto.getTelefon());
+		u.setUsername(dto.getUsername());
 		ucenikService.save(u);
 		
 		return new UcenikDTO(u);
@@ -69,6 +89,7 @@ public class UcenikController {
 		u.setJmbg(dto.getJmbg());
 		u.setEmail(dto.getEmail());
 		u.setTelefon(dto.getTelefon());
+		u.setUsername(dto.getUsername());
 		ucenikService.save(u);
 		
 		return new UcenikDTO(u);

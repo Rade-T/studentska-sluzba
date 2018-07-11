@@ -74,6 +74,7 @@ public class NastavnikController {
 		n.setJmbg(dto.getJmbg());
 		n.setTelefon(dto.getTelefon());
 		n.setEmail(dto.getEmail());
+		n.setUsername(dto.getUsername());
 		nastavnikService.save(n);
 		System.out.println("dto: " + dto.getJmbg());
 		System.out.println("n: " + n.getJmbg());
@@ -90,6 +91,7 @@ public class NastavnikController {
 		n.setJmbg(dto.getJmbg());
 		n.setTelefon(dto.getTelefon());
 		n.setEmail(dto.getEmail());
+		n.setUsername(dto.getUsername());
 		nastavnikService.save(n);
 		return new NastavnikDTO(n);
 	}
