@@ -47,20 +47,25 @@ import { TokenInterceptorService } from './security/token-interceptor.service';
 import { JwtUtilsService } from './security/jwt-utils.service';
 import { CanActivateAuthGuard } from './security/can-activate-auth.guard';
 import { AuthenticationService } from './security/authentication.service';
+import { UplataService } from './service/uplata.service';
+import { UplataComponent } from './component/uplata/uplata.component';
+import { UplataItemComponent } from './component/uplata-item/uplata-item.component';
+import { AddUplataComponent } from './component/add-uplata/add-uplata.component';
+import { EditUplataComponent } from './component/edit-uplata/edit-uplata.component';
 
 const routes: Routes = [
-  { path: 'ucenici', component: UcenikComponent },
-  { path: 'nastavnici', component: NastavnikComponent },
-  { path: 'predmeti', component: PredmetComponent },
-  { path: 'polaganja', component: PolaganjeComponent },
-  { path: 'dokumenti', component: DokumentComponent },
-  { path: 'predavanja', component: PredavanjeComponent },
-  { path: 'pohadjanja', component: PohadjanjaComponent },
-  { path: 'uplate', component: UplataComponent },
-  { path: 'main', component: MainComponent },
+  { path: 'ucenici', component: UcenikComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'nastavnici', component: NastavnikComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'predmeti', component: PredmetComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'polaganja', component: PolaganjeComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'dokumenti', component: DokumentComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'predavanja', component: PredavanjeComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'pohadjanja', component: PohadjanjaComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'uplate', component: UplataComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'login', component: LoginComponent},
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
-
 
 @NgModule({
   declarations: [
@@ -94,8 +99,7 @@ const routes: Routes = [
     EditPohadjanjeComponent,
     PohadjanjaComponent,
     PohadjanjeItemComponent,
-    LoginComponent
-    PohadjanjeItemComponent,
+    LoginComponent, 
     UplataComponent,
     UplataItemComponent,
     AddUplataComponent,
@@ -122,7 +126,7 @@ const routes: Routes = [
     },
     AuthenticationService,
     CanActivateAuthGuard,
-    JwtUtilsService
+    JwtUtilsService,
     DokumentService,
     UplataService
   ],

@@ -61,15 +61,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 			.authorizeRequests() // bez logovanja dostupni samo servisi login
-//				.antMatchers("/api/login").permitAll()
-//				.antMatchers(HttpMethod.GET, "/api/**").hasAuthority("ROLE_USER")
-//				.antMatchers(HttpMethod.POST, "/api/*").hasAuthority("ROLE_ADMIN")
-//				.antMatchers(HttpMethod.DELETE, "/api/*").hasAuthority("ROLE_ADMIN")
-//				.antMatchers(HttpMethod.PUT, "/api/*").hasAuthority("ROLE_ADMIN")
-				.antMatchers(HttpMethod.GET, "/api/**").permitAll()
-				.antMatchers(HttpMethod.POST, "/api/**").permitAll()
-				.antMatchers(HttpMethod.PUT, "/api/**").permitAll()
-				.antMatchers(HttpMethod.DELETE, "/api/**").permitAll()
+				.antMatchers("/api/login").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/**").authenticated()
+				.antMatchers(HttpMethod.POST, "/api/*").authenticated()
+				.antMatchers(HttpMethod.DELETE, "/api/*").authenticated()
+				.antMatchers(HttpMethod.PUT, "/api/*").authenticated()
+//				.antMatchers(HttpMethod.GET, "/api/**").permitAll()
+//				.antMatchers(HttpMethod.POST, "/api/**").permitAll()
+//				.antMatchers(HttpMethod.PUT, "/api/**").permitAll()
+//				.antMatchers(HttpMethod.DELETE, "/api/**").permitAll()
 				.antMatchers("/*").permitAll();
 				//.anyRequest().authenticated(); // za ostale akcije se mora biti ulogovan
 				
