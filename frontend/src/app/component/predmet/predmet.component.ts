@@ -38,7 +38,7 @@ export class PredmetComponent implements OnInit {
     let token = this.authenticationService.getToken();
     let roles = this.jwtUtilsService.getRoles(token.toString());
 
-    if (roles[0] == "nastavnik") {
+    if (roles[0] == "nastavnik" || roles[0] == "ucenik") {
       this.router.navigate(['/main']);
     }
     this.loadData();

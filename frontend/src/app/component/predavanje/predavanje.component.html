@@ -6,7 +6,7 @@
         Predavanja
       </th>
       <th>
-        <button class="btn" (click)="showAddPredavanje()">Dodaj</button>
+        <button class="btn" *ngIf="this.isButtonVisible" (click)="showAddPredavanje()">Dodaj</button>
       </th>
     </tr>
     <tr>

@@ -1,10 +1,12 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { UcenikService } from '../../service/ucenik.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { Nastavnik } from '../../model/nastavnik.model';
 import { NastavnikService } from '../../service/nastavnik.service';
 import { EditNastavnikComponent } from '../edit-nastavnik/edit-nastavnik.component';
+import { Router } from '@angular/router';
+import { JwtUtilsService } from '../../security/jwt-utils.service';
+import { AuthenticationService } from '../../security/authentication.service';
 
 @Component({
   selector: 'app-nastavnik',
@@ -18,15 +20,29 @@ export class NastavnikComponent implements OnInit {
   @Input() nastavnici: Nastavnik[];
   @ViewChild(EditNastavnikComponent) editNastavnikComponent: EditNastavnikComponent;
 
-  constructor(private nastavnikService: NastavnikService) { }
+  constructor(private nastavnikService: NastavnikService,
+    private authenticationService: AuthenticationService,
+    private jwtUtilsService: JwtUtilsService,
+    private router: Router) { }
 
   public _nastavnici: Nastavnik[];
   public newNastavnik: Nastavnik;
   public editNastavnik: Nastavnik;
   public addNastavnikVisible: boolean = false;
   public editNastavnikVisible: boolean = false;
+  private isButtonVisible = false;
 
   ngOnInit() {
+    let token = this.authenticationService.getToken();
+    let roles = this.jwtUtilsService.getRoles(token.toString());
+
+    if (roles[0] == "ucenik") {
+      this.router.navigate(['/main']);
+    }
+    if (roles[0] == "nastavnik") {
+      this.isButtonVisible = false;
+    }
+
     this.nastavnikService.getNastavnici();
     this._nastavnici = [];
     this.loadNastavnikData();

@@ -32,6 +32,10 @@ export class MainComponent implements OnInit {
     if (roles[0] == "ucenik") {
       console.log("Ulogovan je ucenik");
       document.getElementById('nastavniciLink').remove();
+      document.getElementById('uceniciLink').remove();
+      document.getElementById('predmetiLink').remove();
+      document.getElementById('pohadjanjaLink').remove();
+      document.getElementById('predavanjaLink').remove();
     }
   }
 

@@ -26,6 +26,8 @@ export class PolaganjeComponent implements OnInit {
   public newPolaganje: Polaganje;
   public editPolaganje: Polaganje;
   public addPolaganjeVisible: boolean = false;
+  public AddPolaganje: boolean = false;
+  private isButtonVisible = true;
 
   constructor(private polaganjeService: PolaganjeService,
     private authenticationService: AuthenticationService,
@@ -41,6 +43,9 @@ export class PolaganjeComponent implements OnInit {
 
     if (roles[0] == "nastavnik") {
       this.router.navigate(['/main']);
+    }
+    if (roles[0] == "ucenik") {
+      this.isButtonVisible = false;
     }
   }
 

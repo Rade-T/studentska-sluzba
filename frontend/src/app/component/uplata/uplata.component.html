@@ -6,7 +6,7 @@
         Uplate
       </th>
       <th>
-        <button class="btn" (click)="showAddUplata()">Dodaj</button>
+        <button class="btn" *ngIf="this.isButtonVisible" (click)="showAddUplata()">Dodaj</button>
       </th>
     </tr>
     <tr>

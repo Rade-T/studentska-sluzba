@@ -5,6 +5,8 @@ import { Predavanje } from '../../model/predavanje.model';
 import { PredavanjeService } from '../../service/predavanje.service';
 import { AddPredavanjeComponent } from '../add-predavanje/add-predavanje.component';
 import { EditPredavanjeComponent } from '../edit-predavanje/edit-predavanje.component';
+import { AuthenticationService } from '../../security/authentication.service';
+import { JwtUtilsService } from '../../security/jwt-utils.service';
 
 @Component({
   selector: 'app-predavanje',
@@ -23,13 +25,26 @@ export class PredavanjeComponent implements OnInit {
   public newPredavanje: Predavanje;
   public editPredavanje: Predavanje;
   public addPredavanjeVisible: boolean = false;
+  private isButtonVisible = true;
 
-  constructor(private predavanjeService: PredavanjeService) {
+  constructor(private predavanjeService: PredavanjeService,
+    private authenticationService: AuthenticationService,
+    private jwtUtilsService: JwtUtilsService,
+    private router: Router) {
     this._predavanja = [];
     this.loadData();
   }
 
   ngOnInit() {
+    let token = this.authenticationService.getToken();
+    let roles = this.jwtUtilsService.getRoles(token.toString());
+
+    if (roles[0] == "ucenik") {
+      this.router.navigate(['/main']);
+    }
+    if (roles[0] == "nastavnik") {
+      this.isButtonVisible = false;
+    }
     this.loadData();
   }
 

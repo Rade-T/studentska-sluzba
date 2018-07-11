@@ -6,7 +6,7 @@
         Polaganja
       </th>
       <th>
-        <button class="btn" (click)="showAddPolaganje()">Dodaj</button>
+        <button class="btn" *ngIf="this.isButtonVisible" (click)="showAddPolaganje()">Dodaj</button>
       </th>
     </tr>
     <tr>

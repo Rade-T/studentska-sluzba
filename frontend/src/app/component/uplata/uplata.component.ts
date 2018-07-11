@@ -26,6 +26,7 @@ export class UplataComponent implements OnInit {
   public newUplata: Uplata;
   public editUplata: Uplata;
   public addUplataVisible: boolean = false;
+  private isButtonVisible = true;
 
   constructor(private uplataService: UplataService,
     private authenticationService: AuthenticationService,
@@ -41,6 +42,9 @@ export class UplataComponent implements OnInit {
 
     if (roles[0] == "nastavnik") {
       this.router.navigate(['/main']);
+    }
+    if (roles[0] == "ucenik") {
+      this.isButtonVisible = false;
     }
   }
 

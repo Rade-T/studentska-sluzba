@@ -7,7 +7,7 @@
         Nastavnici
       </th>
       <th>
-        <button class="btn" (click)="showAddNastavnik()">Dodaj</button>
+        <button class="btn" *ngIf="this.isButtonVisible" (click)="showAddNastavnik()">Dodaj</button>
       </th>
     </tr>
     <tr>
