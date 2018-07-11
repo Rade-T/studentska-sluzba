@@ -25,3 +25,5 @@
 /.nb-gradle/
 
 /src/main/resources/static/
+frontend/.vscode
+frontend/angular.json
