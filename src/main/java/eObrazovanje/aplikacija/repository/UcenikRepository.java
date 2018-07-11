@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import eObrazovanje.aplikacija.model.Predavanje;
 import eObrazovanje.aplikacija.model.Ucenik;
 
 @Repository
 public interface UcenikRepository extends JpaRepository<Ucenik, Integer> {
-	
+	List<Ucenik> findByUsername(String username);
 }

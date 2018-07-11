@@ -16,6 +16,7 @@ public class UcenikDTO {
 	private String jmbg;
 	private String email;
 	private String telefon;
+	private String username;
 	private List<Integer> dokumenti;
 	private List<Integer> uplate;
 //	private int pohadjanje;
@@ -34,6 +35,7 @@ public class UcenikDTO {
 		this.telefon = u.getTelefon();
 		this.dokumenti = new ArrayList<>();
 		this.uplate = new ArrayList<>();
+		this.username = u.getUsername();
 
 //		for (Dokument d : u.getDokumenti()) {
 //			dokumenti.add(d.getId());
@@ -79,7 +81,7 @@ public class UcenikDTO {
 		return jmbg;
 	}
 
-	public void setJMBG(String jmbg) {
+	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
 
@@ -113,6 +115,14 @@ public class UcenikDTO {
 
 	public void setUplate(List<Integer> uplate) {
 		this.uplate = uplate;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 //	public int getPohadjanje() {

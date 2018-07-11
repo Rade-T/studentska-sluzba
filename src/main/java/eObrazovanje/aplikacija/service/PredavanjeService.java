@@ -30,4 +30,7 @@ public class PredavanjeService {
 		predavanjeRepository.deleteById(predavanje.getId());
 	}
 
+	public List<Predavanje> findByNastavnikUsername(String username) {
+		return predavanjeRepository.findByNastavnikUsername(username);
+	}
 }

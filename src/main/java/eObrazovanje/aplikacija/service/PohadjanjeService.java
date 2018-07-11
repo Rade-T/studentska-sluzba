@@ -29,4 +29,8 @@ public class PohadjanjeService {
 	public void remove(Pohadjanje pohadjanje) {
 		pohadjanjeRepository.deleteById(pohadjanje.getId());
 	}
+	
+	public List<Pohadjanje> findByUcenikUsername(String username) {
+		return pohadjanjeRepository.findByUceniciUsername(username);
+	}
 }

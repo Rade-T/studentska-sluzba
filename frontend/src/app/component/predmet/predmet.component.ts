@@ -5,6 +5,8 @@ import { Predmet } from '../../model/predmet.model';
 import { PredmetService } from '../../service/predmet.service';
 import { AddPredmetComponent } from '../add-predmet/add-predmet.component';
 import { EditPredmetComponent } from '../edit-predmet/edit-predmet.component';
+import { AuthenticationService } from '../../security/authentication.service';
+import { JwtUtilsService } from '../../security/jwt-utils.service';
 
 @Component({
   selector: 'app-predmet',
@@ -24,12 +26,21 @@ export class PredmetComponent implements OnInit {
   public editPredmet: Predmet;
   public addPredmetVisible: boolean = false;
 
-  constructor(private predmetService: PredmetService) {
+  constructor(private predmetService: PredmetService,
+    private authenticationService: AuthenticationService,
+    private jwtUtilsService: JwtUtilsService,
+    private router: Router) {
     this._predmeti = [];
     this.loadData();
   }
 
   ngOnInit() {
+    let token = this.authenticationService.getToken();
+    let roles = this.jwtUtilsService.getRoles(token.toString());
+
+    if (roles[0] == "nastavnik") {
+      this.router.navigate(['/main']);
+    }
     this.loadData();
   }
 

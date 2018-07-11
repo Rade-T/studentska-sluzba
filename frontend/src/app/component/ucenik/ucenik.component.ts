@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AddUcenikComponent } from '../add-ucenik/add-ucenik.component';
 import { EditUcenikComponent } from '../edit-ucenik/edit-ucenik.component';
+import { AuthenticationService } from '../../security/authentication.service';
+import { JwtUtilsService } from '../../security/jwt-utils.service';
 
 @Component({
   selector: 'app-ucenik',
@@ -24,12 +26,21 @@ export class UcenikComponent implements OnInit {
   public editUcenik: Ucenik;
   public addUcenikVisible: boolean = false;
 
-  constructor(private ucenikService: UcenikService) {
+  constructor(private ucenikService: UcenikService,
+    private authenticationService: AuthenticationService,
+    private jwtUtilsService: JwtUtilsService,
+    private router: Router) {
     this.ucenici = [];
     this.loadData();
   }
 
   ngOnInit() {
+    let token = this.authenticationService.getToken();
+    let roles = this.jwtUtilsService.getRoles(token.toString());
+
+    if (roles[0] == "nastavnik") {
+      this.router.navigate(['/main']);
+    }
   }
 
   private loadData() {

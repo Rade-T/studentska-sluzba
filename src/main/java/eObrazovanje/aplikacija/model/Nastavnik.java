@@ -24,6 +24,9 @@ public class Nastavnik {
 
 	@Column
 	private String telefon;
+	
+	@Column
+	private String username;
 
 	@OneToMany(mappedBy = "nastavnik")
     private List<Predavanje> predavanja;
@@ -87,4 +90,12 @@ public class Nastavnik {
     public void setPredavanja(List<Predavanje> predavanja) {
         this.predavanja = predavanja;
     }
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import eObrazovanje.aplikacija.model.Nastavnik;
+import eObrazovanje.aplikacija.model.Predavanje;
 import eObrazovanje.aplikacija.repository.NastavnikRepository;
 
 @Component
@@ -28,5 +29,9 @@ public class NastavnikService {
 
 	public void remove(Nastavnik nastavnik) {
 		nastavnikRepository.deleteById(nastavnik.getId());
+	}
+	
+	public List<Nastavnik> findByUsername(String username) {
+		return nastavnikRepository.findByUsername(username);
 	}
 }

@@ -16,6 +16,7 @@ export class Ucenik {
     public uplate: Array<Uplata>;
     public polaganja: Array<Polaganje>;
     public pohadjanje: Pohadjanje;
+    public username: string;
 
     constructor() {
         

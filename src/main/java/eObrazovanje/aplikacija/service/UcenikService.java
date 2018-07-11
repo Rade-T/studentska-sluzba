@@ -29,5 +29,9 @@ public class UcenikService {
 	public void remove(Ucenik ucenik) {
 		ucenikRepository.deleteById(ucenik.getId());
 	}
+	
+	public List<Ucenik> findByUsername(String username) {
+		return ucenikRepository.findByUsername(username);
+	}
 
 }

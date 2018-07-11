@@ -29,6 +29,9 @@ public class Ucenik {
 
 	@Column
 	private String telefon;
+	
+	@Column
+	private String username;
 
 	@OneToMany(mappedBy = "ucenik")
 	private List<Dokument> dokumenti;
@@ -127,7 +130,15 @@ public class Ucenik {
         this.polaganja = polaganja;
     }
     
-    public int getId() {
+    public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getId() {
 		return id;
 	}
 

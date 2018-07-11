@@ -5,6 +5,8 @@ import { Polaganje } from '../../model/polaganje.model';
 import { PolaganjeService } from '../../service/polaganje.service';
 import { AddPolaganjeComponent } from '../add-polaganje/add-polaganje.component';
 import { EditPolaganjeComponent } from '../edit-polaganje/edit-polaganje.component';
+import { AuthenticationService } from '../../security/authentication.service';
+import { JwtUtilsService } from '../../security/jwt-utils.service';
 
 
 @Component({
@@ -25,12 +27,21 @@ export class PolaganjeComponent implements OnInit {
   public editPolaganje: Polaganje;
   public addPolaganjeVisible: boolean = false;
 
-  constructor(private polaganjeService: PolaganjeService) {
+  constructor(private polaganjeService: PolaganjeService,
+    private authenticationService: AuthenticationService,
+    private jwtUtilsService: JwtUtilsService,
+    private router: Router) {
     this._polaganje = [];
     this.loadData();
   }
 
   ngOnInit() {
+    let token = this.authenticationService.getToken();
+    let roles = this.jwtUtilsService.getRoles(token.toString());
+
+    if (roles[0] == "nastavnik") {
+      this.router.navigate(['/main']);
+    }
   }
 
   private loadData() {

@@ -30,4 +30,7 @@ public class UplataService {
 		uplataRepository.deleteById(uplata.getId());
 	}
 
+	public List<Uplata> findByUcenikUsername(String username) {
+		return uplataRepository.findByUcenikUsername(username);
+	}
 }

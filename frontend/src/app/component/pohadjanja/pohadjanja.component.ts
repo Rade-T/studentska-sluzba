@@ -4,6 +4,9 @@ import { EditPohadjanjeComponent } from '../edit-pohadjanje/edit-pohadjanje.comp
 import { PohadjanjeService } from '../../service/pohadjanje.service';
 import { Ucenik } from '../../model/ucenik.model';
 import { UcenikService } from '../../service/ucenik.service';
+import { Router } from '@angular/router';
+import { JwtUtilsService } from '../../security/jwt-utils.service';
+import { AuthenticationService } from '../../security/authentication.service';
 
 @Component({
   selector: 'app-pohadjanja',
@@ -17,7 +20,10 @@ export class PohadjanjaComponent implements OnInit {
   @Input() pohadjanja: Pohadjanje[];
   @ViewChild(EditPohadjanjeComponent) editPohadjanjeComponent: EditPohadjanjeComponent;
 
-  constructor(private pohadjanjeService: PohadjanjeService) { }
+  constructor(private pohadjanjeService: PohadjanjeService,
+    private authenticationService: AuthenticationService,
+    private jwtUtilsService: JwtUtilsService,
+    private router: Router) { }
 
   public _pohadjanja: Pohadjanje[];
   public newPohadjanje: Pohadjanje;
@@ -26,6 +32,12 @@ export class PohadjanjaComponent implements OnInit {
   public editPohadjanjeVisible: boolean = false;
 
   ngOnInit() {
+    let token = this.authenticationService.getToken();
+    let roles = this.jwtUtilsService.getRoles(token.toString());
+
+    if (roles[0] == "nastavnik") {
+      this.router.navigate(['/main']);
+    }
     this.pohadjanjeService.getPohadjanja();
     this._pohadjanja = [];
     this.loadPohadjanjeData();

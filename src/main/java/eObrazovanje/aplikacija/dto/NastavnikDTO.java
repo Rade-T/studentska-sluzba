@@ -10,6 +10,7 @@ public class NastavnikDTO {
 	private String jmbg;
 	private String email;
 	private String telefon;
+	private String username;
 
     public NastavnikDTO() {
     }
@@ -21,6 +22,7 @@ public class NastavnikDTO {
 		this.jmbg = n.getJmbg();
 		this.email = n.getEmail();
 		this.telefon = n.getTelefon();
+		this.username = n.getUsername();
     }
 
     public int getId() {
@@ -69,5 +71,13 @@ public class NastavnikDTO {
 
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

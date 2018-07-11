@@ -30,4 +30,7 @@ public class DokumentService  {
 		dokumentRepository.deleteById(dokument.getId());
 	}
 
+	public List<Dokument> findByUcenikUsername(String username) {
+		return dokumentRepository.findByUcenikUsername(username);
+	}
 }

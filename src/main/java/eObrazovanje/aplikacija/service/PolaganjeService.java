@@ -29,4 +29,8 @@ public class PolaganjeService {
 	public void remove(Polaganje polaganje) {
 		polaganjeRepository.deleteById(polaganje.getId());
 	}
+	
+	public List<Polaganje> findByUcenikUsername(String username) {
+		return polaganjeRepository.findByUcenikUsername(username);
+	}
 }

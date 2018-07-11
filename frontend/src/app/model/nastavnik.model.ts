@@ -8,6 +8,7 @@ export class Nastavnik {
         public email: string;
         public telefon: string;
         public predavanja: Array<Predavanje>;
+        public username: string;
 
         constructor() {
             

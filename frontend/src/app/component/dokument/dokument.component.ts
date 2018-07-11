@@ -2,6 +2,9 @@ import { Component, OnInit, Output, Input, ViewChild, EventEmitter } from '@angu
 import { EditDokumentComponent } from '../edit-dokument/edit-dokument.component';
 import { Dokument } from '../../model/dokument.model';
 import { DokumentService } from '../../service/dokument.service';
+import { AuthenticationService } from '../../security/authentication.service';
+import { JwtUtilsService } from '../../security/jwt-utils.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dokument',
@@ -15,7 +18,10 @@ export class DokumentComponent implements OnInit {
   @Input() dokumenti: Dokument[];
   @ViewChild(EditDokumentComponent) editDokumentComponent: EditDokumentComponent;
 
-  constructor(private dokumentService: DokumentService) { }
+  constructor(private dokumentService: DokumentService,
+    private authenticationService: AuthenticationService,
+    private jwtUtilsService: JwtUtilsService,
+    private router: Router) { }
 
   public _dokumenti: Dokument[];
   public newDokument: Dokument;
@@ -24,6 +30,13 @@ export class DokumentComponent implements OnInit {
   public editDokumentVisible: boolean = false;
 
   ngOnInit() {
+    let token = this.authenticationService.getToken();
+    let roles = this.jwtUtilsService.getRoles(token.toString());
+
+    if (roles[0] == "nastavnik") {
+      this.router.navigate(['/main']);
+    }
+
     this.dokumentService.getDokumenti();
     this._dokumenti = [];
     this.loadDokumentData();
