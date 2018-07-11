@@ -1,0 +1,24 @@
+<div>
+	<form class="form-horizontal" (ngSubmit)="saveUplata()">
+    <input type="hidden" name="uplataId" id="uplataId" [(ngModel)]="editUplata.id"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="input-ucenik">Ucenik: </label>
+			<div class="col-sm-11">
+				<select class="form-control" name="input-ucenik" id="input-ucenik" [(ngModel)]="editUplata.ucenik">
+					<option *ngFor="let u of ucenici" [ngValue]="u.id">{{u.ime + " " + u.prezime}}</option>
+				</select>
+			</div>
+		</div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="input-uplata">Uplata: </label>
+      <div class="col-sm-11">
+        <input class="form-control" name="input-uplata" id="input-uplata" [(ngModel)]="editUplata.uplata" />
+      </div>
+    </div>
+
+		<div class="form-group">
+			<input class="btn btn-primary" type="submit" value="Save" />
+		</div>
+	</form>
+</div>

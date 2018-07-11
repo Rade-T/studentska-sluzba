@@ -42,6 +42,11 @@ import { AddPohadjanjeComponent } from './component/add-pohadjanje/add-pohadjanj
 import { EditPohadjanjeComponent } from './component/edit-pohadjanje/edit-pohadjanje.component';
 import { PohadjanjaComponent } from './component/pohadjanja/pohadjanja.component';
 import { PohadjanjeItemComponent } from './component/pohadjanje-item/pohadjanje-item.component';
+import { UplataComponent } from './component/uplata/uplata.component';
+import { UplataItemComponent } from './component/uplata-item/uplata-item.component';
+import { AddUplataComponent } from './component/add-uplata/add-uplata.component';
+import { EditUplataComponent } from './component/edit-uplata/edit-uplata.component';
+import { UplataService } from './service/uplata.service';
 
 const routes: Routes = [
   { path: 'ucenici', component: UcenikComponent },
@@ -51,6 +56,7 @@ const routes: Routes = [
   { path: 'dokumenti', component: DokumentComponent },
   { path: 'predavanja', component: PredavanjeComponent },
   { path: 'pohadjanja', component: PohadjanjaComponent },
+  { path: 'uplate', component: UplataComponent },
   { path: 'main', component: MainComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
@@ -87,7 +93,11 @@ const routes: Routes = [
     AddPohadjanjeComponent,
     EditPohadjanjeComponent,
     PohadjanjaComponent,
-    PohadjanjeItemComponent
+    PohadjanjeItemComponent,
+    UplataComponent,
+    UplataItemComponent,
+    AddUplataComponent,
+    EditUplataComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +112,8 @@ const routes: Routes = [
     PredmetService,
     PolaganjeService,
     PredavanjeService,
-    DokumentService
+    DokumentService,
+    UplataService
   ],
   bootstrap: [AppComponent]
 })
