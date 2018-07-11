@@ -1,0 +1,20 @@
+<div>
+  <app-add-uplata *ngIf="addUplataVisible" (newUplataAdded)="save($event)"></app-add-uplata>
+  <table name="uplataTable" class="table table-dark">
+    <tr>
+      <th>
+        Uplate
+      </th>
+      <th>
+        <button class="btn" (click)="showAddUplata()">Dodaj</button>
+      </th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th>Ucenik</th>
+      <th>Suma</th>
+    </tr>
+    <tr app-uplata-item *ngFor="let uplata of _uplata; let i = index" [uplata]="uplata" [index]="i" (deleteUplataIndex)="delete($event)" (editUplataIndex)="setUplata($event)"></tr>
+  </table>
+  <app-edit-uplata (editUplata)="setUplata($event)" (editUplataSaved)="saveEdit($event)"></app-edit-uplata>
+</div>

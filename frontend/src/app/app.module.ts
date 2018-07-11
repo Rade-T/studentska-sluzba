@@ -56,6 +56,7 @@ const routes: Routes = [
   { path: 'dokumenti', component: DokumentComponent },
   { path: 'predavanja', component: PredavanjeComponent },
   { path: 'pohadjanja', component: PohadjanjaComponent },
+  { path: 'uplate', component: UplataComponent },
   { path: 'main', component: MainComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 ];
@@ -94,6 +95,11 @@ const routes: Routes = [
     PohadjanjaComponent,
     PohadjanjeItemComponent,
     LoginComponent
+    PohadjanjeItemComponent,
+    UplataComponent,
+    UplataItemComponent,
+    AddUplataComponent,
+    EditUplataComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +123,8 @@ const routes: Routes = [
     AuthenticationService,
     CanActivateAuthGuard,
     JwtUtilsService
+    DokumentService,
+    UplataService
   ],
   bootstrap: [AppComponent]
 })
