@@ -90,7 +90,7 @@ public class DokumentController {
 
 	@PostMapping("/uploadFile")
 	public ResponseEntity<HttpStatus> handleFileUpload(@RequestParam("file") MultipartFile file) {
-
+		System.out.println("Upao u upload");
 		try {
 			// Get the file and save it somewhere
 			byte[] bytes = file.getBytes();

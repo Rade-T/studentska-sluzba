@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { UcenikComponent } from './component/ucenik/ucenik.component';
@@ -42,6 +42,11 @@ import { AddPohadjanjeComponent } from './component/add-pohadjanje/add-pohadjanj
 import { EditPohadjanjeComponent } from './component/edit-pohadjanje/edit-pohadjanje.component';
 import { PohadjanjaComponent } from './component/pohadjanja/pohadjanja.component';
 import { PohadjanjeItemComponent } from './component/pohadjanje-item/pohadjanje-item.component';
+import { LoginComponent } from './component/login/login.component';
+import { TokenInterceptorService } from './security/token-interceptor.service';
+import { JwtUtilsService } from './security/jwt-utils.service';
+import { CanActivateAuthGuard } from './security/can-activate-auth.guard';
+import { AuthenticationService } from './security/authentication.service';
 
 const routes: Routes = [
   { path: 'ucenici', component: UcenikComponent },
@@ -87,7 +92,8 @@ const routes: Routes = [
     AddPohadjanjeComponent,
     EditPohadjanjeComponent,
     PohadjanjaComponent,
-    PohadjanjeItemComponent
+    PohadjanjeItemComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +108,15 @@ const routes: Routes = [
     PredmetService,
     PolaganjeService,
     PredavanjeService,
-    DokumentService
+    DokumentService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+    AuthenticationService,
+    CanActivateAuthGuard,
+    JwtUtilsService
   ],
   bootstrap: [AppComponent]
 })

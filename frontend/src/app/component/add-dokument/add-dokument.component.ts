@@ -4,6 +4,7 @@ import { EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Ucenik } from '../../model/ucenik.model';
 import { UcenikService } from '../../service/ucenik.service';
+import { DokumentService } from '../../service/dokument.service';
 
 @Component({
   selector: 'app-add-dokument',
@@ -18,7 +19,7 @@ export class AddDokumentComponent implements OnInit {
   public JSON: Object;
   public ucenici: Ucenik[];
 
-  constructor(private http: HttpClient, private ucenikService: UcenikService) {
+  constructor(private http: HttpClient, private ucenikService: UcenikService, private dokumentService: DokumentService) {
     this.newDokument = new Dokument();
     this.JSON = JSON;
   }
@@ -36,5 +37,6 @@ export class AddDokumentComponent implements OnInit {
     console.log(this.newDokument);
     this.newDokument = new Dokument();
     console.log("Poslat dogadjaj");
+    this.dokumentService.uploadFile( (<HTMLInputElement>document.getElementById('input-dokument')).files[0] );
   }
 }
